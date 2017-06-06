@@ -1,0 +1,19 @@
+[
+  {
+    "id": "healthybehaviors",
+    "description": "healthybehaviors desc",
+    "order": 10,
+    "extensions": [
+      {
+        "id": "healthybehaviors",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "order": 20,
+        "label": "Healthy Behaviors",
+        "url": "healthybehaviors/dashboard.page",
+        "icon": "icon-group",
+        "requiredPrivilege": "App: healthybehaviors"
+      }
+    ]
+  }
+]
