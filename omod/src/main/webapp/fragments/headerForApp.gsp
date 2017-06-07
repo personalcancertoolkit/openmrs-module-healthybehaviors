@@ -13,6 +13,12 @@
     
     <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/abstract_behavior_class.js") }"></script>
     <link rel="stylesheet" href="${ ui.resourceLink("healthybehaviors", "styles/styles.css") }" type="text/css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+    <script>
+        Chart.defaults.global.defaultFontColor = '#3e3e3e';
+    </script>
+    
+    
     
     <script type="text/javascript" src="${ ui.resourceLink("uicommons", "/scripts/jquery-ui-1.9.2.custom.min.js")}"></script>
     <script type="text/javascript" src="${ ui.resourceLink("uicommons", "/scripts/underscore-min.js")}"></script>
