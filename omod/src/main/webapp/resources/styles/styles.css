@@ -292,3 +292,23 @@ a.no-underline-edit:hover {
   background-color: #ebebeb;
   border-color: rgba(0, 0, 0, 0.3);
 }
+
+
+
+
+.btn-custom-subtle-blue {
+  color:  rgb(59, 151, 255);
+  background-color: #fff;
+  border-color:   rgb(59, 151, 255);
+  border-width:1px;
+  margin-right:1px; margin-left:1px; /* since regular btn's border is 2px, compensate to make them same total width */
+}
+.btn-custom-subtle-blue:hover,
+.btn-custom-subtle-blue:focus,
+.btn-custom-subtle-blue.focus,
+.btn-custom-subtle-blue:active,
+.btn-custom-subtle-blue.active {
+  color:  rgb(59, 151, 255);
+  background-color: rgba(21, 101, 192, 0.05);
+  border-color: rgb(59, 151, 255);
+}
