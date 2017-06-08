@@ -9,11 +9,9 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
     });
 </script>
 <body>
-    <div class="container bgcontent col-sm-8 col-sm-offset-2">
+    <div class="">
         <% if(securitylevel != 1) { %>
-            <div class="tab-content">
               ${ ui.includeFragment("healthybehaviors", "dashboardBehaviorTiles") }
-            </div>
         <% } %>
     </div>
 </body>

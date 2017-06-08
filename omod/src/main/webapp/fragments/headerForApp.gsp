@@ -15,7 +15,20 @@
     <link rel="stylesheet" href="${ ui.resourceLink("healthybehaviors", "styles/styles.css") }" type="text/css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
     <script>
+        /////////////////
+        // Set default chart text color
+        /////////////////
         Chart.defaults.global.defaultFontColor = '#3e3e3e';
+        
+        ////////////////
+        // Offset from top if not loaded in iframe
+        ////////////////
+        window.addEventListener("load", function(){
+            if(window.self === window.top){
+                // not loaded in iframe
+                jq(document).find(".offset_from_top_if_not_in_iframe").css("margin-top", "50px");
+            }
+        });
     </script>
     
     

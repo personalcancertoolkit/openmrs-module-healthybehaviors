@@ -211,6 +211,10 @@ var behavior_tile_builder_singleton = {
         // update tile action buttons to uptodate status
         if(abstract_behavior_object.uptodate !== true) jq(a_tile).find(".behavior_tile_call_to_action_button")[0].className += " behavior_tile_button_call_to_action_modifier";
         
+        // insert links to respective advice/history and form views
+        jq(a_tile).find(".behavior_tile_form_anchor").attr('href','/record_performance.page?'+abstract_behavior_object.unique_behavior_id);
+        jq(a_tile).find(".behavior_tile_advice_history_anchor").attr('href','/advice_and_history.page?'+abstract_behavior_object.unique_behavior_id);
+        
         
         // initialize the chart 
         this.initialize_graphs(abstract_behavior_object);
@@ -242,7 +246,7 @@ var behavior_tile_builder_singleton = {
 </script>
 
 <!-- tile container/holder -->
-<div style = 'min-height:90%;  display:flex;'>
+<div class = 'offset_from_top_if_not_in_iframe' style = 'min-height:90%;  '>
     <div id = 'dashboard_behavior_tile_holder' style = 'display:flex; flex-wrap: wrap; justify-content:center; margin:auto;  width:100%;'>
 
     </div>
@@ -251,26 +255,40 @@ var behavior_tile_builder_singleton = {
 
 <!-- tile template -->
 <style>
+    a, a:hover, a:focus {
+        color: inherit;
+        text-decoration: none;
+    }
     .behavior_highlighed_interest{
         font-weight:bold;
+        color:rgb(8, 160, 255);
+    }
+    .behavior_highlighed_interest:hover{
+        color:rgb(8, 160, 255);
     }
     .behavior_tile_button{
         cursor:pointer;
         border:1px solid white;
         border-radius:2px;
+        color:rgb(8, 160, 255);
     }
     .behavior_tile_button:hover{
-        background-color:rgba(0, 191, 255, 0.07);
-        border-color:rgb(8, 160, 255);
+        background-color:rgba(0, 191, 255, 0.1);
         color:rgb(8, 160, 255);
     }
     .behavior_tile_button_call_to_action_modifier{
         border-color:rgb(8, 160, 255);
-        color:rgb(8, 160, 255);
     }
     .behavior_tile_button_call_to_action_modifier:hover{
         background-color:rgba(0, 191, 255, 0.1);
     }
+    .behavior_tile_form_anchor{
+        cursor:pointer;
+    }
+    .behavior_tile_advice_history_anchor{
+        cursor:pointer;
+    }
+
 </style>
 <div id = ''  style = 'display:none'>
     <div  id = 'behavior_tile_hidden_template' class = 'behavior_tile_reference_element' style = 'flex: 1 300px; max-width:400px; margin:20px 10px; '>
@@ -314,7 +332,7 @@ var behavior_tile_builder_singleton = {
                     You did great last week. Proper <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> will  {insert reason why to care}
                 </div>
                 <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none; text-align:center; font-size:14px;'>
-                    <span class = 'behavior_highlighed_interest'>Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data for the previous <span class = 'behavior_tile_time_interval'></span></span> to personalize your advice and track your performance.
+                    <a class = 'behavior_highlighed_interest behavior_tile_form_anchor' style = 'display:inline-block;'>Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data for the previous <span class = 'behavior_tile_time_interval'></span></a> to personalize your advice and track your performance.
                 </div>
             </div>
         </div>
@@ -328,7 +346,7 @@ var behavior_tile_builder_singleton = {
 
         <!-- links to forms and advice -->
         <div style = 'font-size:14px;'>
-            <div style = 'padding:10px; display:flex;' class = 'behavior_tile_button'>
+            <a style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_advice_history_anchor'>
                 <div style = 'display:flex; min-width:35px;'>
                     <div style = 'margin:auto; '>
                         <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
@@ -341,9 +359,9 @@ var behavior_tile_builder_singleton = {
                         View your <span class = 'behavior_highlighed_interest'> personalized <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> advice </span> and your  <span class = 'behavior_highlighed_interest'> full performance history </span> here
                     </div>
                 </div> 
-            </div>
+            </a>
             <div style = 'height:5px;'></div>
-            <div style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_call_to_action_button'>
+            <a style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_call_to_action_button behavior_tile_form_anchor'>
                 <div style = 'display:flex; min-width:35px;'>
                     <div style = 'margin:auto; '>
                         <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
@@ -353,13 +371,13 @@ var behavior_tile_builder_singleton = {
                 <div style = 'min-width:10px;'></div>
                 <div style = 'display:flex;'>
                     <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none;'>
-                        Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> performance data for the previous <span class = 'behavior_tile_time_interval'></span>
+                        Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> performance for the previous <span class = 'behavior_tile_time_interval'></span>
                     </div>
                     <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none;'>
                         Update the <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data you recorded for the previous <span class = 'behavior_tile_time_interval'></span>
                     </div>
                 </div> 
-            </div>
+            </a>
         </div>
 
     </div>
