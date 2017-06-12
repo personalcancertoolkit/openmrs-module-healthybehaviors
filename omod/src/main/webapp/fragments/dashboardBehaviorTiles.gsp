@@ -173,7 +173,7 @@ window.addEventListener("load", function(){
     
 var behavior_tile_builder_singleton = {
     tile_holder : null,
-    template_wrapper : null, // defines the DOM object which wraps the template and which will be manipulated to build individualized tiles
+    tile_template : null, // defines the DOM object which wraps the template and which will be manipulated to build individualized tiles
     
     build_tile_and_add_to_holder : function(abstract_behavior_object){
         var a_tile = this.tile_template.cloneNode(true);
@@ -269,7 +269,7 @@ var behavior_tile_builder_singleton = {
     .behavior_tile_button{
         cursor:pointer;
         border:1px solid white;
-        border-radius:2px;
+        border-radius:3px;
         color:rgb(8, 160, 255);
     }
     .behavior_tile_button:hover{
@@ -288,10 +288,15 @@ var behavior_tile_builder_singleton = {
     .behavior_tile_advice_history_anchor{
         cursor:pointer;
     }
-
+    .behavior_tile {
+        font-size:14px;
+        -webkit-box-shadow: 2px 2px 11px 1px rgba(133,133,133,1);
+        -moz-box-shadow: 2px 2px 11px 1px rgba(133,133,133,1);
+        box-shadow: 2px 2px 11px 1px rgba(133,133,133,1);
+    }
 </style>
 <div id = ''  style = 'display:none'>
-    <div  id = 'behavior_tile_hidden_template' class = 'behavior_tile_reference_element' style = 'flex: 1 300px; max-width:400px; margin:20px 10px; '>
+    <div  id = 'behavior_tile_hidden_template' class = 'behavior_tile_reference_element behavior_tile' style = 'flex: 1 300px; max-width:400px; margin:20px 10px; '>
         <!-- tile header -->
         <div style = 'width:100%; height:225px; position:relative;'>
             <!-- gradient overly element will be inserted by css (:before) into this location -->
@@ -303,82 +308,82 @@ var behavior_tile_builder_singleton = {
         </div>
 
 
-        <div style = 'height:10px;'></div>
-        
-        <!-- tile draw-in -->
-        <div style = 'width:100%; height:80px;  display:flex;'>
-                <div style = 'margin:auto; text-align:center; padding-top:5px; padding-bottom:5px;'>
-                    <span class = 'behavior_tile_wow_fact'> --- </span>
-                </div>
-        </div>
-        
-        <!-- divider -->
-        <div style = 'height:10px;'></div>
-        <div style = 'display:flex;'>
-            <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
-        </div>
-        <div style = 'height:15px;'></div>
-        
-        <!-- tile draw-in -->
-        <div style = 'width:100%; min-height:100px; display:flex; padding:5px;'>
+        <div style = 'padding:10px 10px;'> <!--  padding -->
+
+            <!-- tile draw-in -->
+            <div style = 'width:100%; height:80px;  display:flex; font-size:15px;'>
+                    <div style = 'margin:auto; text-align:center; padding-top:5px; padding-bottom:5px;'>
+                        <span class = 'behavior_tile_wow_fact'> --- </span>
+                    </div>
+            </div>
+
+            <!-- divider -->
+            <div style = 'height:10px;'></div>
             <div style = 'display:flex;'>
-                <div style = 'margin:auto; text-align:center;'>
-                    <canvas class="behavior_tile_mini_chart" width="175" height="175"></canvas>
+                <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
+            </div>
+            <div style = 'height:15px;'></div>
+
+            <!-- tile draw-in -->
+            <div style = 'width:100%; min-height:100px; display:flex; padding:5px;'>
+                <div style = 'display:flex;'>
+                    <div style = 'margin:auto; text-align:center;'>
+                        <canvas class="behavior_tile_mini_chart" width="175" height="175"></canvas>
+                    </div>
+                </div>
+                <div style = 'width:15px;'></div>
+                <div style = 'flex:1; display:flex;'>
+                    <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none; text-align:center; '>
+                        You did great last week. Proper <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> will  {insert reason why to care}
+                    </div>
+                    <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none; text-align:center; font-size:14px;'>
+                        <a class = 'behavior_highlighed_interest behavior_tile_form_anchor' style = 'display:inline-block;'>Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data for the previous <span class = 'behavior_tile_time_interval'></span></a> to personalize your advice and track your performance.
+                    </div>
                 </div>
             </div>
-            <div style = 'width:15px;'></div>
-            <div style = 'flex:1; display:flex;'>
-                <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none; text-align:center; font-size:14px;'>
-                    You did great last week. Proper <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> will  {insert reason why to care}
-                </div>
-                <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none; text-align:center; font-size:14px;'>
-                    <a class = 'behavior_highlighed_interest behavior_tile_form_anchor' style = 'display:inline-block;'>Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data for the previous <span class = 'behavior_tile_time_interval'></span></a> to personalize your advice and track your performance.
-                </div>
+
+            <!-- divider -->
+            <div style = 'height:15px;'></div>
+            <div style = 'display:flex;'>
+                <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
             </div>
-        </div>
-        
-        <!-- divider -->
-        <div style = 'height:15px;'></div>
-        <div style = 'display:flex;'>
-            <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
-        </div>
-        <div style = 'height:10px;'></div>
+            <div style = 'height:10px;'></div>
 
-        <!-- links to forms and advice -->
-        <div style = 'font-size:14px;'>
-            <a style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_advice_history_anchor'>
-                <div style = 'display:flex; min-width:35px;'>
-                    <div style = 'margin:auto; '>
-                        <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
-                        <span class = 'glyphicon glyphicon-fullscreen' style = 'font-size:21px;'></span>
-                    </div>
-                </div> 
-                <div style = 'min-width:10px;'></div>
-                <div style = 'display:flex;'>
-                    <div style = 'margin:auto;'>
-                        View your <span class = 'behavior_highlighed_interest'> personalized <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> advice </span> and your  <span class = 'behavior_highlighed_interest'> full performance history </span> here
-                    </div>
-                </div> 
-            </a>
-            <div style = 'height:5px;'></div>
-            <a style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_call_to_action_button behavior_tile_form_anchor'>
-                <div style = 'display:flex; min-width:35px;'>
-                    <div style = 'margin:auto; '>
-                        <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
-                        <span class = 'glyphicon glyphicon-pencil' style = 'font-size:21px;'></span>
-                    </div>
-                </div> 
-                <div style = 'min-width:10px;'></div>
-                <div style = 'display:flex;'>
-                    <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none;'>
-                        Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> performance for the previous <span class = 'behavior_tile_time_interval'></span>
-                    </div>
-                    <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none;'>
-                        Update the <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data you recorded for the previous <span class = 'behavior_tile_time_interval'></span>
-                    </div>
-                </div> 
-            </a>
-        </div>
-
+            <!-- links to forms and advice -->
+            <div style = 'font-size:14px;'>
+                <a style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_advice_history_anchor'>
+                    <div style = 'display:flex; min-width:35px;'>
+                        <div style = 'margin:auto; '>
+                            <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
+                            <span class = 'glyphicon glyphicon-fullscreen' style = 'font-size:21px;'></span>
+                        </div>
+                    </div> 
+                    <div style = 'min-width:10px;'></div>
+                    <div style = 'display:flex;'>
+                        <div style = 'margin:auto;'>
+                            View your <span class = ''> personalized </span>  <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> <span class = ''> advice</span>  and your  full performance <span class = ''>history </span> here
+                        </div>
+                    </div> 
+                </a>
+                <div style = 'height:5px;'></div>
+                <a style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_call_to_action_button behavior_tile_form_anchor'>
+                    <div style = 'display:flex; min-width:35px;'>
+                        <div style = 'margin:auto; '>
+                            <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
+                            <span class = 'glyphicon glyphicon-pencil' style = 'font-size:21px;'></span>
+                        </div>
+                    </div> 
+                    <div style = 'min-width:10px;'></div>
+                    <div style = 'display:flex;'>
+                        <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none;'>
+                            Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> performance for the previous <span class = 'behavior_tile_time_interval'></span>
+                        </div>
+                        <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none;'>
+                            Update the <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data you recorded for the previous <span class = 'behavior_tile_time_interval'></span>
+                        </div>
+                    </div> 
+                </a>
+            </div>
+        </div> <!-- end padding -->
     </div>
 </div>
