@@ -4,7 +4,12 @@
     
     "uptodate" : false,
     "header_background_image_src" : "/openmrs/ms/uiframework/resource/healthybehaviors/images/runner.jpeg",
-    
+    "personalized_advice" : [
+        [
+            "Cardio",
+            "Cardio is good for the heart. You should probably do more cardio..."
+        ]
+    ],
     
     "header_title_text" :  "Exercise",
     "advice_type_text" : "Exercise",

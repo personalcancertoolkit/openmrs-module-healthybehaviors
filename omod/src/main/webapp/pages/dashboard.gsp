@@ -4,6 +4,7 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
 
 
 
+<div class = 'offset_from_top_if_not_in_iframe'></div>
 
 <body>
     <div class="">
@@ -11,19 +12,19 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
             
             
             <script>
-                window["loaded_behaviors_data"] = {};
+                window["loaded_behaviors"] = {};
                 
                 // load nutrition
                 var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/nutrition.json") }';
                 fetch(data_path)
                   .then(function(response){return response.json()})
-                  .then(function(json){window["loaded_behaviors_data"]["nutrition"] = json; });
+                  .then(function(json){window["loaded_behaviors"]["nutrition"] = new abstract_behavior_class(json); });
                 
                 // load nutrition
                 var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/exercise.json") }';
                 fetch(data_path)
                   .then(function(response){return response.json()})
-                  .then(function(json){window["loaded_behaviors_data"]["exercise"] = json; });
+                  .then(function(json){window["loaded_behaviors"]["exercise"] = new abstract_behavior_class(json); });
                 
                 
                 // load exercise
@@ -34,3 +35,6 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
         <% } %>
     </div>
 </body>
+
+        
+<div class = 'offset_from_top_if_not_in_iframe'></div>

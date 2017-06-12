@@ -24,15 +24,12 @@ window.addEventListener("load", function(){
         ////////////////////////
         // Nutrition Tile
         ////////////////////////
-        var nutrition_behavior = new abstract_behavior_class(window["loaded_behaviors_data"]["nutrition"]);
-        requested_behaviors.push(nutrition_behavior);
+        requested_behaviors.push(window["loaded_behaviors"]["nutrition"]);
 
         /////////////////////////
         // Exercise Tile
         /////////////////////////
-        var exercise_behavior = new abstract_behavior_class(window["loaded_behaviors_data"]["exercise"]);
-        requested_behaviors.push(exercise_behavior);
-
+        requested_behaviors.push(window["loaded_behaviors"]["exercise"]);
 
         behavior_tile_builder_singleton.tile_template = document.getElementById("behavior_tile_hidden_template");
         behavior_tile_builder_singleton.tile_holder = document.getElementById("dashboard_behavior_tile_holder");
@@ -50,7 +47,7 @@ window.addEventListener("load", function(){
 </script>
 
 <!-- tile container/holder -->
-<div class = 'offset_from_top_if_not_in_iframe' style = 'min-height:90%;  '>
+<div class = '' style = 'min-height:90%;  '>
     <div id = 'dashboard_behavior_tile_holder' style = 'display:flex; flex-wrap: wrap; justify-content:center; margin:auto;  width:100%;'>
 
     </div>

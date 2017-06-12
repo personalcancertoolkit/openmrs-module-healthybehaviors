@@ -23,6 +23,9 @@ function abstract_behavior_class(behavior_data){
     this.uptodate = behavior_data.uptodate;
     this.time_interval = behavior_data.time_interval;
     this.chart = behavior_data.chart;
+    
+    // define advice specific data
+    this.personalized_advice = behavior_data.personalized_advice;
 }
 abstract_behavior_class.prototype = {
     get wow_fact(){
