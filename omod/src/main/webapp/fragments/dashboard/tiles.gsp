@@ -56,39 +56,6 @@ window.addEventListener("load", function(){
 
 <!-- tile template -->
 <style>
-    a, a:hover, a:focus {
-        color: inherit;
-        text-decoration: none;
-    }
-    .behavior_highlighed_interest{
-        font-weight:bold;
-        color:rgb(8, 160, 255);
-    }
-    .behavior_highlighed_interest:hover{
-        color:rgb(8, 160, 255);
-    }
-    .behavior_tile_button{
-        cursor:pointer;
-        border:1px solid white;
-        border-radius:3px;
-        color:rgb(8, 160, 255);
-    }
-    .behavior_tile_button:hover{
-        background-color:rgba(0, 191, 255, 0.1);
-        color:rgb(8, 160, 255);
-    }
-    .behavior_tile_button_call_to_action_modifier{
-        border-color:rgb(8, 160, 255);
-    }
-    .behavior_tile_button_call_to_action_modifier:hover{
-        background-color:rgba(0, 191, 255, 0.1);
-    }
-    .behavior_tile_form_anchor{
-        cursor:pointer;
-    }
-    .behavior_tile_advice_history_anchor{
-        cursor:pointer;
-    }
 </style>
 <div id = ''  style = 'display:none'>
     <div  id = 'behavior_tile_hidden_template' class = 'behavior_tile_reference_element healthy_tile' style = 'flex: 1 300px; max-width:400px; margin:20px 10px; '>
@@ -106,7 +73,7 @@ window.addEventListener("load", function(){
         <div style = 'padding:10px 10px;'> <!--  padding -->
 
             <!-- tile draw-in -->
-            <div style = 'width:100%; height:80px;  display:flex; font-size:15px;'>
+            <div style = 'width:100%; height:80px;  display:flex; font-size:14px;'>
                     <div style = 'margin:auto; text-align:center; padding-top:5px; padding-bottom:5px;'>
                         <span class = 'behavior_tile_wow_fact'> --- </span>
                     </div>

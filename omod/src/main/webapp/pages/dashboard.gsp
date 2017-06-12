@@ -4,9 +4,9 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
 
 
 
-<div class = 'offset_from_top_if_not_in_iframe'></div>
 
 <body>
+<div class = 'offset_from_top_if_not_in_iframe'></div>
     <div class="">
         <% if(securitylevel != 1) { %>
             
@@ -34,7 +34,7 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
               ${ ui.includeFragment("healthybehaviors", "dashboard/tiles") }
         <% } %>
     </div>
+<div class = 'offset_from_top_if_not_in_iframe'></div>
 </body>
 
         
-<div class = 'offset_from_top_if_not_in_iframe'></div>

@@ -14,9 +14,9 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
 <!-- initialize data controller script -->
 
         
-<div class = 'offset_from_top_if_not_in_iframe'></div>
 
 <body>
+<div class = 'offset_from_top_if_not_in_iframe'></div>
     <div class="">
         <% if(securitylevel != 1) { %>
             
@@ -38,7 +38,7 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
             
         <% } %>
     </div>
+<div class = 'offset_from_top_if_not_in_iframe'></div>
 </body>
 
         
-<div class = 'offset_from_top_if_not_in_iframe'></div>
