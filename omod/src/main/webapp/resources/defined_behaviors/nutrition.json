@@ -1,0 +1,59 @@
+{
+    "unique_behavior_id" : "nutrition", 
+    
+    
+    "uptodate" : true,
+    "header_background_image_src" : "/openmrs/ms/uiframework/resource/healthybehaviors/images/beauty_berries.jpeg",
+    
+    
+    "header_title_text" :  "Nutrition <br> & Diet",
+    "advice_type_text" : "Nutrition and Diet",
+    "header_background_image_base_src" : "/images/beauty_berries.jpeg",
+    "wow_facts" :  [
+        "adding citrus juice to green tea stabalizes its catechin content, enabling up to 13-times more antioxidants to survive the digestive system",
+        "a 20oz bottle of Coca-Cola has more suggar than a large Cinnabon",
+        "one third of Americans get 47 percent of their calories from junk foods",
+        "the average American is eating 300 more calories each day than he or she did in 1985",
+        "trials found a 5-12 percent decrease in cholesterol levels in hyperlipidemic patients after at least 30 days’ treatment with 600-900 mg of garlic extract",
+        "ten cups per day of green tea delayed cancer onset 8.7 years in Japanese women and three years in Japanese men"
+    ],
+    
+    
+    "time_interval" : "week", 
+    "chart" : {
+        "type" : "line",
+        "labels": ["-3 Week", "-2 Week", "Last Week"],
+        "datasets" : [{
+                    "label": "Veggies Eaten",
+                    "data": [7, 12, 9],
+                    "backgroundColor": [
+                        "rgba(99, 255, 135, 0.2)"
+                    ],
+                    "borderColor": [
+                        "rgb(99, 255, 135)"
+                    ],
+                    "borderWidth": 1
+                },{
+                    "label": "Fast Food Eaten",
+                    "data": [3, 0, 1],
+                    "backgroundColor": [
+                        "rgba(255, 62, 62, 0.1)"
+                    ],
+                    "borderColor": [
+                        "rgb(255, 62, 62)"
+                    ],
+                    "borderWidth": 1
+                }],
+        "options" :  {
+            "scales": {
+                "yAxes": [{
+                    "ticks": {
+                        "beginAtZero":true
+                    }
+                }]
+            }
+        }
+    }
+    
+    
+}

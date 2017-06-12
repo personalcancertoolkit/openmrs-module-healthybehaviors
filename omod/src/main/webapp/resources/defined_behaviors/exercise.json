@@ -1,0 +1,57 @@
+{
+    "unique_behavior_id" : "exercise", 
+    
+    
+    "uptodate" : false,
+    "header_background_image_src" : "/openmrs/ms/uiframework/resource/healthybehaviors/images/runner.jpeg",
+    
+    
+    "header_title_text" :  "Exercise",
+    "advice_type_text" : "Exercise",
+    "header_background_image_base_src" : "/images/runner.jpeg",
+    "wow_facts" :  [
+        "working out sharpens your memory",
+        "exercise prevents signs of aging",
+        "working out helps you sleep better",
+        "on average, it takes about 12 weeks after beginning to exercise to see measurable changes in your body",
+        "exercise is more effective at increasing your energy levels than caffeine"
+    ],
+    
+    
+    "time_interval" : "week", 
+    "chart" : {
+        "type": "radar",
+        "labels" : ["Strength","Flexibility","Vigorous","Moderate", "Light"],
+        "datasets" : [
+            {
+                "label": "-2 Week",
+                "data": [3, 3, 2, 4, 3],
+                "backgroundColor": [
+                    "rgba(1, 119, 199, 0.1)"
+                ],
+                "borderColor": [
+                    "rgba(1, 119, 199, 1)"
+                ],
+                "borderWidth": 1
+            },{
+                "label": "-3 Week",
+                "data": [2, 4, 1, 5, 3],
+                "backgroundColor": [
+                    "rgba(54, 162, 235, 0.1)"
+                ],
+                "borderColor": [
+                    "rgba(54, 162, 235, 0.8)"
+                ],
+                "borderWidth": 1
+            }
+       ],
+        "options" :  {
+            "scale": {
+                "ticks": {
+                    "min": 0,
+                    "minStepSize": 1
+                }
+            }
+        }
+    }   
+}

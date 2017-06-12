@@ -17,135 +17,29 @@
 <script>
     
 window.addEventListener("load", function(){
-    var requested_behaviors = [];
-    
-    // TODO - create general way of initializing requested tiles based on JSON data passed from server of behaviors of interest to this loading of the module
-    
-    ////////////////////////
-    // Nutrition Tile
-    ////////////////////////
-    var nutrition_behavior = new abstract_behavior_class();
-    nutrition_behavior.wow_facts =  [
-        "adding citrus juice to green tea stabalizes its catechin content, boosting the level of antioxidants that survive the digestive system up to 13-fold",
-        "a 20oz bottle of Coca-Cola has more suggar than a large Cinnabon",
-        "one third of Americans get 47 percent of their calories from junk foods",
-        "the average American is eating 300 more calories each day than he or she did in 1985",
-        "trials found a 5-12 percent decrease in cholesterol levels in hyperlipidemic patients after at least 30 days’ treatment with 600-900 mg of garlic extract",
-        "ten cups per day of green tea delayed cancer onset 8.7 years in Japanese women and three years in Japanese men",
-    ];
-    nutrition_behavior.unique_behavior_id = "nutrition";
-    nutrition_behavior.header_title_text = "Nutrition <br> & Diet";
-    nutrition_behavior.header_background_image_src = '${ ui.resourceLink("healthybehaviors", "/images/beauty_berries.jpeg") }';
-    nutrition_behavior.advice_type_text = "Nutrition and Diet";
-    nutrition_behavior.uptodate = true;
-    nutrition_behavior.time_interval = "week";
-    nutrition_behavior.chart = {
-        type : "line",
-        labels: ["-3 Week", "-2 Week", "Last Week"],
-        datasets : [{
-                    label: 'Veggies Eaten',
-                    data: [7, 12, 9],
-                    backgroundColor: [
-                        'rgba(99, 255, 135, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgb(99, 255, 135)',
-                    ],
-                    borderWidth: 1
-                },{
-                    label: 'Fast Food Eaten',
-                    data: [3, 0, 1],
-                    backgroundColor: [
-                        'rgba(255, 62, 62, 0.1)',
-                    ],
-                    borderColor: [
-                        'rgb(255, 62, 62)',
-                    ],
-                    borderWidth: 1
-                }],
-        options :  {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        },
-    }
-    requested_behaviors.push(nutrition_behavior);
-    
-    /////////////////////////
-    // Exercise Tile
-    /////////////////////////
-    var exercise_behavior = new abstract_behavior_class();
-    exercise_behavior.wow_facts =  [
-        "working out sharpens your memory",
-        "exercise prevents signs of aging",
-        "working out helps you sleep better",
-        "on average, it takes about 12 weeks after beginning to exercise to see measurable changes in your body",
-        "exercise is more effective at increasing your energy levels than caffeine",
-    ];
-    exercise_behavior.unique_behavior_id = "exercise";
-    exercise_behavior.header_title_text = "Exercise";
-    exercise_behavior.header_background_image_src = '${ ui.resourceLink("healthybehaviors", "/images/runner.jpeg") }';
-    exercise_behavior.advice_type_text = "Exercise";
-    exercise_behavior.uptodate = false;
-    exercise_behavior.time_interval = "week";
-    exercise_behavior.chart = {
-        type: "radar",
-        labels : ["Strength","Flexibility","Vigorous","Moderate", "Light"],
-        datasets : [
-            {
-                label: '-2 Week',
-                data: [3, 3, 2, 4, 3],
-                backgroundColor: [
-                    'rgba(1, 119, 199, 0.1)',
-                ],
-                borderColor: [
-                    'rgba(1, 119, 199, 1)',
-                ],
-                borderWidth: 1
-            },{
-                label: '-3 Week',
-                data: [2, 4, 1, 5, 3],
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.1)',
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 0.8)',
-                ],
-                borderWidth: 1
-            }
-                /*,{
-                label: '-2 W',
-                data: [1, 2, 3, 3, 2],
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.1)',
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 0.6)',
-                ],
-                borderWidth: 1
-            }*/
-       ],
-        options :  {
-            scale: {
-                ticks: {
-                    min: 0,
-                    minStepSize: 1,
-                }
-            }
-        },
-    }
-    requested_behaviors.push(exercise_behavior);
-    
-    
-    behavior_tile_builder_singleton.tile_template = document.getElementById("behavior_tile_hidden_template");
-    behavior_tile_builder_singleton.tile_holder = document.getElementById("dashboard_behavior_tile_holder");
-    for(var i = 0; i < requested_behaviors.length; i++){
-        behavior_tile_builder_singleton.build_tile_and_add_to_holder(requested_behaviors[i]);
-    }
+    setTimeout(function(){ // TODO - after passing data from server, remove this. Currently this is here because we are loading JSON data on client asynchronously.
+        var requested_behaviors = [];
+        // TODO - create general way of initializing requested tiles based on JSON data passed from server of behaviors of interest to this loading of the module
+
+        ////////////////////////
+        // Nutrition Tile
+        ////////////////////////
+        var nutrition_behavior = new abstract_behavior_class(window["loaded_behaviors_data"]["nutrition"]);
+        requested_behaviors.push(nutrition_behavior);
+
+        /////////////////////////
+        // Exercise Tile
+        /////////////////////////
+        var exercise_behavior = new abstract_behavior_class(window["loaded_behaviors_data"]["exercise"]);
+        requested_behaviors.push(exercise_behavior);
+
+
+        behavior_tile_builder_singleton.tile_template = document.getElementById("behavior_tile_hidden_template");
+        behavior_tile_builder_singleton.tile_holder = document.getElementById("dashboard_behavior_tile_holder");
+        for(var i = 0; i < requested_behaviors.length; i++){
+            behavior_tile_builder_singleton.build_tile_and_add_to_holder(requested_behaviors[i]);
+        }
+    },50);
 });
     
 </script>

@@ -7,8 +7,8 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
     
     var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/nutrition.json") }';
     fetch(data_path)
-      .then(response => response.json())
-      .then(json => console.log(json));
+      .then(function(response){ return response.json()})
+      .then(function(json){ console.log(json) });
     window["data_for_controller"] = {};
 </script>
 <!-- initialize data controller script -->
@@ -23,15 +23,15 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
 
             
             <!-- header tile -->
-            ${ui.includeFragment("healthybehaviors","adviceAndHistoryHeader")}
+            ${ui.includeFragment("healthybehaviors","adviceAndHistory/header")}
             
             <!-- advice tile -->
             <div style = 'margin-top:-10px;'></div>
-            ${ui.includeFragment("healthybehaviors","adviceAndHistoryAdvice")}
+            ${ui.includeFragment("healthybehaviors","adviceAndHistory/advice")}
             
             <!-- history tile -->
             <div style = 'margin-top:-10px;'></div>
-            ${ui.includeFragment("healthybehaviors","adviceAndHistoryHistory")}
+            ${ui.includeFragment("healthybehaviors","adviceAndHistory/history")}
         <% } %>
     </div>
 </body>
