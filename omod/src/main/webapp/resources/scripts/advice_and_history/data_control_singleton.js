@@ -21,7 +21,6 @@ var data_control_singleton = {
         },
         history : {
             chart_canvas : null,
-            data_table : null,
         }
     },
     behavior_object : null,

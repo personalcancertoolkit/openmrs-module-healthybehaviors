@@ -12,12 +12,14 @@ window.addEventListener("load", function(){
         <!-- history graph -->
         <div style = 'display:flex; width:100%; '>
             <div style = 'width:100%; max-width:700px; min-height:100px; margin:auto; padding:5px; '>
-                <canvas id="history_chart_canvas"></canvas>
+                <canvas id="history_chart_canvas" style = ''></canvas>
             </div>
         </div>
         <div style = 'height:15px;'></div>
+
         
         <!-- history data -->
+        <!--
         <div style = 'display:flex; width:100%; '>
             <div style = 'width:100%; max-width:700px; min-height:100px; margin:auto; padding:5px; '>
                 <TABLE style = 'width:100%;  '>
@@ -39,6 +41,7 @@ window.addEventListener("load", function(){
                 </TABLE>
             </div>
         </div>
+        -->
         
     </div>
 </div>

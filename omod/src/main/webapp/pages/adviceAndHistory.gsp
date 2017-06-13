@@ -36,6 +36,8 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
             ${ui.includeFragment("healthybehaviors","adviceAndHistory/history")}
             
             
+            
+            
         <% } %>
     </div>
 <div class = 'offset_from_top_if_not_in_iframe'></div>

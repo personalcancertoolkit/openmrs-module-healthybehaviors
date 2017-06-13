@@ -58,7 +58,7 @@ window.addEventListener("load", function(){
 <style>
 </style>
 <div id = ''  style = 'display:none'>
-    <div  id = 'behavior_tile_hidden_template' class = 'behavior_tile_reference_element healthy_tile' style = 'flex: 1 300px; max-width:400px; margin:20px 10px; '>
+    <div  id = 'behavior_tile_hidden_template' class = 'behavior_tile_reference_element healthy_tile' style = 'flex: 1 300px; max-width:500px; margin:20px 10px; '>
         <!-- tile header -->
         <div style = 'width:100%; height:225px; position:relative;'>
             <!-- gradient overly element will be inserted by css (:before) into this location -->
@@ -90,7 +90,7 @@ window.addEventListener("load", function(){
             <div style = 'width:100%; min-height:100px; display:flex; padding:5px;'>
                 <div style = 'display:flex;'>
                     <div style = 'margin:auto; text-align:center;'>
-                        <canvas class="behavior_tile_mini_chart" width="175" height="175"></canvas>
+                        <canvas class="behavior_tile_mini_chart" width="200" height="200"></canvas>
                     </div>
                 </div>
                 <div style = 'width:15px;'></div>
@@ -138,10 +138,10 @@ window.addEventListener("load", function(){
                     <div style = 'min-width:10px;'></div>
                     <div style = 'display:flex;'>
                         <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none;'>
-                            Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> performance for the previous <span class = 'behavior_tile_time_interval'></span>
+                            Record how your last <span class = 'behavior_tile_time_interval'></span> went <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> wise to personalize your advice and history
                         </div>
                         <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none;'>
-                            Update the <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data you recorded for the previous <span class = 'behavior_tile_time_interval'></span>
+                            Update the <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data you recorded for the previous <span class = 'behavior_tile_time_interval'></span> if you remembered any changes
                         </div>
                     </div> 
                 </a>
