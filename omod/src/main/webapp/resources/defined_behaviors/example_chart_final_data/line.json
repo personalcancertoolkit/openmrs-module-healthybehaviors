@@ -1,0 +1,36 @@
+{
+    "type" : "line",
+    "data" : {
+        "labels": ["-3 Week", "-2 Week", "Last Week"],
+        "datasets" : [{
+                    "label": "Veggies Eaten",
+                    "data": [7, 12, 9],
+                    "backgroundColor": [
+                        "rgba(99, 255, 135, 0.2)"
+                    ],
+                    "borderColor": [
+                        "rgb(99, 255, 135)"
+                    ],
+                    "borderWidth": 1
+                },{
+                    "label": "Fast Food Eaten",
+                    "data": [3, 0, 1],
+                    "backgroundColor": [
+                        "rgba(255, 62, 62, 0.1)"
+                    ],
+                    "borderColor": [
+                        "rgb(255, 62, 62)"
+                    ],
+                    "borderWidth": 1
+                }],
+    },
+    "options" :  {
+        "scales": {
+            "yAxes": [{
+                "ticks": {
+                    "beginAtZero":true
+                }
+            }]
+        }
+    }
+}

@@ -52,14 +52,7 @@ var behavior_tile_builder_singleton = {
         var chart_canvas = (jq(reference_element).find(".behavior_tile_mini_chart")[0]);
         var ctx = chart_canvas.getContext('2d');
         //console.log(ctx);
-        new Chart(ctx, {
-            type: abstract_behavior_object.chart.type,
-            data: {
-                labels: abstract_behavior_object.chart.labels, //["-5 W", "-4 W", "-3 W", "-2 W", "-1 W", "Now", "-5 W", "-4 W", "-3 W", "-2 W", "-1 W", "Now"],
-                datasets: abstract_behavior_object.chart.datasets, 
-            },
-            options: abstract_behavior_object.chart.options,
-        });
+        new Chart(ctx, abstract_behavior_object.chart_preview_data)
     }
     
 }

@@ -20,7 +20,7 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
                   .then(function(response){return response.json()})
                   .then(function(json){window["loaded_behaviors"]["nutrition"] = new abstract_behavior_class(json); });
                 
-                // load nutrition
+                // load exercise
                 var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/exercise.json") }';
                 fetch(data_path)
                   .then(function(response){return response.json()})

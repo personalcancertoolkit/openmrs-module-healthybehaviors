@@ -18,6 +18,10 @@ var data_control_singleton = {
             time_interval : null,
             behavior_title : null,
             tile : null,
+        },
+        history : {
+            chart_canvas : null,
+            data_table : null,
         }
     },
     behavior_object : null,
@@ -47,7 +51,7 @@ var data_control_singleton = {
         }
     },
     
-    initialize_warning : function(){
+    instantiate_warning : function(){
         if(this.behavior_object == null){
             setTimeout(this.initialize_warning.bind(this), 100);
             return;
@@ -58,7 +62,12 @@ var data_control_singleton = {
         this.DOM.warning.tile.href = '/openmrs/healthybehaviors/recordPerformance.page?behavior='+this.behavior_object.unique_behavior_id;
         this.DOM.warning.time_interval.innerHTML = this.behavior_object.time_interval;
         this.DOM.warning.behavior_title.innerHTML = this.behavior_object.advice_type_text;
-        
-        
+    },
+    
+    instantiate_history : function(){
+        var chart_canvas = this.DOM.history.chart_canvas;
+        var ctx = chart_canvas.getContext('2d');
+        //console.log(ctx);
+        new Chart(ctx, this.behavior_object.chart_data)  
     },
 }

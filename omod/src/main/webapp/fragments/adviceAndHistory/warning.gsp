@@ -6,7 +6,7 @@ window.addEventListener("load", function(){
         behavior_title : document.getElementById("warning_advice_type_text"),
         tile : document.getElementById("warning_tile_element"),
     }
-    data_control_singleton.initialize_warning();
+    data_control_singleton.instantiate_warning();
 });
 </script>
 <div class = '' id = 'warning_element' style = 'width:100%;padding:20px 10px; display:none;'>

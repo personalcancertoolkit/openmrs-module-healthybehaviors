@@ -14,6 +14,13 @@
             "Fiber may reduce your risk of colon cancer, and help improve your blood cholesterol. The National Cancer Institute recommends that everyone should get 20-30 grams of fiber every day. Women can aim for the lower end of this range, and men for the higher end. You eat more fiber than most American men, but you are still below the recommended amount of 20-30 grams per day. You can get more fiber into your diet by eating more fruits and vegetables, and by eating whole grain bread or having a fiber-rich cereal for breakfast several times a week."
         ]
     ],
+    "history" : {
+        "time": ["-9 W", "-8 W", "-7 W", "-6 W", "-5 W", "-4 Week", "-3 Week", "-2 Week", "Last Week"],
+        "performance" : {
+            "Veggies Eaten":   [0, 3, 1, 2, 4, null, 7, 12, 9],
+            "Fast Food Eaten": [5, 2, 3, 4, 3, null, 2,  0, 1]
+        }
+    },
     
     
     
@@ -32,30 +39,8 @@
     
     
     "time_interval" : "week", 
-    "chart" : {
+    "chart_static" : {
         "type" : "line",
-        "labels": ["-3 Week", "-2 Week", "Last Week"],
-        "datasets" : [{
-                    "label": "Veggies Eaten",
-                    "data": [7, 12, 9],
-                    "backgroundColor": [
-                        "rgba(99, 255, 135, 0.2)"
-                    ],
-                    "borderColor": [
-                        "rgb(99, 255, 135)"
-                    ],
-                    "borderWidth": 1
-                },{
-                    "label": "Fast Food Eaten",
-                    "data": [3, 0, 1],
-                    "backgroundColor": [
-                        "rgba(255, 62, 62, 0.1)"
-                    ],
-                    "borderColor": [
-                        "rgb(255, 62, 62)"
-                    ],
-                    "borderWidth": 1
-                }],
         "options" :  {
             "scales": {
                 "yAxes": [{
@@ -64,7 +49,29 @@
                     }
                 }]
             }
-        }
+        },
+        "dataset_options" : [
+            {
+                "label": "Veggies Eaten",
+                "backgroundColor": [
+                    "rgba(99, 255, 135, 0.2)"
+                ],
+                "borderColor": [
+                    "rgb(99, 255, 135)"
+                ],
+                "borderWidth": 1
+            },
+            {
+                "label": "Fast Food Eaten",
+                "backgroundColor": [
+                    "rgba(255, 62, 62, 0.1)"
+                ],
+                "borderColor": [
+                    "rgb(255, 62, 62)"
+                ],
+                "borderWidth": 1
+            }
+        ]
     }
     
     

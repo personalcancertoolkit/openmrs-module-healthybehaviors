@@ -1,7 +1,6 @@
 {
     "unique_behavior_id" : "exercise", 
     
-    
     "uptodate" : false,
     "header_background_image_src" : "/openmrs/ms/uiframework/resource/healthybehaviors/images/runner.jpeg",
     "personalized_advice" : [
@@ -22,34 +21,21 @@
         "exercise is more effective at increasing your energy levels than caffeine"
     ],
     
+    "history" : {
+        "time" : ["-4 W", "-3 W", "-2 W", "Last Week"],
+        "performance" : {
+            "Strength" : [1, 2, 3, 3],
+            "Flexibility" : [0, 1, 1, 1],
+            "Vigorous" : [0, 0, 1, 1],
+            "Moderate" : [1, 1, 1, 1],
+            "Light" : [5, 3, 3, 2]
+        }
+    },
+    
     
     "time_interval" : "week", 
-    "chart" : {
+    "chart_static" : {
         "type": "radar",
-        "labels" : ["Strength","Flexibility","Vigorous","Moderate", "Light"],
-        "datasets" : [
-            {
-                "label": "-2 Week",
-                "data": [3, 3, 2, 4, 3],
-                "backgroundColor": [
-                    "rgba(1, 119, 199, 0.1)"
-                ],
-                "borderColor": [
-                    "rgba(1, 119, 199, 1)"
-                ],
-                "borderWidth": 1
-            },{
-                "label": "-3 Week",
-                "data": [2, 4, 1, 5, 3],
-                "backgroundColor": [
-                    "rgba(54, 162, 235, 0.1)"
-                ],
-                "borderColor": [
-                    "rgba(54, 162, 235, 0.8)"
-                ],
-                "borderWidth": 1
-            }
-       ],
         "options" :  {
             "scale": {
                 "ticks": {
@@ -57,6 +43,10 @@
                     "minStepSize": 1
                 }
             }
-        }
+        },
+        "dataset_options" : {
+            "background_color" : "rgba(1, 119, 199, 0.1)",
+            "starting_border_color" : "rgba(1, 119, 199, 1)"
+       }
     }   
 }
