@@ -20,6 +20,7 @@ var iframe_loading_provisioner_singleton = {
         window.addEventListener("load", this.remove_buffers_if_in_iframe.bind(this));
 
         // send message to parent about height updates
+        this.send_height_to_parent(); // on page load
         window.addEventListener("resize", this.send_height_to_parent.bind(this)); // whenever the page is resized
         var observer = new MutationObserver(this.send_height_to_parent.bind(this));           // whenever DOM changes PT1
         var config = { attributes: true, childList: true, characterData: true, subtree:true}; // PT2
