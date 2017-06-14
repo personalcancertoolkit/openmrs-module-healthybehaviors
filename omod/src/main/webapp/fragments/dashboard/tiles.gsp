@@ -138,7 +138,7 @@ window.addEventListener("load", function(){
                     <div style = 'min-width:10px;'></div>
                     <div style = 'display:flex;'>
                         <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none;'>
-                            Record how your last <span class = 'behavior_tile_time_interval'></span> went <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> wise to personalize your advice and history
+                            Record how your last <span class = 'behavior_tile_time_interval'></span> went, <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> wise, to personalize your advice and history
                         </div>
                         <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none;'>
                             Update the <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data you recorded for the previous <span class = 'behavior_tile_time_interval'></span> if you remembered any changes

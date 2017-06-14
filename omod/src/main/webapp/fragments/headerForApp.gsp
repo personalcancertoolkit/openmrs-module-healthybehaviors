@@ -12,6 +12,7 @@
     
     
     <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/0_global/abstract_behavior_class.js") }"></script>
+    <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/0_global/iframe_loading_provisioner_singleton.js") }"></script>
     <link rel="stylesheet" href="${ ui.resourceLink("healthybehaviors", "styles/healthy_behaviors_styles.css") }" type="text/css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
     <script>
@@ -23,12 +24,11 @@
         ////////////////
         // Offset from top if not loaded in iframe
         ////////////////
-        window.addEventListener("load", function(){
-            if(window.self === window.top){
-                // not loaded in iframe
-                jq(document).find(".offset_from_top_if_not_in_iframe").css("margin-top", "50px");
-            }
-        });
+        
+        ////////////////
+        // Enable parent pages (hosting this module in an iframe) to resize the iframe
+        ////////////////
+        iframe_loading_provisioner_singleton.initialize();
     </script>
     
     
@@ -42,7 +42,11 @@
     <script type="text/javascript">
         jq = jQuery;
     </script>
-
+    <style>
+        .margintop_buffers_hidden_in_iframe {
+            margin-top:50px;
+        }
+    </style>
 </head>
 
 

@@ -16,7 +16,7 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
         
 
 <body>
-<div class = 'offset_from_top_if_not_in_iframe'></div>
+<div class = 'margintop_buffers_hidden_in_iframe'></div>
     <div class="">
         <% if(securitylevel != 1) { %>
             
@@ -35,12 +35,9 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
             <div style = 'margin-top:-10px;'></div>
             ${ui.includeFragment("healthybehaviors","adviceAndHistory/history")}
             
-            
-            
-            
         <% } %>
     </div>
-<div class = 'offset_from_top_if_not_in_iframe'></div>
+<div class = 'margintop_buffers_hidden_in_iframe'></div>
 </body>
 
         

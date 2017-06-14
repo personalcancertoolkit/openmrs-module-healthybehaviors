@@ -52,7 +52,7 @@ var data_control_singleton = {
     
     instantiate_warning : function(){
         if(this.behavior_object == null){
-            setTimeout(this.initialize_warning.bind(this), 100);
+            setTimeout(this.instantiate_warning.bind(this), 100);
             return;
         }
         if(this.behavior_object.uptodate == false){
@@ -64,6 +64,10 @@ var data_control_singleton = {
     },
     
     instantiate_history : function(){
+        if(this.behavior_object == null){
+            setTimeout(this.instantiate_history.bind(this), 100);
+            return;
+        }
         var chart_canvas = this.DOM.history.chart_canvas;
         var ctx = chart_canvas.getContext('2d');
         //console.log(ctx);
