@@ -42,8 +42,6 @@ a, a:hover, a:focus {
 }
 .behavior_tile_button{
     cursor:pointer;
-    border:1px solid white;
-    border-radius:3px;
     color:rgb(8, 160, 255);
 }
 .behavior_tile_button:hover{
@@ -51,11 +49,32 @@ a, a:hover, a:focus {
     color:rgb(8, 160, 255);
 }
 .behavior_tile_button_call_to_action_modifier{
-    border-color:rgb(8, 160, 255);
+    color:white;
+    background-color:rgb(8, 160, 255);
 }
 .behavior_tile_button_call_to_action_modifier:hover{
-    background-color:rgba(0, 191, 255, 0.1);
+    color:white;
+    background-color:rgb(8, 160, 255);
 }
+.behavior_tile_button:hover .glyphicon{
+  animation: shake 0.5s;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  20%, 60% {
+    transform: translate3d(-1px, 0, 0);
+    transform: rotate(10deg);
+  }
+  40%, 80% {
+    transform: translate3d(-2px, 0, 0);
+    transform: rotate(-10deg);
+  }
+}
+
+
 .behavior_tile_form_anchor{
     cursor:pointer;
 }

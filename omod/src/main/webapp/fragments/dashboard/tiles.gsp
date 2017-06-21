@@ -58,7 +58,8 @@ window.addEventListener("load", function(){
 <style>
 </style>
 <div id = ''  style = 'display:none'>
-    <div  id = 'behavior_tile_hidden_template' class = 'behavior_tile_reference_element healthy_tile' style = 'flex: 1 300px; max-width:500px; margin:20px 10px; '>
+<div id = 'behavior_tile_hidden_template' style = 'flex: 1 300px; max-width:500px; margin:10px 5px;'>
+    <div  id = '' class = 'behavior_tile_reference_element healthy_tile' style = ' margin:10px 10px; '>
         <!-- tile header -->
         <div style = 'width:100%; height:225px; position:relative;'>
             <!-- gradient overly element will be inserted by css (:before) into this location -->
@@ -68,9 +69,9 @@ window.addEventListener("load", function(){
                 </div>
             </div>
         </div>
+    </div>
 
-
-        <div style = 'padding:10px 10px;'> <!--  padding -->
+    <div  id = '' class = 'behavior_tile_reference_element healthy_tile' style = ' margin:10px 10px;  padding:10px; '>
 
             <!-- tile draw-in -->
             <div style = 'width:100%; height:80px;  display:flex; font-size:14px;'>
@@ -79,12 +80,8 @@ window.addEventListener("load", function(){
                     </div>
             </div>
 
-            <!-- divider -->
-            <div style = 'height:10px;'></div>
-            <div style = 'display:flex;'>
-                <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
-            </div>
-            <div style = 'height:15px;'></div>
+    </div>
+    <div  id = '' class = 'behavior_tile_reference_element healthy_tile' style = 'margin:10px 10px;  padding:20px 10px;'>
 
             <!-- tile draw-in -->
             <div style = 'width:100%; min-height:100px; display:flex; padding:5px;'>
@@ -104,15 +101,9 @@ window.addEventListener("load", function(){
                 </div>
             </div>
 
-            <!-- divider -->
-            <div style = 'height:15px;'></div>
-            <div style = 'display:flex;'>
-                <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
-            </div>
-            <div style = 'height:10px;'></div>
-
-            <!-- links to forms and advice -->
-            <div style = 'font-size:14px;'>
+    </div>
+    <div  id = '' class = 'behavior_tile_reference_element healthy_tile' style = 'margin:5px 10px; '>
+        
                 <a style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_advice_history_anchor'>
                     <div style = 'display:flex; min-width:35px;'>
                         <div style = 'margin:auto; '>
@@ -127,7 +118,7 @@ window.addEventListener("load", function(){
                         </div>
                     </div> 
                 </a>
-                <div style = 'height:5px;'></div>
+                
                 <a style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_call_to_action_button behavior_tile_form_anchor'>
                     <div style = 'display:flex; min-width:35px;'>
                         <div style = 'margin:auto; '>
@@ -145,7 +136,6 @@ window.addEventListener("load", function(){
                         </div>
                     </div> 
                 </a>
-            </div>
-        </div> <!-- end padding -->
     </div>
+</div>
 </div>
