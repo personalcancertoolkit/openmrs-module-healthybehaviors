@@ -5,7 +5,7 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
 <script>
     console.log("${behavior}");
     // TODO - have this data be passed by server
-    var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/" + behavior + ".json") }';
+    var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/" + behavior + "/" + behavior + ".json") }';
     fetch(data_path)
       .then(function(response){ return response.json()})
       .then(function(json){ window["data_control_singleton"].behavior_object = new abstract_behavior_class(json); });

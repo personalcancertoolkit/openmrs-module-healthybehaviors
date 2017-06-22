@@ -31,7 +31,7 @@ var data_control_singleton = {
             setTimeout(this.instantiate_header.bind(this), 100);
             return;
         }
-        this.DOM.header.image.style.backgroundImage = 'url(' + this.behavior_object.header_background_image_src + ')';
+        this.DOM.header.image.style.backgroundImage = 'url(' + this.behavior_object.image_root + this.behavior_object.header_src + ')';
         this.DOM.header.title.innerHTML = this.behavior_object.advice_type_text;
         this.DOM.header.pagetype.innerHTML = this.page_type;
         console.log(this.behavior_object);

@@ -2,7 +2,8 @@
     "unique_behavior_id" : "exercise", 
     
     "uptodate" : false,
-    "header_background_image_src" : "/openmrs/ms/uiframework/resource/healthybehaviors/images/behavior_specific/exercise/runner.jpeg",
+    "image_root" : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/images/",
+    "form_root" : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/form/",
     "personalized_advice" : [
         [
             "Cardio",
@@ -12,7 +13,7 @@
     
     "header_title_text" :  "Exercise",
     "advice_type_text" : "Exercise",
-    "header_background_image_base_src" : "/images/behavior_specific/exercise/runner.jpeg",
+    "header_src" : "runner.jpeg",
     "wow_facts" :  [
         "working out sharpens your memory",
         "exercise prevents signs of aging",

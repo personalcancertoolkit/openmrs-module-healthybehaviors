@@ -3,7 +3,7 @@
     
     
     "uptodate" : true,
-    "header_background_image_src" : "/openmrs/ms/uiframework/resource/healthybehaviors/images/behavior_specific/nutrition/beauty_berries.jpeg",
+    "image_root" : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/nutrition/images/",
     "personalized_advice" : [
         [
             "Fruits and Vegetables",
@@ -27,7 +27,7 @@
     
     "header_title_text" :  "Nutrition <br> & Diet",
     "advice_type_text" : "Nutrition and Diet",
-    "header_background_image_base_src" : "/images/behavior_specific/nutrition/beauty_berries.jpeg",
+    "header_src" : "beauty_berries.jpeg",
     "wow_facts" :  [
         "adding citrus juice to green tea stabalizes its catechin content, enabling up to 13-times more antioxidants to survive the digestive system",
         "a 20oz bottle of Coca-Cola has more suggar than a large Cinnabon",

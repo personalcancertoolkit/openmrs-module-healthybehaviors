@@ -16,7 +16,9 @@ function abstract_behavior_class(behavior_data){
     // define general behavior facts / display information
     this.header_title_text = behavior_data.header_title_text;
     this.advice_type_text = behavior_data.advice_type_text;
-    this.header_background_image_src = behavior_data.header_background_image_src;
+    this.form_root = behavior_data.form_root;
+    this.image_root = behavior_data.image_root;
+    this.header_src = behavior_data.header_src;
     this.wow_facts = behavior_data.wow_facts;
     
     // define history/reporting specific data

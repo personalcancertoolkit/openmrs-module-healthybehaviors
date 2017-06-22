@@ -12,7 +12,7 @@ var behavior_tile_builder_singleton = {
         jq(a_tile).find(".behavior_tile_header_text")[0].innerHTML = abstract_behavior_object.header_title_text;
         
         // Set header background image
-        jq(a_tile).find(".behavior_tile_header_image")[0].style.backgroundImage = 'url(' + abstract_behavior_object.header_background_image_src + ')';
+        jq(a_tile).find(".behavior_tile_header_image")[0].style.backgroundImage = 'url(' + abstract_behavior_object.image_root + abstract_behavior_object.header_src + ')';
         
         // Set wow fact
         jq(a_tile).find(".behavior_tile_wow_fact")[0].innerHTML = abstract_behavior_object.wow_fact;

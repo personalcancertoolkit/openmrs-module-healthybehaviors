@@ -15,13 +15,13 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
                 window["loaded_behaviors"] = {};
                 
                 // load nutrition
-                var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/nutrition.json") }';
+                var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/nutrition/nutrition.json") }';
                 fetch(data_path)
                   .then(function(response){return response.json()})
                   .then(function(json){window["loaded_behaviors"]["nutrition"] = new abstract_behavior_class(json); });
                 
                 // load exercise
-                var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/exercise.json") }';
+                var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/exercise/exercise.json") }';
                 fetch(data_path)
                   .then(function(response){return response.json()})
                   .then(function(json){window["loaded_behaviors"]["exercise"] = new abstract_behavior_class(json); });
