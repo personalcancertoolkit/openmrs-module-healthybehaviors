@@ -39,7 +39,7 @@ var behavior_tile_builder_singleton = {
         if(abstract_behavior_object.uptodate !== true) jq(a_tile).find(".behavior_tile_call_to_action_button")[0].className += " behavior_tile_button_call_to_action_modifier";
         
         // insert links to respective advice/history and form views
-        jq(a_tile).find(".behavior_tile_form_anchor").attr('href','/openmrs/healthybehaviors/recordPerformance.page?behavior='+abstract_behavior_object.unique_behavior_id);
+        jq(a_tile).find(".behavior_tile_form_anchor").attr('href','/openmrs/healthybehaviors/addRecord.page?behavior='+abstract_behavior_object.unique_behavior_id);
         jq(a_tile).find(".behavior_tile_advice_history_anchor").attr('href','/openmrs/healthybehaviors/adviceAndHistory.page?behavior='+abstract_behavior_object.unique_behavior_id);
         
         

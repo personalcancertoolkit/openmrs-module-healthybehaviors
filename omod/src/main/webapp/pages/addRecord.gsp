@@ -1,6 +1,7 @@
 
 ${ ui.includeFragment("healthybehaviors", "headerForApp") }
-<script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/advice_and_history/data_control_singleton.js") }"></script>
+<script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/add_record/data_control_singleton.js") }"></script>
+
 
 <script>
     console.log("${behavior}");
@@ -22,17 +23,8 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
             <!-- header tile -->
             ${ui.includeFragment("healthybehaviors","0_global/behaviorHeader")}
             
-            <!-- warning tile -->
-            <div style = 'margin-top:-10px;'></div>
-            ${ui.includeFragment("healthybehaviors","adviceAndHistory/warning")}
-            
-            <!-- advice tile -->
-            <div style = 'margin-top:-10px;'></div>
-            ${ui.includeFragment("healthybehaviors","adviceAndHistory/advice")}
-            
-            <!-- history tile -->
-            <div style = 'margin-top:-10px;'></div>
-            ${ui.includeFragment("healthybehaviors","adviceAndHistory/history")}
+            <!-- nomenclature explanation -->
+            ${ui.includeFragment("healthybehaviors","addRecord/terminology")}
             
         <% } %>
     </div>

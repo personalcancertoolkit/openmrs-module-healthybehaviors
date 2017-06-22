@@ -24,6 +24,7 @@ var data_control_singleton = {
         }
     },
     behavior_object : null,
+    page_type : "Advice and History",
     
     instantiate_header : function(){
         if(this.behavior_object == null){
@@ -32,6 +33,7 @@ var data_control_singleton = {
         }
         this.DOM.header.image.style.backgroundImage = 'url(' + this.behavior_object.header_background_image_src + ')';
         this.DOM.header.title.innerHTML = this.behavior_object.advice_type_text;
+        this.DOM.header.pagetype.innerHTML = this.page_type;
         console.log(this.behavior_object);
     },
     

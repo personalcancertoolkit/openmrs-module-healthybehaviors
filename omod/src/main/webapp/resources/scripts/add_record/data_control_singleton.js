@@ -1,0 +1,27 @@
+/*
+This singleton object manipulates the DOM across all fragments of the adviceAndHistory page
+This object is similar to the dashboard/behavior_tile_builder_singleton in that it is used to translate data stored by the 0_global/abstract_behavior_class.js into UI.
+*/
+var data_control_singleton = {
+    // DOM elements that will be controled
+    DOM : {
+        header : {
+            image : null,
+            title :  null,
+        },
+    },
+    behavior_object : null,
+    page_type : "Record Your Progress",
+    
+    instantiate_header : function(){
+        if(this.behavior_object == null){
+            setTimeout(this.instantiate_header.bind(this), 100);
+            return;
+        }
+        this.DOM.header.image.style.backgroundImage = 'url(' + this.behavior_object.header_background_image_src + ')';
+        this.DOM.header.title.innerHTML = this.behavior_object.advice_type_text;
+        this.DOM.header.pagetype.innerHTML = this.page_type;
+        console.log(this.behavior_object);
+    },
+    
+}
