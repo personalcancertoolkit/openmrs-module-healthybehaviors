@@ -1,0 +1,24 @@
+<htmlform>
+      <section headerLabel="1. Encounter Details" style = 'font-size:54px;'>
+        <span style ='font-size:45px;'> Date:</span> <encounterDate default="today"/> <br/>
+        Location: <encounterLocation/> <br/>
+        Physician: <encounterProvider role="Provider"/> <br/>
+        <br/>
+      </section>
+
+      <section headerLabel="2. Demographic Info">
+        <span>Nom du patient: <lookup expression="patient.personName"/></span>
+        <span>Sexe: <lookup expression="patient.gender" codePrefix="gender_"/></span>
+        <span>(a) Date de naissance: <lookup expression="patient.birthdate"/></span>
+        <span>(b) Age: <lookup expression="patient.age"/></span>
+      </section>
+
+      <section headerLabel="3.  Vital Signs">
+        <obs conceptId="5089" labelText="Weight" /> (kg)
+        <obs conceptId="5090" labelText="Height" /> (cm)
+        <obs conceptId="5090" labelText="Height" /> (cm)
+      </section>
+    <br/><br/>
+
+    <submit/>
+</htmlform>

@@ -26,7 +26,8 @@ var data_control_singleton = {
     },
     
     instantiate_terminology : function(){
-        var terminology_script_url = this.behavior_object.form_root + "terminology_helper.js";
+        // load script
+        var terminology_script_url = this.behavior_object.form_root + "terminology/helper.js";
         var script = document.createElement('script');
         script.setAttribute("src", terminology_script_url);
         script.onload = function(){
@@ -35,7 +36,8 @@ var data_control_singleton = {
         };
         document.getElementsByTagName('head')[0].appendChild(script);
         
-        var terminology_view_url = this.behavior_object.form_root + "terminology_view.html";
+        // load template
+        var terminology_view_url = this.behavior_object.resource_root + "terminology/view.html";
         jq.get( terminology_view_url, function( data ) {
             this.DOM.terminology.innerHTML = data; 
             //console.log("view is now loaded");

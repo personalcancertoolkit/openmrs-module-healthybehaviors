@@ -44,6 +44,8 @@
 		<openMRSVersion>2.0.4</openMRSVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<webservices.restVersion>2.16</webservices.restVersion>
+        <htmlformentryModuleVersion>3.1</htmlformentryModuleVersion>
+        <htmlformentryuiModuleVersion>1.6.0</htmlformentryuiModuleVersion>
 	</properties>
 
 	<dependencyManagement>

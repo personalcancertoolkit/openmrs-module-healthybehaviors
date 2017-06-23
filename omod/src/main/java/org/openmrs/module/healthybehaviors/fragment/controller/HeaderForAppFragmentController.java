@@ -15,9 +15,6 @@ import org.openmrs.api.context.Context;
 import org.openmrs.ui.framework.fragment.FragmentModel;
 import org.openmrs.ui.framework.page.PageRequest;
 
-/**
- * Created by maurya on 7/13/16.
- */
 public class HeaderForAppFragmentController {
 
     protected final Log log = LogFactory.getLog(getClass());

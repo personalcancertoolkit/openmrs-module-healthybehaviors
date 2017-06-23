@@ -24,6 +24,8 @@
 	<name>Healthy Behaviors Module OMOD</name>
 	<description>OMOD project for HealthyBehaviorsModule</description>
 
+    
+        
 	<dependencies>
 
 		<!-- 
@@ -117,7 +119,21 @@
 			<artifactId>json</artifactId>
 			<version>20160810</version>
 		</dependency>
+ 
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>htmlformentry-api</artifactId>
+            <version>${htmlformentryModuleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
 
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>htmlformentryui-api</artifactId>
+            <version>${htmlformentryuiModuleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        
 	</dependencies>
 
 	<build>

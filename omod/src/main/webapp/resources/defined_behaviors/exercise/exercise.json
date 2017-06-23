@@ -4,6 +4,7 @@
     "uptodate" : false,
     "image_root" : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/images/",
     "form_root" : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/form/",
+    "resource_root" : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/form/",
     "personalized_advice" : [
         [
             "Cardio",
@@ -49,5 +50,44 @@
             "background_color" : "rgba(1, 119, 199, 0.1)",
             "starting_border_color" : "rgba(1, 119, 199, 1)"
        }
-    }   
+    },  
+    
+    
+    "form" : {
+        "questions" : [
+            {
+                "concept_identifier" : "RAPA1_rarely_or_never",
+                "text" : "I rarely or never do physical activities",
+                "answer" : {
+                    "type" : "boolean",
+                    "options" : {
+                        "true" : "Yes",
+                        "false" : "No"
+                    }
+                }
+            },
+            {
+                "concept_identifier" : "RAPA1_some_light_or_moderate",
+                "text" : "I do some <b>light</b> or <b>moderate</b> physical activities, but not every week.",
+                "answer" : {
+                    "type" : "boolean",
+                    "options" : {
+                        "true" : "Yes",
+                        "false" : "No"
+                    }
+                }
+            },
+            {
+                "concept_identifier" : "RAPA1_some_light_or_moderate",
+                "text" : "I do some <b>light</b> or <b>moderate</b> physical activities, but not every week.",
+                "answer" : {
+                    "type" : "boolean",
+                    "options" : {
+                        "true" : "Yes",
+                        "false" : "No"
+                    }
+                }
+            },
+        ]
+    }
 }

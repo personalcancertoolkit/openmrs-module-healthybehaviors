@@ -20,11 +20,15 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
     <div class="">
         <% if(securitylevel != 1) { %>
             
-            <!-- header tile -->
+            <!-- header  -->
             ${ui.includeFragment("healthybehaviors","0_global/behaviorHeader")}
             
             <!-- nomenclature explanation -->
             ${ui.includeFragment("healthybehaviors","addRecord/terminology")}
+            
+            
+            <!-- form -->
+            ${ui.includeFragment("healthybehaviors","addRecord/form")}
             
         <% } %>
     </div>
