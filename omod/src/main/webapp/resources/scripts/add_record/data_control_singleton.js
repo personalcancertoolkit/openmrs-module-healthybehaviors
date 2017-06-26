@@ -27,21 +27,72 @@ var data_control_singleton = {
     
     instantiate_terminology : function(){
         // load script
-        var terminology_script_url = this.behavior_object.form_root + "terminology/helper.js";
-        var script = document.createElement('script');
-        script.setAttribute("src", terminology_script_url);
-        script.onload = function(){
-            //console.log("script is now loaded");
-            exercise_terminology_DOM_builder.initialize();
-        };
-        document.getElementsByTagName('head')[0].appendChild(script);
+        var load_script = new Promise((resolve, reject)=>{
+            var script_url = this.behavior_object.resource_root + "terminology/helper.js";
+            var script = document.createElement('script');
+            script.setAttribute("src", script_url);
+            script.onload = function(){
+                resolve("success");
+            };
+            document.getElementsByTagName('head')[0].appendChild(script);
+        });
         
         // load template
-        var terminology_view_url = this.behavior_object.resource_root + "terminology/view.html";
-        jq.get( terminology_view_url, function( data ) {
-            this.DOM.terminology.innerHTML = data; 
-            //console.log("view is now loaded");
-        }.bind(this));
+        var load_html = new Promise((resolve, reject)=>{
+            var view_url = this.behavior_object.resource_root  + "terminology/view.html";
+            jq.get( view_url, function( data ) {
+                this.DOM.terminology.innerHTML = data; 
+                resolve("success");
+            }.bind(this));
+        })
+        
+        var load_html_and_load_script = Promise.all([load_html, load_script]);
+        
+        load_html_and_load_script.then((data_array)=>{
+            exercise_terminology_DOM_builder.initialize();
+        })
+    },
+    
+    instantiate_form : function(){
+        // load script
+        var load_script = new Promise((resolve, reject)=>{
+            var script_url = this.behavior_object.resource_root + "form/helper.js";
+            var script = document.createElement('script');
+            script.setAttribute("src", script_url);
+            script.onload = function(){
+                resolve("success");
+            };
+            document.getElementsByTagName('head')[0].appendChild(script);
+        });
+        // initialize builder
+        var load_data = load_script.then((response)=>{
+            var data_path = this.behavior_object.resource_root + "form/concepts.json";
+            return fetch(data_path)
+                .then(function(response){return response.json()})
+                .then(function(json){ 
+                    return new Promise((resolve, reject)=>{
+                        exercise_form_DOM_builder.data = json; 
+                        resolve("success");
+                    })
+                })
+        })
+        
+        // load html
+        var load_html = new Promise((resolve, reject)=>{
+            var view_url = this.behavior_object.resource_root  + "form/view.html";
+            jq.get( view_url, function( data ) {
+                this.DOM.form.innerHTML = data; 
+                resolve("success");
+            }.bind(this));
+        })
+        
+        // wait for html to be loaded and script to be initalized
+        var load_html_and_load_data = Promise.all([load_html, load_data]);
+        
+        load_html_and_load_data.then((data_array)=>{
+            exercise_form_DOM_builder.initialize();   
+            exercise_form_DOM_builder.build();   
+        });
     }
     
 }

@@ -89,20 +89,22 @@ var exercise_terminology_DOM_builder = {
                     {
                         src : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/images/fast_walking.png",
                         desc : "Fast Walking",
+                        max_width : 80,
                     },
                     {
                         src : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/images/aerobics_class.png",
                         desc : "Aerobics Class",
-                        max_width : 100,
+                        max_width : 90,
                     },
                     {
                         src : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/images/strength_training.png",
                         desc : "Strength Training",
+                        max_width : 80,
                     },
                     {
                         src : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/images/swimming_gently.png",
                         desc : "Swimming Gently",
-                        max_width : 100,
+                        max_width : 90,
                     }
                 ]
             },
@@ -111,7 +113,7 @@ var exercise_terminology_DOM_builder = {
                     title : "Vigorous Activities",
                     bulls : [
                         "Your heart rate increases a lot",
-                        "You can't talk or your talking is broken up by large breaths"
+                        "&nbsp; You can't talk or your talking is broken up by large breaths",
                     ]
                 },
                 examples : [
