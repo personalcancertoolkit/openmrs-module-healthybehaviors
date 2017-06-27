@@ -1,3 +1,4 @@
+<script type="text/javascript" src="${ ui.resourceLink("simpleformservice", "/initialize.js") }"></script>
 <script>
     window.addEventListener("load", function(){
         data_control_singleton.DOM.form = document.getElementById("form_holder");

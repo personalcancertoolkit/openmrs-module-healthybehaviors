@@ -32,7 +32,6 @@
         }
     },
     
-    
     "time_interval" : "week", 
     "chart_static" : {
         "type": "radar",
@@ -49,6 +48,4 @@
             "starting_border_color" : "rgba(1, 119, 199, 1)"
        }
     }
-    
-    
 }

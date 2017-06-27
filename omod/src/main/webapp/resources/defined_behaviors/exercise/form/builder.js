@@ -3,13 +3,23 @@ var exercise_form_DOM_builder = {
     template : {
         question : null,
     },
-    data : null,
+    data : null, // i.e., concepts
+    encounter : null,
 
     initialize : function(){
+        // assign to object properties
+        this.simpleform = document.getElementById("exercise_simpleform_element"),
         this.holder = document.getElementById("exercise_form_question_holder"),
         this.template = {
             question : document.getElementById("exercise_form_template_question"),
         };
+        this.submission_button = document.getElementById("exercise_form_submission_button");
+        
+        // set required attributes
+        this.submission_button.onclick = function(unique_identifier){
+            simpleformservice.simple_submission.submit_encounter(this.encounter.unique_identifier, function(){})
+        }.bind(this);
+        jq(this.simpleform).attr("encounter_type", this.encounter.unique_identifier);
     },
 
     build : function(){
@@ -27,7 +37,6 @@ var exercise_form_DOM_builder = {
         //console.log(this.template.question);
         var row_element = this.template.question.cloneNode(true);
 
-        console.log(row_data);
         // add concept id
         jq(row_element).attr("concept", row_data.unique_identifier);
 

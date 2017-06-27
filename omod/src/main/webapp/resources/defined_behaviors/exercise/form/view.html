@@ -25,7 +25,7 @@
         </div>
         <div style = 'height:15px;'></div>
         
-        <simpleform>
+        <simpleform id = 'exercise_simpleform_element'>
             <div style = 'display:flex; width:100%; '>
                 <div id = '' style = 'width:100%; max-width:700px;margin:auto; padding:5px; '>
                     <div id = 'exercise_form_question_holder' style = ''>
@@ -36,24 +36,43 @@
             </div>
         </simpleform>
         
-        <div style = 'height:10px;'></div>
+        
+        <div style = 'margin-top:-5px;'></div>
+        <div style = 'display:flex;'>
+            <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
+        </div>
+        <div style = 'height:15px;'></div>
+        
+        <div style = 'display:flex; width:100%; '>
+            <div id = '' style = 'width:100%; max-width:700px;margin:auto; padding:5px; '>
+                
+                <a id = 'exercise_form_submission_button' style = 'padding:10px; display:flex; ' class = 'behavior_tile_button  ' >
+                    <div class = '' style = 'margin:auto; font-size:18px; font-weight:;'>
+                        SUBMIT
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+        
+        
     </div>
 </div>
 
 
 <div style = 'display:none'>
 
-    <simplequestion id = 'exercise_form_template_question' concept = "" style = 'display:flex; min-height:50px; margin-bottom:5px;'>
+    <simplequestion id = 'exercise_form_template_question' concept = "" style = 'display:flex; min-height:50px; margin-bottom:3px; margin-top:3px;'>
         <div class = 'question_text' style = 'flex-grow:1'>
             I rarely or never do any physical activities.
         </div>
-        <simpleanswer type = 'boolean' style = 'width:150px;  display:flex; justify-content:flex-end;'>
-                <div class="healthy_radio">
+        <simpleanswer type = 'boolean' required = 'true' style = 'width:150px;  display:flex; justify-content:flex-end;'>
+                <div class="healthy_radio" title = "Yes, this accurately describes me.">
                     <input class = 'yes_radio' id = 'yes_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="yes"  />
                     <label for ='yes_boolean_for_concept-'>Yes</label>
                 </div>
                 <div style = 'width:15px;'></div>
-                <div class="healthy_radio" style = 'text-align:center;'>
+                <div class="healthy_radio" title = "No, this does not describe me.">
                     <input class = 'no_radio' id = 'no_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="no" />
                     <label for ='no_boolean_for_concept-' >No</label>
                 </div>
@@ -66,6 +85,7 @@
 
 <style>
 .healthy_radio label {
+  font-weight:300;
   font-size: 20px;
   line-height: 26px;
 }
@@ -82,6 +102,6 @@
 
 
 .healthy_radio input[type="radio"]:checked ~ label {
-  color: #00c654;
+  color:rgb(8, 160, 255);
 }
 </style>

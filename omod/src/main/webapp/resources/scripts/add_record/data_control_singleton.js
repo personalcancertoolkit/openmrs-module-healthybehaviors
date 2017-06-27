@@ -56,7 +56,7 @@ var data_control_singleton = {
     instantiate_form : function(){
         // load script
         var load_script = new Promise((resolve, reject)=>{
-            var script_url = this.behavior_object.resource_root + "form/helper.js";
+            var script_url = this.behavior_object.resource_root + "form/builder.js";
             var script = document.createElement('script');
             script.setAttribute("src", script_url);
             script.onload = function(){
@@ -64,14 +64,25 @@ var data_control_singleton = {
             };
             document.getElementsByTagName('head')[0].appendChild(script);
         });
-        // initialize builder
-        var load_data = load_script.then((response)=>{
+        // load data
+        var load_concepts = load_script.then((response)=>{
             var data_path = this.behavior_object.resource_root + "form/concepts.json";
             return fetch(data_path)
                 .then(function(response){return response.json()})
                 .then(function(json){ 
                     return new Promise((resolve, reject)=>{
                         exercise_form_DOM_builder.data = json; 
+                        resolve("success");
+                    })
+                })
+        })
+        var load_encounter = load_script.then((response)=>{
+            var data_path = this.behavior_object.resource_root + "form/encounter.json";
+            return fetch(data_path)
+                .then(function(response){return response.json()})
+                .then(function(json){ 
+                    return new Promise((resolve, reject)=>{
+                        exercise_form_DOM_builder.encounter = json; 
                         resolve("success");
                     })
                 })
@@ -87,7 +98,7 @@ var data_control_singleton = {
         })
         
         // wait for html to be loaded and script to be initalized
-        var load_html_and_load_data = Promise.all([load_html, load_data]);
+        var load_html_and_load_data = Promise.all([load_html, load_concepts, load_encounter]);
         
         load_html_and_load_data.then((data_array)=>{
             exercise_form_DOM_builder.initialize();   
