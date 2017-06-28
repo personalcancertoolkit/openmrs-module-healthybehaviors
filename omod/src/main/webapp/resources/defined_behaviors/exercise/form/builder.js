@@ -4,7 +4,7 @@ var exercise_form_DOM_builder = {
         question : null,
     },
     data : null, // i.e., concepts
-    encounter : null,
+    encounter_type : null,
 
     initialize : function(){
         // assign to object properties
@@ -17,9 +17,9 @@ var exercise_form_DOM_builder = {
         
         // set required attributes
         this.submission_button.onclick = function(unique_identifier){
-            simpleformservice.simple_submission.submit_encounter(this.encounter.unique_identifier, function(){})
+            simpleformservice.simple_submission.submit_encounter(this.encounter_type.unique_identifier, function(){})
         }.bind(this);
-        jq(this.simpleform).attr("encounter_type", this.encounter.unique_identifier);
+        jq(this.simpleform).attr("encounter_type", this.encounter_type.unique_identifier);
     },
 
     build : function(){

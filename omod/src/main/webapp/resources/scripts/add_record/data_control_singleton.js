@@ -76,13 +76,13 @@ var data_control_singleton = {
                     })
                 })
         })
-        var load_encounter = load_script.then((response)=>{
-            var data_path = this.behavior_object.resource_root + "form/encounter.json";
+        var load_encounter_type = load_script.then((response)=>{
+            var data_path = this.behavior_object.resource_root + "form/encounter_type.json";
             return fetch(data_path)
                 .then(function(response){return response.json()})
                 .then(function(json){ 
                     return new Promise((resolve, reject)=>{
-                        exercise_form_DOM_builder.encounter = json; 
+                        exercise_form_DOM_builder.encounter_type = json; 
                         resolve("success");
                     })
                 })
@@ -98,7 +98,7 @@ var data_control_singleton = {
         })
         
         // wait for html to be loaded and script to be initalized
-        var load_html_and_load_data = Promise.all([load_html, load_concepts, load_encounter]);
+        var load_html_and_load_data = Promise.all([load_html, load_concepts, load_encounter_type]);
         
         load_html_and_load_data.then((data_array)=>{
             exercise_form_DOM_builder.initialize();   
