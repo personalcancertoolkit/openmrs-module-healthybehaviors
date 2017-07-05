@@ -31,16 +31,17 @@ function abstract_behavior_class(behavior_data){
     }
     this.encounters = behavior_data.encounters;
     
-    // convert encounters to history data
-    console.log("--------");
-    console.log(behavior_data.data_converter);
-    this.history = behavior_data.data_converter.transform_encounters_into_history(this.encounters);
+    // convert encounters to performance data
+    this.encounter_null_performance = behavior_data.data_converter.null_performance_object;
+    this.encounter_performance_data = behavior_data.data_converter.transform_encounters_into_encounter_performance_data(this.encounters);
+    this.history = this.organize_encounter_performance_data_by_time_intervals(this.encounter_performance_data);
     
-    // TODO : this.history = behavior_data.data_transform_manager(encounters)
+    /*
     this.history = {
         time : behavior_data.history.time,
         performance : behavior_data.history.performance,
     };
+    */
     
     
     // define advice specific data
@@ -68,9 +69,10 @@ abstract_behavior_class.prototype = {
         
         // transform history into chart data for this chart type
         var relevant_history = this.return_relevant_history(bool_just_a_preview);
+        
         var dataset_options = this.chart_static.dataset_options;
         if(this.chart_static.type == "line") var transformed_data = this.transform_history_to_line_chart_data(relevant_history, dataset_options)
-        if(this.chart_static.type == "radar") var transformed_data = this.transform_history_to_radar_chart_data(relevant_history, dataset_options)
+        //if(this.chart_static.type == "radar") var transformed_data = this.transform_history_to_radar_chart_data(relevant_history, dataset_options)
         chart_data["data"] = transformed_data;
         
         return chart_data;
@@ -79,87 +81,187 @@ abstract_behavior_class.prototype = {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ////////////
-    // return_chart_data helper methods
-    ///////////
-    // maps history + dataset_options into data object that ChartJS expects for a chart of type "line"
-    transform_history_to_line_chart_data : function(history, dataset_options){
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    // Convert encounter_performance type data into history
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    // TODO: consider using moment.js if intervals get more complex than just months or weeks.
+    organize_encounter_performance_data_by_time_intervals : function(encounter_data){
+        
+        // merge encounters into time intervals
         /*
-        "history" : {
-            "time": ["-3 Week", "-2 Week", "Last Week"],
-            "performance" : {
-                "Veggies Eaten": [7, 12, 9],
-                "Fast Food Eaten": [3, 0, 1]
-            }
-        },
-        "dataset_options" : [
-            {
-                "label": "Veggies Eaten",
-                "backgroundColor": [
-                    "rgba(99, 255, 135, 0.2)"
-                ],
-                "borderColor": [
-                    "rgb(99, 255, 135)"
-                ],
-                "borderWidth": 1
-            },
-            {
-                "label": "Fast Food Eaten",
-                "backgroundColor": [
-                    "rgba(255, 62, 62, 0.1)"
-                ],
-                "borderColor": [
-                    "rgb(255, 62, 62)"
-                ],
-                "borderWidth": 1
-            }
-        ]
-        
-        into 
-        
-        "data" : {
-            "labels": ["-3 Week", "-2 Week", "Last Week"],
-            "datasets" : [{
-                        "label": "Veggies Eaten",
-                        "data": [7, 12, 9],
-                        "backgroundColor": [
-                            "rgba(99, 255, 135, 0.2)"
-                        ],
-                        "borderColor": [
-                            "rgb(99, 255, 135)"
-                        ],
-                        "borderWidth": 1
-                    },{
-                        "label": "Fast Food Eaten",
-                        "data": [3, 0, 1],
-                        "backgroundColor": [
-                            "rgba(255, 62, 62, 0.1)"
-                        ],
-                        "borderColor": [
-                            "rgb(255, 62, 62)"
-                        ],
-                        "borderWidth": 1
-                    }],
-        },
-        
+              - employ a heuristic for merging the performance data for that interval's encounters
+                  - heuristic: "keep most recent data only"
+         note - since we want to display missed intervals, we need to keep going back from current period and check if any fall in it, untill:
+                   - all encounter data are assigned or we cover as many periods as we desire.
+         So, we need a `max_intervals` field 
         */
+        var min_intervals = 8;
+        var max_intervals = 16;
+        var time_interval = this.time_interval;
+        
+        var timed_data = [];
+        var next_data_index = 0;
+        var unused_encounter_data = encounter_data;
+        
+        var this_datetime = new Date();
+        //console.log("Period current = " + this.get_period_identifier_for_datetime(this_datetime));
+        var i = 0;
+        while((timed_data.length < min_intervals) || (timed_data.length < max_intervals && unused_encounter_data.length > 0)){ // ensure min-periods and max-periods/all-data-used
+            i++; if(!(i < 20)) break; //developer mode infinite loop prevention
+            
+            var this_datetime = this.subtract_one_interval_from_datetime(this_datetime); // go back one period
+            var this_period = this.get_period_identifier_for_datetime(this_datetime);
+            //console.log("Period -" + i + " = " + this_period);  
+            
+            // find relevant encounters (those pertaining to this period)
+            var relevant_encounters = this.find_encounters_for_this_period(unused_encounter_data, this_period); 
+            //console.log("relevant encounters");
+            console.log("for period of month " + this_period); 
+            console.log(relevant_encounters);
+            
+            // remove relevant encounters from encounter_data
+            //console.log(JSON.parse(JSON.stringify(unused_encounter_data)));
+            unused_encounter_data = unused_encounter_data.filter(function(x) { return relevant_encounters.map(function(e) {return e.id;}).indexOf(x.id) < 0 }); // if id exists in rel_encs, dont keep it
+            //console.log(JSON.parse(JSON.stringify(unused_encounter_data)));
+            
+            // get performance for this period from rel encounters
+            //console.log(relevant_encounters);
+            if(relevant_encounters.length == 0){
+                // if no encounters exist for this period,
+                var this_performance = this.encounter_null_performance;
+                var this_id = null;
+                var bool_record_exists = false;
+            } else {
+                // keep only the latest encounter (merge strategy)
+                var relevant_encounter = this.return_latest_encounter(relevant_encounters);
+                var this_performance = relevant_encounter.performance;
+                var this_id = relevant_encounter.id;
+                var bool_record_exists = true;
+            }
+            
+            // create data for this period
+            var this_period_data = {
+                id : this_id,
+                index : i, // convinience property for sorting 
+                time : this.get_time_label_for_period(i),
+                exists : bool_record_exists, // convinence property for detecting whether behavior is up to date or not
+                performance : this_performance,
+            }
+            
+            // append to data
+            timed_data.push(this_period_data);
+        }
+        
+        console.log("---");
+        console.log(timed_data);
+        return timed_data;
+    },
+    get_period_identifier_for_datetime : function(the_date){
+        var time_interval = this.time_interval;
+        if(time_interval == "month") return the_date.getMonth();
+    },
+    get_time_label_for_period : function(intervals_ago){
+        var time_interval = this.time_interval;
+        /*
+        if(time_interval == "month"){
+            var label = intervals_ago + " mo. ago";
+            if(intervals_ago == 1) label = "last month";
+            return label;
+        }
+        */
+        if(time_interval == "month"){
+            var month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            return month_names[(60 + new Date().getMonth() - intervals_ago) % 12]; // + 60 so that if intervals_ago > getMonth but <= 60, month will still be accurate
+        }
+        
+    },
+    subtract_one_interval_from_datetime : function(this_time){
+        var new_time = new Date(this_time.getTime());
+        var time_interval = this.time_interval;
+        if(time_interval == "month") {
+            new_time.setMonth(new_time.getMonth() - 1);
+            return new_time;
+        }
+    },
+    return_latest_encounter : function(encounters){
+        var the_encounter = encounters[0];
+        console.log(encounters);
+        for(var i = 0; i < encounters.length; i++){
+            var this_encounter = encounters[i];
+            if(this_encounter.time > the_encounter.time){
+                console.log("update the datetime from " + the_encounter.time + " to " + this_encounter.time)
+                the_encounter = this_encounter;
+            }
+        }
+        return the_encounter;
+    },
+    find_encounters_for_this_period : function(encounter_data, target_period){
+        if(encounter_data.length == 0) return [];
+        
+        var dev_mode = false; // if dev_mode, each encounter should be placed in a seperate time interval, regardless of the date time
+        if(dev_mode === true) {
+            // order matters in dev mode because we are not matching by time in this case.
+            encounter_data.sort((a, b)=>{
+                return b.time - a.time;
+            })
+            return [encounter_data[0]]
+        };
+
+        // find encounters which came from this interval
+        var relevant_encounters = [];
+        for(var i = 0; i < encounter_data.length; i++){
+            // TODO - ensure no bugs due to timezones are occuring
+            var this_encounter = encounter_data[i]; 
+            var this_datetime = this.subtract_one_interval_from_datetime(new Date(this_encounter.time));
+            
+            // Assumption - assume that user's response is always pertaining to the period /before/ submission. 
+            //      - e.g., if interval is monthly and user submits in april, then response is pertaining to month (april - 1) = march
+            //      - TODO(?) : explicitly define which interval a response is for in form's encounter
+            var this_period = this.get_period_identifier_for_datetime(this_datetime);
+            
+            if(this_period == target_period) relevant_encounters.push(this_encounter);
+        }
+        
+        return relevant_encounters;
+    },
+    
+    
+    
+    
+    
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // return_chart_data helper methods
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // maps history + dataset_options into data object that ChartJS expects for a chart of type "line"
+    transform_history_to_line_chart_data : function(raw_history, dataset_options){
+        var history = {
+            "time" : [],
+            "performance" : {}    
+        }
+        
+        
+        // sort by datetime ascending to order in graph as expected, with most recent last
+        raw_history.sort((a, b)=>{
+            return b.index - a.index;
+        })
+        
+        // ensure performance keys exist
+        var performance_keys = Object.keys(raw_history[0].performance);
+        for(var i = 0; i < performance_keys.length; i++){
+            history.performance[performance_keys[i]] = [];
+        }
+        
+        // TODO : error proof merging raw_history into history that this object expects
+        for(var i = 0; i < raw_history.length; i++){
+            this_raw_history = raw_history[i];
+            history.time.push(this_raw_history.time);
+            for(var j = 0; j < performance_keys.length; j++){
+                var this_key = performance_keys[j];
+                history.performance[this_key].push(this_raw_history.performance[this_key]);
+            }
+        }
         
         var data = {};
         data["labels"] = history["time"]; // time is labels for a line graph
@@ -184,91 +286,6 @@ abstract_behavior_class.prototype = {
         }
         return data;
     },
-    // maps history + dataset_options into data object that ChartJS expects for a chart of type "radar"
-    transform_history_to_radar_chart_data : function(history, dataset_options){
-        /*
-        "history" : {
-            "time" : ["-4 W", "-3 W", "-2 W", "Last Week"],
-            "performance" : {
-                "Strength" : [1, 2, 3, 3],
-                "Flexibility" : [0, 1, 1, 1],
-                "Vigorous" : [0, 0, 1, 1],
-                "Moderate" : [1, 1, 1, 1],
-                "Light" : [5, 3, 3, 2]
-            }
-        },
-        "dataset_options" : [
-            "background_color" : "rgba(1, 119, 199, 0.1)",
-            "starting_border_color" : "rgba(1, 119, 199, 1)",
-       ]
-       
-       into 
-       
-       {
-            "labels" : ["Strength","Flexibility","Vigorous","Moderate", "Light"],
-            "datasets" : [
-                {
-                    "label": "-2 Week",
-                    "data": [3, 3, 2, 4, 3],
-                    "backgroundColor": [
-                        "rgba(1, 119, 199, 0.1)"
-                    ],
-                    "borderColor": [
-                        "rgba(1, 119, 199, 1)"
-                    ],
-                    "borderWidth": 1
-                },{
-                    "label": "-3 Week",
-                    "data": [2, 4, 1, 5, 3],
-                    "backgroundColor": [
-                        "rgba(54, 162, 235, 0.1)"
-                    ],
-                    "borderColor": [
-                        "rgba(54, 162, 235, 0.8)"
-                    ],
-                    "borderWidth": 1
-                }
-            ],
-        }
-       */
-        // assumes that the border-color for each week will decrease linearly per week
-        var data = {};
-        data["labels"] = Object.keys(history.performance); // time is labels for a line graph
-        // TODO - order labels each time, by order defined in dataset_options (order of object keys is not guarenteed)
-        
-        data["datasets"] = []; // dataset object will need to be created for each time point
-        var background_color = dataset_options["background_color"];
-        
-        var total_opacity_increments = Math.min(history.time.length, 10); // up to 10 increments
-        var opacity_step = 1/total_opacity_increments;
-        var border_color = dataset_options["background_color"].split(",");
-        if(border_color.length < 3) console.error("starting_border_color for a behavior.dataset_options must be defined as RGBA.")
-        var a_value = parseFloat(border_color[3].replace(/\D/g,''));
-        
-        console.log(opacity_step + " = opacity step");
-        for(var i = 0; i < history.time.length; i++){
-            var this_time_interval = history.time[i];
-            
-            var performance_data_for_this_time_interval = this.return_performance_data_at_index_for_keys(i, data["labels"], history); 
-            
-            var this_opacity_difference = -1 * i * opacity_step;
-            var this_a_value = a_value + this_opacity_difference;
-            var this_border_color = JSON.parse(JSON.stringify(border_color)); // assign by value, not reference
-            this_border_color[3] = " " + this_a_value + ")";
-            var this_border_color = this_border_color.join(",");
-            
-            var this_dataset = {
-                "label" : this_time_interval,
-                "data" : performance_data_for_this_time_interval,
-                "backgroundColor" : background_color,
-                "borderColor" : this_border_color,
-                "borderWidth" : 1,
-            }
-            
-            data["datasets"].push(this_dataset);
-        }
-        return data;
-    },
     return_performance_data_at_index_for_keys : function(time_interval_index, performance_keys, history){
         var data = [];
         for(var i = 0; i < performance_keys.length; i++){
@@ -278,6 +295,9 @@ abstract_behavior_class.prototype = {
         }
         return data;
     },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // history helper
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     return_relevant_history : function(bool_just_a_preview){
         var relevant_history = this.history;
         //console.log("pre-reduction:");
@@ -286,17 +306,8 @@ abstract_behavior_class.prototype = {
         
         // if just a preview, concatenate the data returned to the past `preview_length` data elements
         var preview_length = 3; // only use 3 time points for preivews
+        relevant_history = array.slice(0, preview_length);
         
-        // for time and for each performance array, strip it to the last `preview_length` elements
-        relevant_history.time = relevant_history.time.slice(-1 * preview_length);
-        var performance_keys = Object.keys(relevant_history.performance);
-        for(var i = 0; i < performance_keys.length; i++){
-            var this_key = performance_keys[i];
-            relevant_history.performance[this_key] = relevant_history.performance[this_key].slice(-1*preview_length);
-        }
-        //console.log("reduced history: ");
-        //console.log(JSON.parse(JSON.stringify(relevant_history)));
-        //console.log("--");
         return relevant_history;
     },
     

@@ -1,1 +1,1 @@
-The javascript object defined in this directory is responsible for transforming encounter data ({ datetimeCreated : "", observations : [] })
+The javascript object defined in this directory is responsible for transforming encounter data ({ datetimeCreated : "", observations : [] }) into history data ({time : [], performance : {}})

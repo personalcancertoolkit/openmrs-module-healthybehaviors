@@ -1,0 +1,1 @@
+Date.prototype.getWeek = function () { return $.datepicker.iso8601Week(this); }
