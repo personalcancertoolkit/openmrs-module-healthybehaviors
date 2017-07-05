@@ -1,5 +1,5 @@
 <script>
-window.addEventListener("load", function(){
+promise_to_load_requested_behavior.then(function(){
     data_control_singleton.DOM.warning = {
         main : document.getElementById("warning_element"),
         time_interval : document.getElementById("warning_time_interval"),

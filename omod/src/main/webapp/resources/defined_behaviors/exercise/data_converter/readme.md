@@ -1,0 +1,1 @@
+The javascript object defined in this directory is responsible for transforming encounter data ({ datetimeCreated : "", observations : [] })

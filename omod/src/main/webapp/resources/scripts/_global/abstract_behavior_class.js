@@ -29,10 +29,19 @@ function abstract_behavior_class(behavior_data){
         options : behavior_data.chart_static.options,
         dataset_options : behavior_data.chart_static.dataset_options,
     }
+    this.encounters = behavior_data.encounters;
+    
+    // convert encounters to history data
+    console.log("--------");
+    console.log(behavior_data.data_converter);
+    this.history = behavior_data.data_converter.transform_encounters_into_history(this.encounters);
+    
+    // TODO : this.history = behavior_data.data_transform_manager(encounters)
     this.history = {
         time : behavior_data.history.time,
         performance : behavior_data.history.performance,
     };
+    
     
     // define advice specific data
     this.personalized_advice = behavior_data.personalized_advice;
@@ -66,6 +75,26 @@ abstract_behavior_class.prototype = {
         
         return chart_data;
     },
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     ////////////
     // return_chart_data helper methods

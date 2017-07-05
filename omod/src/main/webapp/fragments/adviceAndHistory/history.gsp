@@ -1,5 +1,5 @@
 <script>
-window.addEventListener("load", function(){
+promise_to_load_requested_behavior.then(function(){
     data_control_singleton.DOM.history = {
         chart_canvas : document.getElementById("history_chart_canvas"),
     }

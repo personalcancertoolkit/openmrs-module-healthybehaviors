@@ -60,7 +60,7 @@ var data_control_singleton = {
         if(this.behavior_object.uptodate == false){
             this.DOM.warning.main.style.display = "flex";
         }
-        this.DOM.warning.tile.href = '/openmrs/healthybehaviors/recordPerformance.page?behavior='+this.behavior_object.unique_behavior_id;
+        this.DOM.warning.tile.href = '/openmrs/healthybehaviors/addRecord.page?behavior='+this.behavior_object.unique_behavior_id;
         this.DOM.warning.time_interval.innerHTML = this.behavior_object.time_interval;
         this.DOM.warning.behavior_title.innerHTML = this.behavior_object.advice_type_text;
     },

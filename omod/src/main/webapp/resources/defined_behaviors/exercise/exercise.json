@@ -1,5 +1,6 @@
 {
     "unique_behavior_id" : "exercise", 
+    "encounter_type" : "exercise_form",
     
     "uptodate" : false,
     "resource_root" : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/",
@@ -21,31 +22,52 @@
         "exercise is more effective at increasing your energy levels than caffeine"
     ],
     
+
     "history" : {
-        "time" : ["-4 W", "-3 W", "-2 W", "Last Week"],
+        "time": ["-9 W", "-8 W", "-7 W", "-6 W", "-5 W", "-4 Week", "-3 Week", "-2 Week", "Last Week"],
         "performance" : {
-            "Strength" : [1, 2, 3, 3],
-            "Flexibility" : [0, 1, 1, 1],
-            "Vigorous" : [0, 0, 1, 1],
-            "Moderate" : [1, 1, 1, 1],
-            "Light" : [5, 3, 3, 2]
+            "RAPA1": [0, 3, 1, 2, 4, null, 7, 12, 9],
+            "RAPA2": [5, 2, 3, 4, 3, null, 2,  0, 1]
         }
     },
     
-    "time_interval" : "week", 
+    
+    
+    
+    
+    "time_interval" : "month", 
     "chart_static" : {
-        "type": "radar",
+        "type" : "line",
         "options" :  {
-            "scale": {
-                "ticks": {
-                    "min": 0,
-                    "minStepSize": 1
-                }
+            "scales": {
+                "yAxes": [{
+                    "ticks": {
+                        "beginAtZero":true
+                    }
+                }]
             }
         },
-        "dataset_options" : {
-            "background_color" : "rgba(1, 119, 199, 0.1)",
-            "starting_border_color" : "rgba(1, 119, 199, 1)"
-       }
+        "dataset_options" : [
+            {
+                "label": "RAPA1",
+                "backgroundColor": [
+                    "rgba(99, 255, 135, 0.2)"
+                ],
+                "borderColor": [
+                    "rgb(99, 255, 135)"
+                ],
+                "borderWidth": 1
+            },
+            {
+                "label": "RAPA2",
+                "backgroundColor": [
+                    "rgba(255, 62, 62, 0.1)"
+                ],
+                "borderColor": [
+                    "rgb(255, 62, 62)"
+                ],
+                "borderWidth": 1
+            }
+        ]
     }
 }

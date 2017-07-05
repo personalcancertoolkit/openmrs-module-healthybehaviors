@@ -16,27 +16,12 @@
 
 <script>
     
-window.addEventListener("load", function(){
-    setTimeout(function(){ // TODO - after passing data from server, remove this. Currently this is here because we are loading JSON data on client asynchronously.
-        var requested_behaviors = [];
-        // TODO - create general way of initializing requested tiles based on JSON data passed from server of behaviors of interest to this loading of the module
-
-        ////////////////////////
-        // Nutrition Tile
-        ////////////////////////
-        requested_behaviors.push(window["loaded_behaviors"]["nutrition"]);
-
-        /////////////////////////
-        // Exercise Tile
-        /////////////////////////
-        requested_behaviors.push(window["loaded_behaviors"]["exercise"]);
-
-        behavior_tile_builder_singleton.tile_template = document.getElementById("behavior_tile_hidden_template");
-        behavior_tile_builder_singleton.tile_holder = document.getElementById("dashboard_behavior_tile_holder");
-        for(var i = 0; i < requested_behaviors.length; i++){
-            behavior_tile_builder_singleton.build_tile_and_add_to_holder(requested_behaviors[i]);
-        }
-    },50);
+promise_to_load_requested_behaviors.then((data)=>{
+    behavior_tile_builder_singleton.tile_template = document.getElementById("behavior_tile_hidden_template");
+    behavior_tile_builder_singleton.tile_holder = document.getElementById("dashboard_behavior_tile_holder");
+    Object.keys(window["loaded_behaviors"]).forEach((behavior_key)=>{
+        behavior_tile_builder_singleton.build_tile_and_add_to_holder(window["loaded_behaviors"][behavior_key]);
+    })
 });
     
 </script>

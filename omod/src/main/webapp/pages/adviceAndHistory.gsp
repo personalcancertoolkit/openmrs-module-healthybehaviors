@@ -1,16 +1,18 @@
 
 ${ ui.includeFragment("healthybehaviors", "headerForApp") }
 <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/advice_and_history/data_control_singleton.js") }"></script>
-
+<script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/_global/behavior_data_loader/init.js") }"></script>
 <script>
-    console.log("${behavior}");
-    // TODO - have this data be passed by server
-    var data_path = '${ ui.resourceLink("healthybehaviors", "/defined_behaviors/" + behavior + "/" + behavior + ".json") }';
-    fetch(data_path)
-      .then(function(response){ return response.json()})
-      .then(function(json){ window["data_control_singleton"].behavior_object = new abstract_behavior_class(json); });
+    var promise_to_load_requested_behavior = behavior_data_loader_metadata.promise.loaded.then((data)=>{
+            console.log("here i am, promising nutrition and exercise data");
+            var behavior_requested = "${behavior}";
+            return behavior_data_loader.promise_data_for(behavior_requested);
+        }).then((data_array)=>{
+            var data = data_array[0];
+            window["data_control_singleton"].behavior_object = new abstract_behavior_class(data);
+        });
 </script>
-<!-- initialize data controller script -->
+
 
         
 

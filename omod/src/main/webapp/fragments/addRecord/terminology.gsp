@@ -1,5 +1,5 @@
 <script>
-    window.addEventListener("load", function(){
+    promise_to_load_requested_behavior.then(function(){
         data_control_singleton.DOM.terminology = document.getElementById("terminology_holder");
         data_control_singleton.instantiate_terminology();
     })

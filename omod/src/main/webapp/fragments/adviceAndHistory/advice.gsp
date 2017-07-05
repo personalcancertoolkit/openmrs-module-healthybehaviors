@@ -1,5 +1,5 @@
 <script>
-window.addEventListener("load", function(){
+promise_to_load_requested_behavior.then(function(){
     data_control_singleton.DOM.advice = {
         holder : document.getElementById("advice_holder"), 
         template : document.getElementById("advice_element_template"),

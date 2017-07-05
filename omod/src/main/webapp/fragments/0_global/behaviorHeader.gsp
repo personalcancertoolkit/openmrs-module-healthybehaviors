@@ -16,9 +16,9 @@ window.addEventListener("load", function(){
             <!-- gradient overly element will be inserted by css (:before) into this location -->
             <div id = 'behavior_header_image' class = 'image_element_to_place_gradient_over' style = 'display:flex;'>
                 <div class = '' style = 'margin:auto; font-size:21px; color:white; z-index:1;'>
-                    <span id = 'behavior_header_title' style = 'font-size:31px;'>Behavior</span> 
+                    <span id = 'behavior_header_title' style = 'font-size:31px;'>Loading...</span> 
                     <br> 
-                    <span id = 'behavior_header_pagetype'> Page Type </span> 
+                    <span id = 'behavior_header_pagetype'> </span> 
                 </div>
             </div>
         </div>

@@ -17,7 +17,11 @@ var exercise_form_DOM_builder = {
         
         // set required attributes
         this.submission_button.onclick = function(unique_identifier){
-            simpleformservice.simple_submission.submit_encounter(this.encounter_type.unique_identifier, function(){})
+            simpleformservice.simple_submission.submit_encounter(this.encounter_type.unique_identifier, function(server_response){
+                if(server_response == "SCS"){
+                    window.location.href = "adviceAndHistory.page?behavior=exercise";
+                }
+            });
         }.bind(this);
         jq(this.simpleform).attr("encounter_type", this.encounter_type.unique_identifier);
     },
