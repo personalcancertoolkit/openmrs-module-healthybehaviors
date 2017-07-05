@@ -12,7 +12,6 @@ var behavior_data_loader = {
     promise_data_for(behaviors){
         // validate data into a standard format
         if(typeof behaviors == "string") behaviors = [behaviors];
-        console.log(this.enabled_behaviors);
         if(!(behaviors === "all" || behaviors.every(function(val){
             //console.log(this);
             return this.enabled_behaviors.indexOf(val)>=0;
@@ -29,13 +28,12 @@ var behavior_data_loader = {
             var this_behavior = behaviors[i];
             //console.log("creating promise for behavior" + this_behavior);           
             var this_behavior_data_path = this.resource_root + "defined_behaviors/" + this_behavior + "/" + this_behavior + ".json";
-            var this_behavior_data_converter_path = this.resource_root + "defined_behaviors/" + this_behavior + "/data_converter/converter.js";
-            var this_behavior_data_converter_object_name = this_behavior+"_data_converter"
             var this_promise = fetch(this_behavior_data_path)
                 .then(function(response){ return response.json()})
                 .then((static_behavior_data)=>{
                     var this_encounter_type = static_behavior_data.encounter_type;
-                    return Promise.all([static_behavior_data, this.promise_encounters_for_encounter_type(this_encounter_type), this.promise_data_converter(this_behavior_data_converter_path, this_behavior_data_converter_object_name)]);
+                    var this_behavior = static_behavior_data.unique_behavior_id;
+                    return Promise.all([static_behavior_data, this.promise_encounters_for_encounter_type(this_encounter_type), this.promise_data_converter(this_behavior)]);
                 })
                 .then((data_array)=>{
                     var static_behavior_data = data_array[0];
@@ -64,17 +62,19 @@ var behavior_data_loader = {
         })
     },
     
-    promise_data_converter : function(object_path, object_name){
+    promise_data_converter : function(this_behavior){
       
         /*
             load object and then return object name, after the object is loaded, to be later set as a reference as the data converter
         */
-        console.log("object path = " + object_path);
+        
+        var converter_path = this.resource_root + "defined_behaviors/" + this_behavior + "/data_converter/converter.js";
+        var converter_name = this_behavior+"_data_converter";
         return new Promise((resolve, reject)=>{
             var script = document.createElement('script');
-            script.setAttribute("src", object_path);
+            script.setAttribute("src", converter_path);
             script.onload = function(){
-                resolve(object_name);
+                resolve(converter_name);
             };
             document.getElementsByTagName('head')[0].appendChild(script);
         })

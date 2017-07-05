@@ -36,14 +36,6 @@ function abstract_behavior_class(behavior_data){
     this.encounter_performance_data = behavior_data.data_converter.transform_encounters_into_encounter_performance_data(this.encounters);
     this.history = this.organize_encounter_performance_data_by_time_intervals(this.encounter_performance_data);
     
-    /*
-    this.history = {
-        time : behavior_data.history.time,
-        performance : behavior_data.history.performance,
-    };
-    */
-    
-    
     // define advice specific data
     this.personalized_advice = behavior_data.personalized_advice;
 }
@@ -86,7 +78,6 @@ abstract_behavior_class.prototype = {
     ///////////////////////////////////////////////////////////////////////////////////////////
     // TODO: consider using moment.js if intervals get more complex than just months or weeks.
     organize_encounter_performance_data_by_time_intervals : function(encounter_data){
-        
         // merge encounters into time intervals
         /*
               - employ a heuristic for merging the performance data for that interval's encounters
@@ -116,8 +107,6 @@ abstract_behavior_class.prototype = {
             // find relevant encounters (those pertaining to this period)
             var relevant_encounters = this.find_encounters_for_this_period(unused_encounter_data, this_period); 
             //console.log("relevant encounters");
-            console.log("for period of month " + this_period); 
-            console.log(relevant_encounters);
             
             // remove relevant encounters from encounter_data
             //console.log(JSON.parse(JSON.stringify(unused_encounter_data)));
@@ -152,8 +141,6 @@ abstract_behavior_class.prototype = {
             timed_data.push(this_period_data);
         }
         
-        console.log("---");
-        console.log(timed_data);
         return timed_data;
     },
     get_period_identifier_for_datetime : function(the_date){
@@ -185,11 +172,11 @@ abstract_behavior_class.prototype = {
     },
     return_latest_encounter : function(encounters){
         var the_encounter = encounters[0];
-        console.log(encounters);
+        //console.log(encounters);
         for(var i = 0; i < encounters.length; i++){
             var this_encounter = encounters[i];
             if(this_encounter.time > the_encounter.time){
-                console.log("update the datetime from " + the_encounter.time + " to " + this_encounter.time)
+                //console.log("update the datetime from " + the_encounter.time + " to " + this_encounter.time)
                 the_encounter = this_encounter;
             }
         }
@@ -306,7 +293,7 @@ abstract_behavior_class.prototype = {
         
         // if just a preview, concatenate the data returned to the past `preview_length` data elements
         var preview_length = 3; // only use 3 time points for preivews
-        relevant_history = array.slice(0, preview_length);
+        relevant_history = relevant_history.slice(0, preview_length);
         
         return relevant_history;
     },
