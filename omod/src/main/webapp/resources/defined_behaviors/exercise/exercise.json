@@ -49,7 +49,8 @@
         },
         "dataset_options" : [
             {
-                "label": "RAPA1",
+                "label" : "Aerobic",
+                "performance_identifier": "RAPA1",
                 "backgroundColor": [
                     "rgba(99, 255, 135, 0.2)"
                 ],
@@ -59,7 +60,8 @@
                 "borderWidth": 1
             },
             {
-                "label": "RAPA2",
+                "label": "Strength and Flexibility",
+                "performance_identifier": "RAPA2",
                 "backgroundColor": [
                     "rgba(255, 62, 62, 0.1)"
                 ],

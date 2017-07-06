@@ -45,6 +45,7 @@
         "dataset_options" : [
             {
                 "label": "Veggies Eaten",
+                "performance_identifier" : "veges",
                 "backgroundColor": [
                     "rgba(99, 255, 135, 0.2)"
                 ],
@@ -55,6 +56,7 @@
             },
             {
                 "label": "Fast Food Eaten",
+                "performance_identifier" : "fat",
                 "backgroundColor": [
                     "rgba(255, 62, 62, 0.1)"
                 ],

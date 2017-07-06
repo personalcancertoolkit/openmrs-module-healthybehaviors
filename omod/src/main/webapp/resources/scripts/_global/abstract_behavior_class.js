@@ -254,22 +254,22 @@ abstract_behavior_class.prototype = {
         data["labels"] = history["time"]; // time is labels for a line graph
         data["datasets"] = dataset_options; // the base of the datasets object is the dataset_options
         
-        // map performance history to the appropriate dataset object, by label
-        var dataset_labels_list = data["datasets"].map(function(a) {return a.label;});
+        // map performance history to the appropriate dataset object, by identifier
+        var dataset_performance_identifier_list = data["datasets"].map(function(a) {return a.performance_identifier;}); // note, this was dataset_labels_list
         //console.log("dataset labels list:");
         //console.log(dataset_labels_list);
         var performance_keys = Object.keys(history.performance);
         for(var i = 0; i < performance_keys.length; i++){
-            var this_performance_label = performance_keys[i];
-            var performance_data = history.performance[this_performance_label];
+            var this_performance_identifier = performance_keys[i];
+            var performance_data = history.performance[this_performance_identifier];
             
             // get index of label associated with this history.performance in the data["dataset"]
-            var dataset_index_of_this_performance_label = dataset_labels_list.indexOf(this_performance_label);
+            var dataset_index_of_this_performance_identifier = dataset_performance_identifier_list.indexOf(this_performance_identifier);
             //console.log(this_performance_label + " is at dataset index " + dataset_index_of_this_performance_label);
-            if(dataset_index_of_this_performance_label == -1) console.error("performance label in behavior.history ("+this_performance_label+") is not defined in behavior.chart_static.dataset_options.");
+            if(dataset_index_of_this_performance_identifier == -1) console.error("performance identifier in behavior.history ("+this_performance_identifier+") is not defined in behavior.chart_static.dataset_options.");
             
             // now that we have the index, we can append the data to that object.
-            data["datasets"][dataset_index_of_this_performance_label]["data"] = performance_data;
+            data["datasets"][dataset_index_of_this_performance_identifier]["data"] = performance_data;
         }
         return data;
     },

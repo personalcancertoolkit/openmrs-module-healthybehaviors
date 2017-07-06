@@ -8,8 +8,8 @@
 var nutrition_data_converter = {
     
     null_performance_object : { // null performance object is used outside of this object in order to missing records
-        "Veggies Eaten" : null,
-        "Fast Food Eaten" : null,
+        "veges" : null,
+        "fat" : null,
     }, 
     
     
