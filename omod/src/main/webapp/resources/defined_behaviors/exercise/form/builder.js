@@ -12,6 +12,7 @@ var exercise_form_DOM_builder = {
         this.holder = document.getElementById("exercise_form_question_holder"),
         this.template = {
             question : document.getElementById("exercise_form_template_question"),
+            heading : document.getElementById("exercise_form_template_questiontype_heading"),
         };
         this.submission_button = document.getElementById("exercise_form_submission_button");
         
@@ -30,6 +31,15 @@ var exercise_form_DOM_builder = {
         var data = this.data;
         for(var i = 0; i < data.length; i++){
             //console.log("row " + i);
+            if(i == 0){
+                var heading_element = this.create_heading_from_data("Aerobic Activity"); 
+                this.holder.appendChild(heading_element);
+            }
+            if(i == 7){
+                var heading_element = this.create_heading_from_data("Strength and Flexibility"); 
+                this.holder.appendChild(heading_element);
+            }
+            
             var this_row_data = data[i];
             var row_element = this.create_row_from_data(this_row_data); 
             this.holder.appendChild(row_element);
@@ -60,4 +70,13 @@ var exercise_form_DOM_builder = {
 
         return row_element;
     },
+    
+    create_heading_from_data : function(heading){
+        // create deep clone of node
+        var element = this.template.heading.cloneNode(true);
+        
+        element.innerHTML = heading;
+        
+        return element;
+    }
 }

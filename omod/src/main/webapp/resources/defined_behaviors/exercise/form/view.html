@@ -29,6 +29,7 @@
             <div style = 'display:flex; width:100%; '>
                 <div id = '' style = 'width:100%; max-width:700px;margin:auto; padding:5px; '>
                     <div id = 'exercise_form_question_holder' style = ''>
+                        <div style = 'margin-top:-20px;'></div>
                         <!-- rows go here-->
                         
                     </div>
@@ -62,9 +63,11 @@
 
 <div style = 'display:none'>
 
-    <simplequestion id = 'exercise_form_template_question' concept = "" style = 'display:flex; min-height:50px; margin-bottom:3px; margin-top:3px;'>
-        <div class = 'question_text' style = 'flex-grow:1'>
-            I rarely or never do any physical activities.
+    <simplequestion id = 'exercise_form_template_question' concept = "" style = 'display:flex; min-height:55px; margin-bottom:3px;margin-top:3px;'>
+        <div class = '' style = 'flex-grow:1;  display:flex; font-size:15px; margin-left:15px; '>
+            <div class = 'question_text' style = 'margin:auto; margin-left:0px;'>
+                I rarely or never do any physical activities.
+            </div>
         </div>
         <simpleanswer type = 'boolean' required = 'true' style = 'width:150px;  display:flex; justify-content:flex-end;'>
                 <div class="healthy_radio" title = "Yes, this accurately describes me.">
@@ -78,6 +81,11 @@
                 </div>
         </simpleanswer>
     </simplequestion>
+
+    
+    <div id = 'exercise_form_template_questiontype_heading' style = 'width:100%; font-size:18px; margin-top:25px; margin-bottom:5px;  color:#9d9d9d;'>
+        Aerobic Fitness
+    </div>
     
 </div>
 
