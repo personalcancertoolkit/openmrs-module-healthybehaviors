@@ -66,7 +66,7 @@ var exercise_data_converter = {
         // note, ["sedentary", "under-active", "under-active", "regular", "regular", "active", "active"], must be equal to ["sedentary", "under-active",  "regular", "active"],
         var final_rapa1 = ["sedentary", "under-active",  "regular", "active"];
         var initial_rapa1 = ["sedentary", "under-active", "under-active", "regular", "regular", "active", "active"];
-        var rapa1_value = final_rapa1.indexOf(initial_rapa1[highest_rapa1_value]);
+        var rapa1_value = final_rapa1.indexOf(initial_rapa1[highest_rapa1_value - 1]);
         
         
         // find the total rapa2 value
