@@ -39,9 +39,11 @@
     "chart_static" : {
         "type" : "line",
         "options" :  {
+            "yaxis_to_text_mapping_array" : ["sedentary", "under-active", "regular", "active"],
             "scales": {
                 "yAxes": [{
                     "ticks": {
+                        "maxTicksLimit": 5, 
                         "beginAtZero":true
                     }
                 }]

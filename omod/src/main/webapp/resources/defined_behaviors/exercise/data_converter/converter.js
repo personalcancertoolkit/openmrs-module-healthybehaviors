@@ -63,7 +63,11 @@ var exercise_data_converter = {
             if(observations[this_key].value === "true") highest_rapa1_value = i;
         }
         //console.log("highest rapa1 = " + highest_rapa1_value);
-
+        // note, ["sedentary", "under-active", "under-active", "regular", "regular", "active", "active"], must be equal to ["sedentary", "under-active",  "regular", "active"],
+        var final_rapa1 = ["sedentary", "under-active",  "regular", "active"];
+        var initial_rapa1 = ["sedentary", "under-active", "under-active", "regular", "regular", "active", "active"];
+        var rapa1_value = final_rapa1.indexOf(initial_rapa1[highest_rapa1_value]);
+        
         
         // find the total rapa2 value
         var total_rapa2_value = 0;
@@ -78,7 +82,7 @@ var exercise_data_converter = {
         this_data.id = encounter.id;
         this_data.time = encounter.datetime;
         this_data.formatted_time = encounter.datetime_formatted;
-        this_data.performance.RAPA1 = highest_rapa1_value;
+        this_data.performance.RAPA1 = rapa1_value;
         this_data.performance.RAPA2 = total_rapa2_value;
         //console.log(this_data);
         return this_data;

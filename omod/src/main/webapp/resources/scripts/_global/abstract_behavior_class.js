@@ -57,7 +57,8 @@ abstract_behavior_class.prototype = {
     return_chart_data : function(bool_just_a_preview){
         var chart_data = {};
         chart_data["type"] = this.chart_static.type;
-        chart_data["options"] = this.chart_static.options;
+        chart_data["options"] = this.parse_static_chart_options(this.chart_static.options);
+        
         
         // transform history into chart data for this chart type
         var relevant_history = this.return_relevant_history(bool_just_a_preview);
@@ -70,6 +71,27 @@ abstract_behavior_class.prototype = {
         return chart_data;
     },
     
+    // TODO : load the mapping function explicitly from a js file.
+    // TODO: promise charts, don't just generate them
+    // Why? to reduce code complexity. This is a very hacky way of embeding generality.
+    parse_static_chart_options : function(options){
+        var options = options;
+        if(typeof options.yaxis_to_text_mapping_array !== "undefined"){
+            // we need to set 
+            /*
+               userCallback: function(t, i) {
+                  return mapping_function[mapText.length - (i + 1)];
+               }
+            */
+            options.scales.yAxes[0].ticks.userCallback = function(t, i){
+                var mapping_function = options.yaxis_to_text_mapping_array;
+                console.log(i);
+                return mapping_function[mapping_function.length - (i + 1)];
+           }
+        }
+        
+        return options;
+    },
     
     
     
@@ -229,6 +251,9 @@ abstract_behavior_class.prototype = {
         }
         
         
+        //////////////////////////////////////////
+        // Convert raw history into history that is easy to plug into chart data
+        //////////////////////////////////////////
         // sort by datetime ascending to order in graph as expected, with most recent last
         raw_history.sort((a, b)=>{
             return b.index - a.index;
@@ -250,14 +275,20 @@ abstract_behavior_class.prototype = {
             }
         }
         
-        var data = {};
-        data["labels"] = history["time"]; // time is labels for a line graph
-        data["datasets"] = dataset_options; // the base of the datasets object is the dataset_options
         
+        //////////////////////////////////////////
+        // build data object
+        //////////////////////////////////////////
+        // initialize chart data object
+        var data = {};
+        
+        // set chart labels
+        data["labels"] = history["time"]; // time is labels for a line graph
+        
+        // set chart data 
+        data["datasets"] = dataset_options; // the base of the datasets object is the dataset_options
         // map performance history to the appropriate dataset object, by identifier
         var dataset_performance_identifier_list = data["datasets"].map(function(a) {return a.performance_identifier;}); // note, this was dataset_labels_list
-        //console.log("dataset labels list:");
-        //console.log(dataset_labels_list);
         var performance_keys = Object.keys(history.performance);
         for(var i = 0; i < performance_keys.length; i++){
             var this_performance_identifier = performance_keys[i];
@@ -270,15 +301,6 @@ abstract_behavior_class.prototype = {
             
             // now that we have the index, we can append the data to that object.
             data["datasets"][dataset_index_of_this_performance_identifier]["data"] = performance_data;
-        }
-        return data;
-    },
-    return_performance_data_at_index_for_keys : function(time_interval_index, performance_keys, history){
-        var data = [];
-        for(var i = 0; i < performance_keys.length; i++){
-            var this_key = performance_keys[i];
-            var this_data = history.performance[this_key][time_interval_index];
-            data.push(this_data);
         }
         return data;
     },
