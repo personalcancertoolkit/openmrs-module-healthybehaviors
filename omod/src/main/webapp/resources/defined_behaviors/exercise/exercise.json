@@ -43,7 +43,9 @@
             "scales": {
                 "yAxes": [{
                     "ticks": {
-                        "maxTicksLimit": 5, 
+                        "beginAtZero": true,
+                        "stepSize":1,
+                        "maxTicksLimit": 4, 
                         "beginAtZero":true
                     }
                 }]

@@ -85,7 +85,6 @@ abstract_behavior_class.prototype = {
             */
             options.scales.yAxes[0].ticks.userCallback = function(t, i){
                 var mapping_function = options.yaxis_to_text_mapping_array;
-                console.log(i);
                 return mapping_function[mapping_function.length - (i + 1)];
            }
         }
