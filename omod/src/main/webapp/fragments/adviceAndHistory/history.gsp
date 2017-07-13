@@ -1,17 +1,27 @@
 <script>
-promise_to_load_requested_behavior.then(function(){
-    data_control_singleton.DOM.history = {
-        chart_canvas : document.getElementById("history_chart_canvas"),
-    }
-    data_control_singleton.instantiate_history();
-});
+    promise_requested_behavior.then((behavior_object)=>{
+        instantiate_history(behavior_object);
+    });
+    
+    function instantiate_history(behavior_object){
+        var DOM = {
+            holder : document.getElementById("graph_holder"),
+            chart_canvas : document.getElementById("history_chart_canvas"),
+        }
+        var chart_data = behavior_object.display.graph.data;
+        var chart_canvas = DOM.chart_canvas;
+        var ctx = chart_canvas.getContext('2d');
+        //console.log(ctx);
+        new Chart(ctx, chart_data)  
+    };
 </script>
+
 
 <div class = '' style = 'width:100%; display:flex; padding:20px 10px; '>
     <div class = 'healthy_tile' style = 'min-height:50px; margin:auto; width:100%; max-width:800px; padding:10px; ' >
         <!-- history graph -->
         <div style = 'display:flex; width:100%; '>
-            <div style = 'width:100%; max-width:700px; min-height:100px; margin:auto; padding:5px; '>
+            <div id = 'graph_holder' style = 'width:100%; max-width:700px; min-height:100px; margin:auto; padding:5px; '>
                 <canvas id="history_chart_canvas" style = ''></canvas>
             </div>
         </div>

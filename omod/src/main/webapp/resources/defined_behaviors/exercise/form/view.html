@@ -55,61 +55,58 @@
                 
             </div>
         </div>
-        
-        
     </div>
-</div>
 
+    <!-- template dom -->
+    <div style = 'display:none'>
 
-<div style = 'display:none'>
-
-    <simplequestion id = 'exercise_form_template_question' concept = "" style = 'display:flex; min-height:55px; margin-bottom:3px;margin-top:3px;'>
-        <div class = '' style = 'flex-grow:1;  display:flex; font-size:15px; margin-left:15px; '>
-            <div class = 'question_text' style = 'margin:auto; margin-left:0px;'>
-                I rarely or never do any physical activities.
+        <simplequestion id = 'exercise_form_template_question' concept = "" style = 'display:flex; min-height:55px; margin-bottom:3px;margin-top:3px;'>
+            <div class = '' style = 'flex-grow:1;  display:flex; font-size:15px; margin-left:15px; '>
+                <div class = 'question_text' style = 'margin:auto; margin-left:0px;'>
+                    I rarely or never do any physical activities.
+                </div>
             </div>
+            <simpleanswer type = 'boolean' required = 'true' style = 'width:150px;  display:flex; justify-content:flex-end;'>
+                    <div class="healthy_radio" title = "Yes, this accurately describes me.">
+                        <input class = 'yes_radio' id = 'yes_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="yes"  />
+                        <label for ='yes_boolean_for_concept-'>Yes</label>
+                    </div>
+                    <div style = 'width:15px;'></div>
+                    <div class="healthy_radio" title = "No, this does not describe me.">
+                        <input class = 'no_radio' id = 'no_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="no" />
+                        <label for ='no_boolean_for_concept-' >No</label>
+                    </div>
+            </simpleanswer>
+        </simplequestion>
+
+
+        <div id = 'exercise_form_template_questiontype_heading' style = 'width:100%; font-size:18px; margin-top:25px; margin-bottom:5px;  color:#9d9d9d;'>
+            Aerobic Fitness
         </div>
-        <simpleanswer type = 'boolean' required = 'true' style = 'width:150px;  display:flex; justify-content:flex-end;'>
-                <div class="healthy_radio" title = "Yes, this accurately describes me.">
-                    <input class = 'yes_radio' id = 'yes_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="yes"  />
-                    <label for ='yes_boolean_for_concept-'>Yes</label>
-                </div>
-                <div style = 'width:15px;'></div>
-                <div class="healthy_radio" title = "No, this does not describe me.">
-                    <input class = 'no_radio' id = 'no_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="no" />
-                    <label for ='no_boolean_for_concept-' >No</label>
-                </div>
-        </simpleanswer>
-    </simplequestion>
 
-    
-    <div id = 'exercise_form_template_questiontype_heading' style = 'width:100%; font-size:18px; margin-top:25px; margin-bottom:5px;  color:#9d9d9d;'>
-        Aerobic Fitness
+        <style>
+        .healthy_radio label {
+          font-weight:300;
+          font-size: 20px;
+          line-height: 26px;
+        }
+
+        .healthy_radio input[type="radio"] {
+          display: none;
+        }
+
+        .healthy_radio input[type="radio"] ~ label {
+            color: #bebebe;
+            position: relative;
+            cursor:pointer;
+        }
+
+
+        .healthy_radio input[type="radio"]:checked ~ label {
+          color:rgb(8, 160, 255);
+        }
+        </style>
+
     </div>
-    
+
 </div>
-
-
-
-<style>
-.healthy_radio label {
-  font-weight:300;
-  font-size: 20px;
-  line-height: 26px;
-}
-    
-.healthy_radio input[type="radio"] {
-  display: none;
-}
-
-.healthy_radio input[type="radio"] ~ label {
-    color: #bebebe;
-    position: relative;
-    cursor:pointer;
-}
-
-
-.healthy_radio input[type="radio"]:checked ~ label {
-  color:rgb(8, 160, 255);
-}
-</style>

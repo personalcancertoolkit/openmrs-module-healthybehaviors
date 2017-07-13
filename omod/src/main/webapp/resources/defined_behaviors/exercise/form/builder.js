@@ -1,33 +1,80 @@
-var exercise_form_DOM_builder = {
+var exercise_form_display_builder = {
     holder : null,
     template : {
         question : null,
     },
-    data : null, // i.e., concepts
-    encounter_type : null,
-
-    initialize : function(){
+    data : [
+        {
+            "unique_identifier" : "RAPA1_q1",
+            "text" : "I rarely or never do physical activities",
+            "datatype" : "BIT"
+        },
+        {
+            "unique_identifier" : "RAPA1_q2",
+            "text" : "I do some <b>light</b> or <b>moderate</b> physical activities, but not every week.",
+            "datatype" : "BIT"
+        },
+        {
+            "unique_identifier" : "RAPA1_q3",
+            "text" : "I do some <b>light</b> physical activity every week.",
+            "datatype" : "BIT"
+        },
+        {
+            "unique_identifier" : "RAPA1_q4",
+            "text" : "I do <b>moderate</b> physical activities every week, but less than 30 minutes a day or 5 days a week.",
+            "datatype" : "BIT"
+        },
+        {
+            "unique_identifier" : "RAPA1_q5",
+            "text" : "I do <b>vigorous</b> physical activities every week, but less than 20 minutes a day or 3 days a week.",
+            "datatype" : "BIT"
+        },
+        {
+            "unique_identifier" : "RAPA1_q6",
+            "text" : "I do 30 minutes or more a day of <b>moderate</b> physical activities, 5 or more days a week.",
+            "datatype" : "BIT"
+        },
+        {
+            "unique_identifier" : "RAPA1_q7",
+            "text" : "I do 20 minutes or more a day of <b>vigorous</b> physical activities, 3 or more days a week.",
+            "datatype" : "BIT"
+        },
+        {
+            "unique_identifier" : "RAPA2_q1",
+            "text" : "I do activities to increase muscle <b>strength</b>, such as lifting weights or calisthenics, once a week or more.",
+            "datatype" : "BIT"
+        },
+        {
+            "unique_identifier" : "RAPA2_q2",
+            "text" : "I do activities to improve <b>flexibility</b>, such as stretching or yoga, once a week or more.",
+            "datatype" : "BIT"
+        }
+    ], // i.e., concepts
+    encounter_type : "exercise_form",
+    
+    
+    build_from : function(dom){
         // assign to object properties
-        this.simpleform = document.getElementById("exercise_simpleform_element"),
-        this.holder = document.getElementById("exercise_form_question_holder"),
+        this.simpleform = dom.querySelector("#exercise_simpleform_element");
+        this.holder = dom.querySelector("#exercise_form_question_holder");
         this.template = {
-            question : document.getElementById("exercise_form_template_question"),
-            heading : document.getElementById("exercise_form_template_questiontype_heading"),
+            question : dom.querySelector("#exercise_form_template_question"),
+            heading : dom.querySelector("#exercise_form_template_questiontype_heading"),
         };
-        this.submission_button = document.getElementById("exercise_form_submission_button");
+        this.submission_button = dom.querySelector("#exercise_form_submission_button");
         
-        // set required attributes
+        // set overarching dom properties
         this.submission_button.onclick = function(unique_identifier){
-            simpleformservice.simple_submission.submit_encounter(this.encounter_type.unique_identifier, function(server_response){
+            simpleformservice.simple_submission.submit_encounter(this.encounter_type, function(server_response){
                 if(server_response == "SCS"){
                     window.location.href = "adviceAndHistory.page?behavior=exercise";
                 }
             });
         }.bind(this);
-        jq(this.simpleform).attr("encounter_type", this.encounter_type.unique_identifier);
-    },
-
-    build : function(){
+        jq(this.simpleform).attr("encounter_type", this.encounter_type);
+        
+        
+        // build each row
         var data = this.data;
         for(var i = 0; i < data.length; i++){
             //console.log("row " + i);
@@ -44,6 +91,8 @@ var exercise_form_DOM_builder = {
             var row_element = this.create_row_from_data(this_row_data); 
             this.holder.appendChild(row_element);
         }
+    
+        return {dom : dom};
     },
     
     create_row_from_data : function(row_data){

@@ -1,12 +1,24 @@
 <script>
-promise_to_load_requested_behavior.then(function(){
-    data_control_singleton.DOM.advice = {
-        holder : document.getElementById("advice_holder"), 
-        template : document.getElementById("advice_element_template"),
-    }
-    data_control_singleton.instantiate_advice();
-});
+    promise_requested_behavior.then((behavior_object)=>{
+        instantiate_advice(behavior_object);
+    });
+    
+    function instantiate_advice(behavior_object){
+        var DOM = {
+            holder : document.getElementById("advice_holder"), 
+            template : document.getElementById("advice_element_template"),
+        }
+        var personalized_advice = behavior_object.data.personalized_advice;
+        for(var i = 0; i < personalized_advice.length; i++){
+            var this_advice = personalized_advice[i];
+            var advice_element = DOM.template.cloneNode(true);
+            jq(advice_element).find(".advice_title")[0].innerHTML = this_advice[0];
+            jq(advice_element).find(".advice_body")[0].innerHTML = this_advice[1];
+            DOM.holder.appendChild(advice_element);
+        }
+    };
 </script>
+
 <div class = '' style = 'width:100%; display:flex; padding:20px 10px; '>
     <div class = 'healthy_tile' style = 'min-height:50px; margin:auto; width:100%; max-width:800px; padding:10px; ' >
         
