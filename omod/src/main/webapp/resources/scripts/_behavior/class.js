@@ -211,7 +211,11 @@ Behavior_Display_Manager.prototype = {
             var dom = (new DOMParser()).parseFromString(html, "text/html").body.childNodes[0]; // note, we require one wrapper element
             var display_data = {dom : dom}
             if(bool_builder_loaded){
-                display_data = window[this.parent.data.unique_behavior_id + "_" + display_identifier + "_display_builder"].build_from(dom, optional_build_data);
+                if(window[this.parent.data.unique_behavior_id + "_" + display_identifier + "_display_builder"] === "undefined"){
+                    console.warn(this.parent.data.unique_behavior_id + "_" + display_identifier + "_display_builder" + " object is undefined. Builder not used.")
+                } else {
+                    display_data = window[this.parent.data.unique_behavior_id + "_" + display_identifier + "_display_builder"].build_from(dom, optional_build_data);
+                }
             } 
             this[display_identifier] = display_data;
             return display_data;

@@ -1,5 +1,6 @@
 {
     "unique_behavior_id" : "nutrition", 
+    "encounter_type" : "nutrition_form",
     
     
     "uptodate" : true,
