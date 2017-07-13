@@ -103,7 +103,7 @@ var nutrition_form_display_builder = {
             ]
         }, 
     ], // i.e., concepts
-    encounter_type : "exercise_form",
+    encounter_type : "nutrition_form",
     
     
     build_from : function(dom){
@@ -120,7 +120,7 @@ var nutrition_form_display_builder = {
         this.submission_button.onclick = function(unique_identifier){
             simpleformservice.simple_submission.submit_encounter(this.encounter_type, function(server_response){
                 if(server_response == "SCS"){
-                    window.location.href = "adviceAndHistory.page?behavior=exercise";
+                    window.location.href = "adviceAndHistory.page?behavior=nutrition";
                 }
             });
         }.bind(this);
