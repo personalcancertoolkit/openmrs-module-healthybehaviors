@@ -124,7 +124,7 @@ var exercise_form_display_builder = {
         // create deep clone of node
         var element = this.template.heading.cloneNode(true);
         
-        element.innerHTML = heading;
+        element.querySelector(".heading_text").innerHTML = heading;
         
         return element;
     }
