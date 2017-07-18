@@ -60,23 +60,29 @@
     <!-- template dom -->
     <div style = 'display:none'>
 
-        <simplequestion id = 'exercise_form_template_question' concept = "" style = 'display:flex; min-height:55px; margin-bottom:3px;margin-top:3px;'>
+        <simplequestion id = 'exercise_form_template_question' class = 'form_question_row' concept = "" style = 'display:flex; min-height:55px; margin-bottom:3px;margin-top:3px;'>
+            <div class = '' style = 'width:1px; display:flex; '>
+                <div class = 'centered_element' style = 'margin:auto; margin-left:0px;'>
+                </div>
+            </div>
             <div class = '' style = 'flex-grow:1;  display:flex; font-size:15px; margin-left:15px; '>
                 <div class = 'question_text' style = 'margin:auto; margin-left:0px;'>
                     I rarely or never do any physical activities.
                 </div>
             </div>
-            <simpleanswer type = 'boolean' required = 'true' style = 'width:150px;  display:flex; justify-content:flex-end;'>
-                    <div class="healthy_radio" title = "Yes, this accurately describes me.">
-                        <input class = 'yes_radio' id = 'yes_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="yes"  />
-                        <label for ='yes_boolean_for_concept-'>Yes</label>
-                    </div>
-                    <div style = 'width:15px;'></div>
-                    <div class="healthy_radio" title = "No, this does not describe me.">
-                        <input class = 'no_radio' id = 'no_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="no" />
-                        <label for ='no_boolean_for_concept-' >No</label>
-                    </div>
-            </simpleanswer>
+            <div style = 'display:flex;'>
+                <simpleanswer type = 'boolean' required = 'true' style = 'width:150px;  display:flex; justify-content:flex-end; margin:auto;'>
+                        <div class="healthy_radio" title = "Yes, this accurately describes me.">
+                            <input class = 'yes_radio' id = 'yes_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="yes"  />
+                            <label for ='yes_boolean_for_concept-'>Yes</label>
+                        </div>
+                        <div style = 'width:15px;'></div>
+                        <div class="healthy_radio" title = "No, this does not describe me.">
+                            <input class = 'no_radio' id = 'no_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="no" />
+                            <label for ='no_boolean_for_concept-' >No</label>
+                        </div>
+                </simpleanswer>
+            </div>
         </simplequestion>
 
 
@@ -85,6 +91,14 @@
         </div>
 
         <style>
+        .form_question_row:hover .centered_element::before { 
+            content: '';
+            position: absolute;
+            background-color:rgba(8, 160, 255, 0.67);
+            width:10px; height:10px; border-radius:15px;
+            margin-left:-5px;
+            margin-top:-6px;
+        }
         .healthy_radio label {
           font-weight:300;
           font-size: 20px;
