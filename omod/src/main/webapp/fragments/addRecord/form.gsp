@@ -12,5 +12,3 @@
     };
 </script>
 <div id = 'form_holder' style = 'width:100%;'></div>
-
-

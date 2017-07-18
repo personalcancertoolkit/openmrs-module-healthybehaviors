@@ -38,7 +38,7 @@ function Behavior(behavior_identifier){
     var promise_to_build_terminology = this.display.build_a_display("terminology");
     var promise_to_build_form = this.display.build_a_display("form");
     var promise_to_build_graph_full = promise_to_load_encounter_data
-        .then((encounter_data)=>{ return this.display.build_a_display("graph", {preview: false, encounters : encounter_data, time_interval : this.data.time_interval})});
+        .then((encounters)=>{ return this.display.build_a_display("graph", {preview: false, encounters : encounters, time_interval : this.data.time_interval})});
     
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,14 +110,26 @@ Behavior_Data_Manager.prototype = {
             });
         })
         
-        var load_data = retreive_data.then((encounters)=>{ 
-            /*
-                Note: Data is explicitly mapped here (as opposed to setting this.data = behavior_data) for maintanance and readability.
-                      This ensures atleast one place where all usable data is explicitly defined and standards can be maintained.
-            */
-            this.encounters = encounters;
-            return encounters;
-        });
+       var retreive_encounter_class = global.promise_helpers.promise_to_load_javascript(this.resource_root + "encounter/class.js")
+            .then(()=>{
+                var identifier = this.unique_behavior_id.capitalize() + "_Encounter";
+                return window[identifier]; 
+            })
+       
+        var load_data = Promise.all([retreive_data, retreive_encounter_class])
+            .then((data)=>{ 
+                var encounters = data[0];
+                var Encounter_Class = data[1];
+                
+                var encounter_objects = [];
+                encounters.forEach(function(encounter){
+                    encounter_objects.push(new Encounter_Class(encounter));
+                })
+                console.log(encounter_objects)
+                this.encounters = encounter_objects;
+                
+                return encounter_objects;
+            });
         
         return load_data;
     }
