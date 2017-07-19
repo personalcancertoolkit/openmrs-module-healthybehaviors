@@ -19,7 +19,7 @@ Exercise_Encounter.prototype = {
     
     build_encounter_from_data : function(encounter){
         // encounter observations
-        if(encounter.observations.length < 9) return false;
+        if(encounter.observations.length !== 8) return false;
         //console.log("observations are longer than 9 !!!!!!!!!!!!!!!!!!!!!!!!!!!");
         //console.log(encounter.observations);
 
@@ -32,7 +32,7 @@ Exercise_Encounter.prototype = {
             //console.log(this_observation_data);
             observations[observation_keys[i]] = encounter.observations[i]; 
         }
-        //console.log(observations);
+        console.log(observations);
 
         // find the highest rapa value that is available for rapa1_x
         var highest_rapa1_value = 0;
@@ -50,13 +50,10 @@ Exercise_Encounter.prototype = {
 
 
         // find the total rapa2 value
-        var total_rapa2_value = 0;
-        for(i = 1; i < 3; i++){
-            var this_key = "RAPA2_q"+i;
-            //console.log(this_key + " = " + observations[this_key].value);
-            if(observations[this_key].value === "true") total_rapa2_value += i;
-        }
-        //console.log("total rapa2 = " + total_rapa2_value);
+        console.log(encounter);
+        console.log(observations["RAPA2_q1"]);
+        var total_rapa2_value = observations["RAPA2_q1"].value;
+        console.log("total rapa2 = " + total_rapa2_value);
 
         // set data into data object
         this.id = encounter.id;

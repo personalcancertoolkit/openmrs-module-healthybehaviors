@@ -41,14 +41,9 @@ var exercise_form_display_builder = {
         },
         {
             "unique_identifier" : "RAPA2_q1",
-            "text" : "I do activities to increase muscle <b>strength</b>, such as lifting weights or calisthenics, once a week or more.",
-            "datatype" : "BIT"
+            "text" : "I do activities to increase <b>muscle strength</b>, such as lifting weights or calisthenics. ",
+            "datatype" : "MULTI"
         },
-        {
-            "unique_identifier" : "RAPA2_q2",
-            "text" : "I do activities to improve <b>flexibility</b>, such as stretching or yoga, once a week or more.",
-            "datatype" : "BIT"
-        }
     ], // i.e., concepts
     encounter_type : "exercise_form",
     
@@ -58,7 +53,10 @@ var exercise_form_display_builder = {
         this.simpleform = dom.querySelector("#exercise_simpleform_element");
         this.holder = dom.querySelector("#exercise_form_question_holder");
         this.template = {
-            question : dom.querySelector("#exercise_form_template_question"),
+            question : {
+                binary : dom.querySelector("#exercise_form_template_question_binary"),
+                multi : dom.querySelector("#exercise_form_template_question_multi"),  
+            },
             heading : dom.querySelector("#exercise_form_template_questiontype_heading"),
         };
         this.submission_button = dom.querySelector("#exercise_form_submission_button");
@@ -67,7 +65,7 @@ var exercise_form_display_builder = {
         this.submission_button.onclick = function(unique_identifier){
             simpleformservice.simple_submission.submit_encounter(this.encounter_type, function(server_response){
                 if(server_response == "SCS"){
-                    window.location.href = "adviceAndHistory.page?behavior=exercise";
+                    //window.location.href = "adviceAndHistory.page?behavior=exercise";
                 }
             });
         }.bind(this);
@@ -88,17 +86,18 @@ var exercise_form_display_builder = {
             }
             
             var this_row_data = data[i];
-            var row_element = this.create_row_from_data(this_row_data); 
+            if(this_row_data.datatype == "BIT") var row_element = this.create_binary_row_from_data(this_row_data); 
+            if(this_row_data.datatype == "MULTI") var row_element = this.create_multi_row_from_data(this_row_data); 
             this.holder.appendChild(row_element);
         }
     
         return {dom : dom};
     },
     
-    create_row_from_data : function(row_data){
+    create_binary_row_from_data : function(row_data){
         // create deep clone of node
         //console.log(this.template.question);
-        var row_element = this.template.question.cloneNode(true);
+        var row_element = this.template.question.binary.cloneNode(true);
 
         // add concept id
         jq(row_element).attr("concept", row_data.unique_identifier);
@@ -117,6 +116,27 @@ var exercise_form_display_builder = {
         jq(row_element).find(".no_radio").attr("id", "no_boolean_for_concept-"+row_data.unique_identifier);
         jq(row_element).find(".no_radio+label").attr("for", "no_boolean_for_concept-"+row_data.unique_identifier);
 
+        return row_element;
+    },
+    
+    create_multi_row_from_data : function(row_data){
+        // create deep clone of node
+        //console.log(this.template.question);
+        var row_element = this.template.question.multi.cloneNode(true);
+
+        // add concept id
+        jq(row_element).attr("concept", row_data.unique_identifier);
+
+        // update question text
+        jq(row_element).find(".question_text").html(row_data.text)
+        
+        // update the names for the radio buttons so that they mutually exclude only eachother
+        jq(row_element).find("input").attr("name", function() { return $(this).attr("name") + row_data.unique_identifier  });
+        
+        // update the identifiers for the radio buttons, so that labels trigger their respective radio buttons correctly
+        jq(row_element).find("input").attr("id", function() { return $(this).attr("id") + row_data.unique_identifier  });
+        jq(row_element).find("input+label").attr("for", function() { return $(this).attr("for") + row_data.unique_identifier  });
+        
         return row_element;
     },
     

@@ -141,6 +141,7 @@ Behavior_Data_Manager.prototype = {
                         break;
                     }
                 }
+                var uptodate = false;
                 this.uptodate = uptodate;
                 
                 return encounter_objects;
