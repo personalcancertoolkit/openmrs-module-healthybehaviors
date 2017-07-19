@@ -4,6 +4,7 @@
     });
     
     function instantiate_terminology(behavior_object){
+        if(behavior_object.data.uptodate !== false) return;
         var DOM = {
             holder :  document.getElementById("terminology_holder"),
         }

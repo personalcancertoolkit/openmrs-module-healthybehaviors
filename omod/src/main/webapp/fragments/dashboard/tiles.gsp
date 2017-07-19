@@ -105,24 +105,23 @@ promise_requested_behavior.then((behaviors)=>{
                         </div>
                     </div> 
                 </a>
-                
-                <a style = 'padding:10px; display:flex;' class = 'behavior_tile_button behavior_tile_call_to_action_button behavior_tile_form_anchor'>
-                    <div style = 'display:flex; min-width:35px;'>
-                        <div style = 'margin:auto; '>
-                            <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
-                            <span class = 'glyphicon glyphicon-pencil' style = 'font-size:21px;'></span>
-                        </div>
-                    </div> 
-                    <div style = 'min-width:10px;'></div>
-                    <div style = 'display:flex;'>
-                        <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none;'>
-                            Record how your last <span class = 'behavior_tile_time_interval'></span> went, <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> wise, to personalize your advice and history
-                        </div>
-                        <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none;'>
-                            Update the <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data you recorded for the previous <span class = 'behavior_tile_time_interval'></span> if you remembered any changes
-                        </div>
-                    </div> 
-                </a>
+
+                <div class = 'behavior_tile_response_outofdate' style = 'display:none;'>
+                    <a style = 'padding:10px; display:flex; ' class = 'behavior_tile_button behavior_tile_call_to_action_button behavior_tile_form_anchor '>
+                        <div style = 'display:flex; min-width:35px;'>
+                            <div style = 'margin:auto; '>
+                                <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
+                                <span class = 'glyphicon glyphicon-pencil' style = 'font-size:21px;'></span>
+                            </div>
+                        </div> 
+                        <div style = 'min-width:10px;'></div>
+                        <div style = 'display:flex;'>
+                            <div class = '' style = 'margin:auto;'>
+                                Record how your last <span class = 'behavior_tile_time_interval'></span> went, <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> wise, to personalize your advice and history
+                            </div>
+                        </div> 
+                    </a>
+                </div>
     </div>
 </div>
 </div>
