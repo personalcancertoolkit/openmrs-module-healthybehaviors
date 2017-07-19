@@ -38,13 +38,16 @@ function Behavior(behavior_identifier){
     var promise_to_build_terminology = this.display.build_a_display("terminology");
     var promise_to_build_form = this.display.build_a_display("form");
     var promise_to_build_graph_full = promise_to_load_encounter_data
-        .then((encounters)=>{ return this.display.build_a_display("graph", {preview: false, encounters : encounters, time_interval : this.data.time_interval})});
+        .then((encounters)=>{ return this.display.build_a_display("graph", {encounters : encounters, time_interval : this.data.time_interval})});
     
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     // Define that behavior is fully loaded / built 
     /////////////////////////////////////////////////////////////////////////////////////////////////
-    this.promise.loaded = Promise.all([promise_to_load_basic_data, promise_to_load_encounter_data, promise_to_build_terminology, promise_to_build_form, promise_to_build_graph_full]);
+    this.promise.loaded = Promise.all([promise_to_load_basic_data, promise_to_load_encounter_data, promise_to_build_terminology, promise_to_build_form, promise_to_build_graph_full])
+        .then(()=>{
+            return this;
+        });
 }
 
 
@@ -125,7 +128,7 @@ Behavior_Data_Manager.prototype = {
                 encounters.forEach(function(encounter){
                     encounter_objects.push(new Encounter_Class(encounter));
                 })
-                console.log(encounter_objects)
+                //console.log(encounter_objects)
                 this.encounters = encounter_objects;
                 
                 return encounter_objects;

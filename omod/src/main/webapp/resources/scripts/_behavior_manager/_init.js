@@ -50,6 +50,8 @@ var behavior_manager = {
         for(var i = 0; i < behaviors.length; i++){
             var this_behavior = behaviors[i];
             
+            console.log(this_behavior);
+        
             if(typeof behavior_manager.retrieved_behaviors[this_behavior] === "undefined"){
                 var this_behavior_object = new Behavior(this_behavior);
                 behavior_manager.retrieved_behaviors[this_behavior] = this_behavior_object; // store a reference to the behavior 
@@ -59,8 +61,8 @@ var behavior_manager = {
             var promise_to_load_this_behavior = this_behavior_object.promise.loaded; // we dont really need to load anything for the behaviors, since calling the promises will trigger them automatically.
             
             var promise_to_retreive_this_behavior = promise_to_load_this_behavior
-                .then(()=>{
-                    return Promise.resolve(this_behavior_object);
+                .then((loaded_behavior)=>{
+                    return Promise.resolve(loaded_behavior);
                 })
             
             //console.log("-->>");

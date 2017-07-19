@@ -13,24 +13,22 @@ var exercise_graph_display_builder = {
         var preview_length = 3;
         
         // address from additional_data
-        var bool_just_a_preview = additional_data.preview;
         var encounters = additional_data.encounters;
         this.time_interval = additional_data.time_interval;
         
         // transform history into chart data for this chart type
         var relevant_encounters = this.remove_duplicate_date_encounters(encounters);
-        if(bool_just_a_preview === true) relevant_encounters = encounters.slice(0, preview_length);
-        console.log(relevant_encounters);
+        var relevant_encounters_for_preview = relevant_encounters.slice(0, preview_length);
+        //console.log(relevant_encounters);
         
+        // chart config
         var chart_config = this.build_chart_config_with_encounters(relevant_encounters);
+        var preview_chart_config = this.build_chart_config_with_encounters(relevant_encounters_for_preview);
         
-        var ctx = dom.getContext('2d');
-        new Chart(ctx, chart_config)  
-        
-        // return built template
-        console.log(dom);
-        return {dom : dom, data : chart_config};
+        // return built data
+        return {data : chart_config, preview_data : preview_chart_config};
     },
+    
     
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -14,13 +14,15 @@
     
 </style>
 
+<script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/dashboard/behavior_tile_builder_singleton.js") }"></script>
 <script>
     
-promise_to_load_requested_behaviors.then((data)=>{
+promise_requested_behavior.then((behaviors)=>{
+    console.log(behaviors);
     behavior_tile_builder_singleton.tile_template = document.getElementById("behavior_tile_hidden_template");
     behavior_tile_builder_singleton.tile_holder = document.getElementById("dashboard_behavior_tile_holder");
-    Object.keys(window["loaded_behaviors"]).forEach((behavior_key)=>{
-        behavior_tile_builder_singleton.build_tile_and_add_to_holder(window["loaded_behaviors"][behavior_key]);
+    behaviors.forEach((behavior)=>{
+        behavior_tile_builder_singleton.build_tile_and_add_to_holder(behavior);
     })
 });
     
@@ -72,7 +74,7 @@ promise_to_load_requested_behaviors.then((data)=>{
             <div style = 'width:100%; min-height:100px; display:flex; padding:5px;'>
                 <div style = 'display:flex;'>
                     <div style = 'margin:auto; text-align:center;'>
-                        <canvas class="behavior_tile_mini_chart" width="200" height="200"></canvas>
+                        <canvas class="behavior_tile_mini_chart" width="300" height="200"></canvas>
                     </div>
                 </div>
                 <div style = 'width:15px;'></div>

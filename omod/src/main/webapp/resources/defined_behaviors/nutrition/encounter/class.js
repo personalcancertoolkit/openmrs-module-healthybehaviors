@@ -20,8 +20,8 @@ Nutrition_Encounter.prototype = {
     build_encounter_from_data : function(encounter){
         // encounter observations
         if(encounter.observations.length < 22) return false;
-        console.log("observations are longer than 9 !!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        console.log(encounter.observations);
+        //console.log("observations are longer than 9 !!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //console.log(encounter.observations);
 
         // split the observations by fruits_and_veges and meat_and_snacks
         var fruits_and_veges = [];
@@ -31,8 +31,8 @@ Nutrition_Encounter.prototype = {
             if(obs.concept.substring(0,8) == "NUTRI_MS") return meat_and_snacks.push(obs);
             console.warn("observation with concept ("+obs.concept+") does not fit into fruits_and_veges or meat_and_snacks");
         })
-        console.log(fruits_and_veges);
-        console.log(meat_and_snacks);
+        //console.log(fruits_and_veges);
+        //console.log(meat_and_snacks);
 
         
         // fruits and veges, add up the values
@@ -46,7 +46,7 @@ Nutrition_Encounter.prototype = {
         fruits_and_veges_score = fruits_and_veges_score / (fruits_and_veges.length * 5) * 10;
         // round to one decimal
         fruits_and_veges_score = Math.round( fruits_and_veges_score * 10 ) / 10;
-        console.log("Final score = " + fruits_and_veges_score);
+        //console.log("Final score = " + fruits_and_veges_score);
         
         // meats and snacks, add up the values and then negate
         //      note, simpleformservice returns "0" as false and "1" as true
@@ -60,7 +60,7 @@ Nutrition_Encounter.prototype = {
         meat_and_snacks_score = meat_and_snacks_score / (meat_and_snacks.length * 5) * 10;
         // round to one decimal
         meat_and_snacks_score = Math.round( meat_and_snacks_score * 10 ) / 10;
-        console.log("Final score = " + meat_and_snacks_score);
+        //console.log("Final score = " + meat_and_snacks_score);
         
         
         
