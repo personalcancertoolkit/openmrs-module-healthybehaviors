@@ -17,7 +17,6 @@
     
     <!-- custom, healthy behavior specific, references -->
     <link rel="stylesheet" href="${ ui.resourceLink("healthybehaviors", "styles/healthy_behaviors_styles.css") }" type="text/css">
-    <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/_global/abstract_behavior_class.js") }"></script>
     <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/_global/iframe_loading_provisioner_singleton.js") }"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
     <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/prototypes.js") }"></script>

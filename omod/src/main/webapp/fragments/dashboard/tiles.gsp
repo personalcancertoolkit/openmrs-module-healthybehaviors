@@ -80,10 +80,10 @@ promise_requested_behavior.then((behaviors)=>{
                 <div style = 'width:15px;'></div>
                 <div style = 'flex:1; display:flex;'>
                     <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none; text-align:center; '>
-                        You did great last week. Proper <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> will  {insert reason why to care}
+                        Mini advice goes here.
                     </div>
                     <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none; text-align:center; font-size:14px;'>
-                        <a class = 'behavior_highlighed_interest behavior_tile_form_anchor' style = 'display:inline-block;'>Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data for the previous <span class = 'behavior_tile_time_interval'></span></a> to personalize your advice and track your performance.
+                        <a class = 'behavior_highlighed_interest behavior_tile_form_anchor' style = 'display:inline-block;'>Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data for the previous <span class = 'behavior_tile_time_interval'></span></a>
                     </div>
                 </div>
             </div>
