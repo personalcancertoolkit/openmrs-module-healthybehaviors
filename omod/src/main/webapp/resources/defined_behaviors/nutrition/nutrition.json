@@ -32,6 +32,7 @@
     ],
     
     
+    "time_interval_in_days" : 7,
     "time_interval" : "7 days", 
     "chart_static" : {
         "type" : "line",

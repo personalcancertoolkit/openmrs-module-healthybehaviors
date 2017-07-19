@@ -82,6 +82,7 @@ Behavior_Data_Manager.prototype = {
             
             // define static history data
             this.time_interval = behavior_data.time_interval;
+            this.time_interval_in_milliseconds = behavior_data.time_interval_in_days * 24 * 60 * 60 * 1000;
             this.encounter_type = behavior_data.encounter_type;
             
             // define header image
@@ -95,7 +96,7 @@ Behavior_Data_Manager.prototype = {
             this.personalized_advice = behavior_data.personalized_advice;
 
             // define up to date, if it is passed from basic page (development tool)
-            this.uptodate = behavior_data.uptodate;
+            //this.uptodate = behavior_data.uptodate;
         });
         
         return load_data;
@@ -124,12 +125,23 @@ Behavior_Data_Manager.prototype = {
                 var encounters = data[0];
                 var Encounter_Class = data[1];
                 
+                // generate encounter objects
                 var encounter_objects = [];
                 encounters.forEach(function(encounter){
                     encounter_objects.push(new Encounter_Class(encounter));
                 })
                 //console.log(encounter_objects)
                 this.encounters = encounter_objects;
+                
+                // define whether behavior is up to date
+                var uptodate = false;
+                for(var i = 0; i < encounter_objects.length; i++){
+                    if(((new Date) - encounter_objects[i].time) < this.time_interval_in_milliseconds){
+                        var uptodate = true;
+                        break;
+                    }
+                }
+                this.uptodate = uptodate;
                 
                 return encounter_objects;
             });

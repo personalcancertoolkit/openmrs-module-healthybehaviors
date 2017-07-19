@@ -36,6 +36,7 @@
     
     
     
+    "time_interval_in_days" : 30,
     "time_interval" : "30 days", 
     "chart_static" : {
         "type" : "line",
