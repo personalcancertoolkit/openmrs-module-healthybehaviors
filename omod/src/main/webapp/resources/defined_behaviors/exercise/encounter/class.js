@@ -46,6 +46,7 @@ Exercise_Encounter.prototype = {
         var final_rapa1 = ["sedentary", "under-active",  "regular", "active"];
         var initial_rapa1 = ["sedentary", "under-active", "under-active", "regular", "regular", "active", "active"];
         var rapa1_value = final_rapa1.indexOf(initial_rapa1[highest_rapa1_value - 1]);
+        if(rapa1_value < 0) rapa1_value = 0;
 
 
         // find the total rapa2 value
