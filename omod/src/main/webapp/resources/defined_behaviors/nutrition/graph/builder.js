@@ -1,4 +1,4 @@
-var exercise_graph_display_builder = {
+var nutrition_graph_display_builder = {
     holder : null,
     template : {
         row : null,
@@ -65,25 +65,25 @@ var exercise_graph_display_builder = {
             y: randomScalingFactor()
         }]
         */
-        var rapa1_data = this.convert_encounters_to_data_for_rapa_type(encounters, "RAPA1");
-        var rapa2_data = this.convert_encounters_to_data_for_rapa_type(encounters, "RAPA2");
+        var fruits_and_veges_data = this.convert_encounters_to_data_for_performance_type(encounters, "fruits_and_veges");
+        var meat_and_snacks_data = this.convert_encounters_to_data_for_performance_type(encounters, "meat_and_snacks");
         
 		var config = {
 			type: 'line',
 			data: {
 				datasets: [{
-					label: "Aerobic",
-					backgroundColor: color(color_options.purple).alpha(0.5).rgbString(),
-					borderColor: color_options.purple,
-					fill: false,
-					data: rapa1_data,
+					label: "Fruits and Vegetables",
+					backgroundColor: color(color_options.green).alpha(0.25).rgbString(),
+					borderColor: color_options.green,
+					data: fruits_and_veges_data,
+                    fill : "origin",
 				},
                 {
-					label: "Strength",
-					backgroundColor: color(color_options.red).alpha(0.5).rgbString(),
-					borderColor: color_options.red,
-					fill: false,
-					data: rapa2_data,
+					label: "Meats and Snacks",
+					backgroundColor: color(color_options.yellow).alpha(0.25).rgbString(),
+					borderColor: color_options.yellow,
+					data: meat_and_snacks_data,
+                    fill : "origin",
 				}]
 			},
 			options: {
@@ -110,16 +110,6 @@ var exercise_graph_display_builder = {
 						scaleLabel: {
 							display: true,
 						},
-                        ticks : {
-                            "beginAtZero": true,
-                            "stepSize":1,
-                            "maxTicksLimit": 4, 
-                            "beginAtZero":true,
-                            "userCallback" : function(t, i){
-                                var mapping_function =  ["sedentary", "under-active", "regular", "active"];
-                                return mapping_function[mapping_function.length - (i + 1)];
-                           },
-                        }
 					}]
 				},
 			}
@@ -127,13 +117,13 @@ var exercise_graph_display_builder = {
         return config;
     },
     
-    convert_encounters_to_data_for_rapa_type : function(encounters, rapa_type){
+    convert_encounters_to_data_for_performance_type : function(encounters, performance_type){
         var data = [];
         encounters.forEach((encounter)=>{
             if(encounter.time == null) return; // skip invalid encounters
             data.push({
                 x : encounter.time,
-                y : encounter.performance[rapa_type],
+                y : encounter.performance[performance_type],
             })
         })
         return data;

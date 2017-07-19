@@ -1,4 +1,4 @@
 {
-    "builder" : false,
+    "builder" : true,
     "styles" : false
 }
