@@ -40,7 +40,7 @@ var exercise_form_display_builder = {
             "datatype" : "BIT"
         },
         {
-            "unique_identifier" : "RAPA2_q1",
+            "unique_identifier" : "RAPA2",
             "text" : "I do activities to increase <b>muscle strength</b>, such as lifting weights or calisthenics. ",
             "datatype" : "MULTI"
         },
@@ -65,7 +65,7 @@ var exercise_form_display_builder = {
         this.submission_button.onclick = function(unique_identifier){
             simpleformservice.simple_submission.submit_encounter(this.encounter_type, function(server_response){
                 if(server_response == "SCS"){
-                    //window.location.href = "adviceAndHistory.page?behavior=exercise";
+                    window.location.href = "adviceAndHistory.page?behavior=exercise";
                 }
             });
         }.bind(this);

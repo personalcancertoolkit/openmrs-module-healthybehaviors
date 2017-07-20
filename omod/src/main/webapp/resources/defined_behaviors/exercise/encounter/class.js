@@ -32,7 +32,7 @@ Exercise_Encounter.prototype = {
             //console.log(this_observation_data);
             observations[observation_keys[i]] = encounter.observations[i]; 
         }
-        console.log(observations);
+        //console.log(observations);
 
         // find the highest rapa value that is available for rapa1_x
         var highest_rapa1_value = 0;
@@ -47,13 +47,14 @@ Exercise_Encounter.prototype = {
         var initial_rapa1 = ["sedentary", "under-active", "under-active", "regular", "regular", "active", "active"];
         var rapa1_value = final_rapa1.indexOf(initial_rapa1[highest_rapa1_value - 1]);
         if(rapa1_value < 0) rapa1_value = 0;
+        //console.log("total rapa1 = " + rapa1_value);
 
 
         // find the total rapa2 value
-        console.log(encounter);
-        console.log(observations["RAPA2_q1"]);
-        var total_rapa2_value = observations["RAPA2_q1"].value;
-        console.log("total rapa2 = " + total_rapa2_value);
+        if(typeof observations["RAPA2"] === "undefined") return false; // invalid encounter
+        var total_rapa2_value = observations["RAPA2"].value;
+        if(total_rapa2_value > 1) total_rapa2_value = total_rapa2_value - 1; // both 1 and 2 should be marked "underactive"
+        //console.log("total rapa2 = " + total_rapa2_value);
 
         // set data into data object
         this.id = encounter.id;
@@ -61,7 +62,7 @@ Exercise_Encounter.prototype = {
         this.formatted_time = encounter.datetime_formatted;
         this.performance.RAPA1 = rapa1_value;
         this.performance.RAPA2 = total_rapa2_value;
-        //console.log(this_data);
+        //console.log(this.performance);
         //return this_data;
     },
 }

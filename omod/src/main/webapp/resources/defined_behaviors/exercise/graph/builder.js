@@ -111,8 +111,7 @@ var exercise_graph_display_builder = {
                         ticks : {
                             "beginAtZero": true,
                             "stepSize":1,
-                            "maxTicksLimit": 4, 
-                            "beginAtZero":true,
+                            "max":3,
                             "userCallback" : function(t, i){
                                 var mapping_function =  ["sedentary", "under-active", "regular", "active"];
                                 return mapping_function[mapping_function.length - (i + 1)];

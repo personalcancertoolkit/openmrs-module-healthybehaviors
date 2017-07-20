@@ -96,7 +96,7 @@ Behavior_Data_Manager.prototype = {
             this.personalized_advice = behavior_data.personalized_advice;
 
             // define up to date, if it is passed from basic page (development tool)
-            //this.uptodate = behavior_data.uptodate;
+            this.dev_mode_force_not_uptodate = behavior_data.dev_mode_force_not_uptodate;
         });
         
         return load_data;
@@ -141,7 +141,7 @@ Behavior_Data_Manager.prototype = {
                         break;
                     }
                 }
-                var uptodate = false;
+                if(this.dev_mode_force_not_uptodate == true) var uptodate = false;
                 this.uptodate = uptodate;
                 
                 return encounter_objects;
