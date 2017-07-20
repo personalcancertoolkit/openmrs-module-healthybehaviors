@@ -46,7 +46,7 @@ global.promise_helpers = {
             styles.rel = 'stylesheet';
             styles.href = file_path;
             styles.onload = function(){
-                console.log("loaded style");
+                //console.log("loaded style");
                 resolve("success"); 
             };
             document.getElementsByTagName('head')[0].appendChild(styles);

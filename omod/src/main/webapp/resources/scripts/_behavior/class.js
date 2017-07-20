@@ -194,7 +194,6 @@ Behavior_Display_Manager.prototype = {
         */
         
         // 1, check whether this display exists / is configured
-        console.log(resource_paths.config)
         var promise_to_check_that_display_exists = global.promise_helpers.promise_that_file_exists(resource_paths.config)
         
         
