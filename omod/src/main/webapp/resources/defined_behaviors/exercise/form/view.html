@@ -63,7 +63,7 @@
     <!-- template dom -->
     <div style = 'display:none'>
 
-        <simplequestion id = 'exercise_form_template_question' class = 'form_question_row' concept = "" style = 'display:flex; min-height:55px; margin-bottom:3px;margin-top:3px;'>
+        <simplequestion id = 'exercise_form_template_question_binary' class = 'form_question_row' concept = "" style = 'display:flex; min-height:55px; margin-bottom:3px;margin-top:3px;'>
             <div class = '' style = 'width:1px; display:flex; '>
                 <div class = 'centered_element' style = 'margin:auto; margin-left:0px;'>
                 </div>
@@ -74,21 +74,62 @@
                 </div>
             </div>
             <div style = 'display:flex;'>
-                <simpleanswer type = 'boolean' required = 'true' style = 'width:150px;  display:flex; justify-content:flex-end; margin:auto;'>
-                        <div class="healthy_radio" title = "Yes, this accurately describes me.">
-                            <input class = 'yes_radio' id = 'yes_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="yes"  />
-                            <label for ='yes_boolean_for_concept-'>Yes</label>
-                        </div>
-                        <div style = 'width:15px;'></div>
+                <simpleanswer type = 'boolean' required = 'true' style = 'width:150px;  display:flex; justify-content:flex-end; margin:auto; margin-right:0px;text-align:right;'>
                         <div class="healthy_radio" title = "No, this does not describe me.">
                             <input class = 'no_radio' id = 'no_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="no" />
                             <label for ='no_boolean_for_concept-' >No</label>
                         </div>
+                        <div style = 'width:15px;'></div>
+                        <div class="healthy_radio" title = "Yes, this accurately describes me.">
+                            <input class = 'yes_radio' id = 'yes_boolean_for_concept-' type="radio" name="boolean_for_concept-" value="yes"  />
+                            <label for ='yes_boolean_for_concept-'>Yes</label>
+                        </div>
                 </simpleanswer>
+                <div style = 'width:18px;'></div>
             </div>
         </simplequestion>
 
 
+        <simplequestion id = 'exercise_form_template_question_multi' concept = "" class = 'form_question_row' style = 'display:flex; min-height:55px; margin-bottom:3px;margin-top:3px;'>
+            <div class = '' style = 'width:1px; display:flex; '>
+                <div class = 'centered_element' style = 'margin:auto; margin-left:0px;'>
+                </div>
+            </div>
+            <div class = '' style = 'flex-grow:1;  display:flex; font-size:15px; margin-left:15px; '>
+                <div class = 'question_text' style = 'margin:auto; margin-left:0px;'>
+                    Food Choice
+                </div>
+            </div>
+            <div style = 'width:21px;'></div>
+            <div style = 'display:flex;'>
+                <simpleanswer type = 'multiple_choice' required = 'true' style = '  display:flex; margin:auto; justify-content:flex-end; text-align:center;'>
+                        <div class="healthy_radio" title = "">
+                            <input class = 'multi_radio' type="radio" id = 'multi_radio-value1-for_concept-' name="multi_radio_for_concept-" value="0"  />
+                            <label for ='multi_radio-value1-for_concept-'> 0 <br><span style = 'font-size:12px;'> total </span> </label>
+                        </div>
+                        <div class = 'healthy_radio_delimiter'></div>
+                        <div class="healthy_radio" title = "">
+                            <input class = 'multi_radio' type="radio" id="multi_radio-value2-for_concept-" name="multi_radio_for_concept-" value="1"  />
+                            <label for ='multi_radio-value2-for_concept-'>  < 1 <br><span style = 'font-size:12px;'> per week</span> </label>
+                        </div>
+                        <div class = 'healthy_radio_delimiter'></div>
+                        <div class="healthy_radio" title = "">
+                            <input class = 'multi_radio' type="radio" id="multi_radio-value3-for_concept-" name="multi_radio_for_concept-" value="2"  />
+                            <label for ='multi_radio-value3-for_concept-'> 1 <br><span style = 'font-size:12px;'> per week </span> </label>
+                        </div>
+                        <div class = 'healthy_radio_delimiter'></div>
+                        <div class="healthy_radio" title = "">
+                            <input class = 'multi_radio' type="radio" id="multi_radio-value4-for_concept-" name="multi_radio_for_concept-" value="3"  />
+                            <label for ='multi_radio-value4-for_concept-'> 2 <br><span style = 'font-size:12px;'> per week </span> </label>
+                        </div>
+                        <div class = 'healthy_radio_delimiter'></div>
+                        <div class="healthy_radio" title = "">
+                            <input class = 'multi_radio' type="radio" id="multi_radio-value5-for_concept-" name="multi_radio_for_concept-" value="4"  />
+                            <label for ='multi_radio-value5-for_concept-'> 3+ <br><span style = 'font-size:12px;'> per week</span> </label>
+                        </div>
+                </simpleanswer>
+            </div>
+        </simplequestion>
 
         <div id = 'exercise_form_template_questiontype_heading' style = 'width:100%; display:flex; font-size:18px; margin-top:25px; margin-bottom:5px;  color:#9d9d9d;'>
             <div class = 'heading_text'> Aerobic Fitness </div>
@@ -101,14 +142,15 @@
             content: '';
             position: absolute;
             background-color:rgba(8, 160, 255, 0.67);
-            width:10px; height:10px; border-radius:15px;
+            width:8px; height:8px; border-radius:15px;
             margin-left:-5px;
-            margin-top:-6px;
+            margin-top:-4px;
         }
         .healthy_radio label {
           font-weight:300;
           font-size: 20px;
           line-height: 26px;
+          width:60px;    
         }
 
         .healthy_radio input[type="radio"] {

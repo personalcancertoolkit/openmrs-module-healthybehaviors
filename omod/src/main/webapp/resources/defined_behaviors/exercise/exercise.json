@@ -2,15 +2,7 @@
     "unique_behavior_id" : "exercise", 
     "encounter_type" : "exercise_form",
     
-    "uptodate" : false,
     "resource_root" : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/exercise/",
-    "personalized_advice" : [
-        [
-            "Cardio",
-            "Cardio is good for the heart. You should probably do more cardio..."
-        ]
-    ],
-    
     "header_title_text" :  "Exercise",
     "advice_type_text" : "Exercise",
     "header_src" : "runner.jpeg",
@@ -23,59 +15,14 @@
         "physical activity improves outcomes after a diagnosis of cancer"
     ],
     
-
-    "history" : {
-        "time": ["-9 W", "-8 W", "-7 W", "-6 W", "-5 W", "-4 Week", "-3 Week", "-2 Week", "Last Week"],
-        "performance" : {
-            "RAPA1": [0, 3, 1, 2, 4, null, 7, 12, 9],
-            "RAPA2": [5, 2, 3, 4, 3, null, 2,  0, 1]
-        }
-    },
-    
-    
-    
-    
-    
+    "dev_mode_force_not_uptodate" : true,
     "time_interval_in_days" : 30,
     "time_interval" : "30 days", 
-    "chart_static" : {
-        "type" : "line",
-        "options" :  {
-            "yaxis_to_text_mapping_array" : ["sedentary", "under-active", "regular", "active"],
-            "scales": {
-                "yAxes": [{
-                    "ticks": {
-                        "beginAtZero": true,
-                        "stepSize":1,
-                        "maxTicksLimit": 4, 
-                        "beginAtZero":true
-                    }
-                }]
-            }
-        },
-        "dataset_options" : [
-            {
-                "label" : "Aerobic",
-                "performance_identifier": "RAPA1",
-                "backgroundColor": [
-                    "rgba(99, 255, 135, 0.2)"
-                ],
-                "borderColor": [
-                    "rgb(99, 255, 135)"
-                ],
-                "borderWidth": 1
-            },
-            {
-                "label": "Strength and Flexibility",
-                "performance_identifier": "RAPA2",
-                "backgroundColor": [
-                    "rgba(255, 62, 62, 0.1)"
-                ],
-                "borderColor": [
-                    "rgb(255, 62, 62)"
-                ],
-                "borderWidth": 1
-            }
+    
+    "personalized_advice" : [
+        [
+            "Cardio",
+            "Cardio is good for the heart. You should probably do more cardio..."
         ]
-    }
+    ]
 }

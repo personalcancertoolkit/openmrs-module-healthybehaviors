@@ -50,8 +50,6 @@ var behavior_manager = {
         for(var i = 0; i < behaviors.length; i++){
             var this_behavior = behaviors[i];
             
-            console.log(this_behavior);
-        
             if(typeof behavior_manager.retrieved_behaviors[this_behavior] === "undefined"){
                 var this_behavior_object = new Behavior(this_behavior);
                 behavior_manager.retrieved_behaviors[this_behavior] = this_behavior_object; // store a reference to the behavior 

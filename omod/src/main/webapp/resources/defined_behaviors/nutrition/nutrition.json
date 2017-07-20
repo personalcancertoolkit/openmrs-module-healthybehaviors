@@ -2,22 +2,7 @@
     "unique_behavior_id" : "nutrition", 
     "encounter_type" : "nutrition_form",
     
-    
-    "uptodate" : true,
     "resource_root" : "/openmrs/ms/uiframework/resource/healthybehaviors/defined_behaviors/nutrition/",
-    "personalized_advice" : [
-        [
-            "Fruits and Vegetables",
-            "You are not eating enough fruits and vegetables, probably fewer than 3 servings a day. As a result, you may be low in important vitamins and fiber. Experts recommend that you eat at least 5 servings a day. There is evidence that diets high in fruits and vegetables and low in fat may reduce your risk of certain cancers, heart disease, and age-related eye diseases like cataracts and macular degeneration. You can improve by picking a few of the fruits and vegetables you like and eating them more often or in larger quantities. Don't forget that green salad counts too, as does fruit juice and vegetable juice."
-        ],
-        [
-            "Fiber",
-            "Fiber may reduce your risk of colon cancer, and help improve your blood cholesterol. The National Cancer Institute recommends that everyone should get 20-30 grams of fiber every day. Women can aim for the lower end of this range, and men for the higher end. You eat more fiber than most American men, but you are still below the recommended amount of 20-30 grams per day. You can get more fiber into your diet by eating more fruits and vegetables, and by eating whole grain bread or having a fiber-rich cereal for breakfast several times a week."
-        ]
-    ],
-    
-    
-    
     "header_title_text" :  "Nutrition <br> & Diet",
     "advice_type_text" : "Nutrition and Diet",
     "header_src" : "beauty_berries.jpeg",
@@ -31,45 +16,19 @@
         "a healthy diet reduces the risk of cancer recurrence"
     ],
     
-    
+    "dev_mode_force_not_uptodate" : false,
     "time_interval_in_days" : 7,
     "time_interval" : "7 days", 
-    "chart_static" : {
-        "type" : "line",
-        "options" :  {
-            "scales": {
-                "yAxes": [{
-                    "ticks": {
-                        "beginAtZero":true
-                    }
-                }]
-            }
-        },
-        "dataset_options" : [
-            {
-                "label": "Veggies Eaten",
-                "performance_identifier" : "veges",
-                "backgroundColor": [
-                    "rgba(99, 255, 135, 0.2)"
-                ],
-                "borderColor": [
-                    "rgb(99, 255, 135)"
-                ],
-                "borderWidth": 1
-            },
-            {
-                "label": "Fast Food Eaten",
-                "performance_identifier" : "fat",
-                "backgroundColor": [
-                    "rgba(255, 62, 62, 0.1)"
-                ],
-                "borderColor": [
-                    "rgb(255, 62, 62)"
-                ],
-                "borderWidth": 1
-            }
+   
+    "personalized_advice" : [
+        [
+            "Fruits and Vegetables",
+            "You are not eating enough fruits and vegetables, probably fewer than 3 servings a day. As a result, you may be low in important vitamins and fiber. Experts recommend that you eat at least 5 servings a day. There is evidence that diets high in fruits and vegetables and low in fat may reduce your risk of certain cancers, heart disease, and age-related eye diseases like cataracts and macular degeneration. You can improve by picking a few of the fruits and vegetables you like and eating them more often or in larger quantities. Don't forget that green salad counts too, as does fruit juice and vegetable juice."
+        ],
+        [
+            "Fiber",
+            "Fiber may reduce your risk of colon cancer, and help improve your blood cholesterol. The National Cancer Institute recommends that everyone should get 20-30 grams of fiber every day. Women can aim for the lower end of this range, and men for the higher end. You eat more fiber than most American men, but you are still below the recommended amount of 20-30 grams per day. You can get more fiber into your diet by eating more fruits and vegetables, and by eating whole grain bread or having a fiber-rich cereal for breakfast several times a week."
         ]
-    }
-    
+    ]
     
 }
