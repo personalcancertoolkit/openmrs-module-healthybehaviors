@@ -145,9 +145,7 @@ var exercise_graph_display_builder = {
         var valid_encounters = [];
         
         // keep last, so order the encounters by time descending initially
-        encounters.sort((a, b)=>{
-            return b.time - a.time;
-        })
+        encounters.sort((a, b)=>{ return b.time - a.time; }) // sort encounters by time descending
         
         // if a date is found, then skip it, if not, add the date and add the encounter
         encounters.forEach((encounter)=>{

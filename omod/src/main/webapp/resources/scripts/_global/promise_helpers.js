@@ -8,8 +8,12 @@ global.promise_helpers = {
                 .done(function() { 
                     resolve();
                     // exists code 
-                }).fail(function() { 
-                    reject();
+                }).fail(function(e) { 
+                    if(e.status == 200) {
+                        resolve();
+                    } else {
+                        reject(e);
+                    }
                 })
         });
     },

@@ -39,12 +39,14 @@ function Behavior(behavior_identifier){
     var promise_to_build_form = this.display.build_a_display("form");
     var promise_to_build_graph_full = promise_to_load_encounter_data
         .then((encounters)=>{ return this.display.build_a_display("graph", {encounters : encounters, time_interval : this.data.time_interval})});
+    var promise_to_build_advice = promise_to_load_encounter_data
+        .then((encounters)=>{ return this.display.build_a_display("advice", {encounters : encounters})});
     
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     // Define that behavior is fully loaded / built 
     /////////////////////////////////////////////////////////////////////////////////////////////////
-    this.promise.loaded = Promise.all([promise_to_load_basic_data, promise_to_load_encounter_data, promise_to_build_terminology, promise_to_build_form, promise_to_build_graph_full])
+    this.promise.loaded = Promise.all([promise_to_load_basic_data, promise_to_load_encounter_data, promise_to_build_terminology, promise_to_build_form, promise_to_build_graph_full, promise_to_build_advice])
         .then(()=>{
             return this;
         });
@@ -128,7 +130,8 @@ Behavior_Data_Manager.prototype = {
                 // generate encounter objects
                 var encounter_objects = [];
                 encounters.forEach(function(encounter){
-                    encounter_objects.push(new Encounter_Class(encounter));
+                    var this_encounter = new Encounter_Class(encounter);
+                    if(this_encounter.time !== null) encounter_objects.push(this_encounter); // skip null encounters
                 })
                 //console.log(encounter_objects)
                 this.encounters = encounter_objects;
@@ -191,6 +194,7 @@ Behavior_Display_Manager.prototype = {
         */
         
         // 1, check whether this display exists / is configured
+        console.log(resource_paths.config)
         var promise_to_check_that_display_exists = global.promise_helpers.promise_that_file_exists(resource_paths.config)
         
         

@@ -3,17 +3,19 @@
         instantiate_advice(behavior_object);
     });
     
+    
     function instantiate_advice(behavior_object){
         var DOM = {
             holder : document.getElementById("advice_holder"), 
             template : document.getElementById("advice_element_template"),
         }
-        var personalized_advice = behavior_object.data.personalized_advice;
+        var personalized_advice = behavior_object.display.advice.data;
+        if(typeof personalized_advice == 'undefined') return;
         for(var i = 0; i < personalized_advice.length; i++){
             var this_advice = personalized_advice[i];
             var advice_element = DOM.template.cloneNode(true);
-            jq(advice_element).find(".advice_title")[0].innerHTML = this_advice[0];
-            jq(advice_element).find(".advice_body")[0].innerHTML = this_advice[1];
+            jq(advice_element).find(".advice_title")[0].innerHTML = this_advice.title;
+            jq(advice_element).find(".advice_body")[0].appendChild(this_advice.body);
             DOM.holder.appendChild(advice_element);
         }
     };
@@ -47,21 +49,19 @@
         <div style = 'height:15px;'></div>
         
         <div style = 'display:flex; width:100%;'>
-            <div id = 'advice_holder' style = 'width:100%; max-width:700px; min-height:100px; margin:auto; padding:5px; '>
+            <div id = 'advice_holder' style = 'width:100%; max-width:700px;  margin:auto; padding:5px; '>
                 <div style = 'display:none'>
-                    <div id = 'advice_element_template' style = 'margin-bottom:10px;'>
+                    <div id = 'advice_element_template' style = 'margin-bottom:25px;'>
                         <div class = 'advice_title' style = 'font-size:18px;'>
                             Advice Title
                         </div>
                         <div class = 'advice_body' style = 'padding-left:15px;'>
-                            Advice Body
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div style = 'height:10px;'></div>
         
     </div>
 </div>
