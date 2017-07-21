@@ -107,6 +107,17 @@ var nutrition_graph_display_builder = {
 						scaleLabel: {
 							display: true,
 						},
+                        ticks : {
+                            "beginAtZero": true,
+                            "stepSize":50,
+                            "max":100,
+                            "min":-100,
+                            "userCallback" : function(t, i){
+                                var mapping_function =  [ "Needs Work", "Okay", "", "Getting There", "Great Choices"];
+                                //return t;
+                                return mapping_function[mapping_function.length - (i + 1)];
+                           },
+                        }
 					}]
 				},
 			}

@@ -43,7 +43,9 @@ Nutrition_Encounter.prototype = {
             fruits_and_veges_score += value;
         })
         // normalize score
-        fruits_and_veges_score = fruits_and_veges_score / (fruits_and_veges.length * 5) * 10;
+        fruits_and_veges_score = fruits_and_veges_score / (fruits_and_veges.length * 5);
+        // make max score out of 100
+        fruits_and_veges_score = fruits_and_veges_score * 100;
         // round to one decimal
         fruits_and_veges_score = Math.round( fruits_and_veges_score * 10 ) / 10;
         //console.log("Final score = " + fruits_and_veges_score);
@@ -57,7 +59,9 @@ Nutrition_Encounter.prototype = {
         })
         meat_and_snacks_score = meat_and_snacks_score * -1;
         // normalize score
-        meat_and_snacks_score = meat_and_snacks_score / (meat_and_snacks.length * 5) * 10;
+        meat_and_snacks_score = meat_and_snacks_score / (meat_and_snacks.length * 5);
+        // make max score out of 100
+        meat_and_snacks_score = meat_and_snacks_score * 100;
         // round to one decimal
         meat_and_snacks_score = Math.round( meat_and_snacks_score * 10 ) / 10;
         //console.log("Final score = " + meat_and_snacks_score);
