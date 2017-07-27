@@ -23,7 +23,7 @@ var nutrition_graph_display_builder = {
         
         // chart config
         var chart_config = this.build_chart_config_with_encounters(relevant_encounters);
-        var preview_chart_config = this.build_chart_config_with_encounters(relevant_encounters_for_preview);
+        var preview_chart_config = this.build_chart_preview_config_with_encounters(relevant_encounters_for_preview);
         
         // return built data
         return {data : chart_config, preview_data : preview_chart_config};
@@ -33,6 +33,23 @@ var nutrition_graph_display_builder = {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // build chart with encounters
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    build_chart_preview_config_with_encounters : function(encounters){
+        var config = this.build_chart_config_with_encounters(encounters);
+        // modify config to make y axis less dense
+
+        config.options.scales.yAxes[0].ticks = {
+            "beginAtZero": true,
+            "stepSize":50,
+            "max":100,
+            "min":-100,
+            "userCallback" : function(t, i){
+                var mapping_function =  ["", "Needs Work", "Good", "Getting There", "Great Choices"];
+                //return t;
+                return mapping_function[mapping_function.length - (i + 1)];
+           },
+        }
+        return config;
+    },
     build_chart_config_with_encounters : function(encounters){
         // helper data
         var color_options = {
@@ -109,18 +126,40 @@ var nutrition_graph_display_builder = {
 						},
                         ticks : {
                             "beginAtZero": true,
-                            "stepSize":50,
-                            "max":100,
-                            "min":-100,
+                            "stepSize":33,
+                            "max":99,
+                            "min":-99,
                             "userCallback" : function(t, i){
-                                var mapping_function =  [ "Needs Work", "Okay", "", "Getting There", "Great Choices"];
+                                var mapping_function =  [ "", "Critical", "Needs Work", "Good", "Needs Work", "Getting There", "Great Choices"];
                                 //return t;
                                 return mapping_function[mapping_function.length - (i + 1)];
                            },
                         }
 					}]
 				},
-			}
+			},
+           plugins: [{
+              beforeDraw: function(chart) {
+                 var ctx = chart.ctx;
+                 var yAxis = chart.scales['y-axis-0'];
+                 var tickGap = yAxis.getPixelForTick(1) - yAxis.getPixelForTick(0);
+                 // loop through ticks array
+                 Chart.helpers.each(yAxis.ticks, function(tick, index) {
+                    if (index === yAxis.ticks.length - 1) return;
+                    var xPos = yAxis.right;
+                    var yPos = yAxis.getPixelForTick(index);
+                    var xPadding = 10;
+                    // draw tick
+                    //ctx.save();
+                    ctx.textBaseline = 'middle';
+                    ctx.textAlign = 'right';
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+                    ctx.fillText(tick, xPos - xPadding, yPos + tickGap / 2);
+                    //ctx.restore();
+                 });
+                 yAxis.options.ticks.fontColor = 'transparent'; // hide original tick
+              }
+           }]
 		};
         return config;
     },
