@@ -81,7 +81,7 @@ var exercise_form_display_builder = {
                 this.holder.appendChild(heading_element);
             }
             if(i == 7){
-                var heading_element = this.create_heading_from_data("Strength and Flexibility"); 
+                var heading_element = this.create_heading_from_data("Strength"); 
                 this.holder.appendChild(heading_element);
             }
             

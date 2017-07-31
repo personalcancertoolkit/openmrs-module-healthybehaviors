@@ -43,7 +43,7 @@ var nutrition_graph_display_builder = {
             "max":100,
             "min":-100,
             "userCallback" : function(t, i){
-                var mapping_function =  ["", "Needs Work", "Good", "Getting There", "Great Choices"];
+                var mapping_function =  ["", "", "", "", ""];
                 //return t;
                 return mapping_function[mapping_function.length - (i + 1)];
            },

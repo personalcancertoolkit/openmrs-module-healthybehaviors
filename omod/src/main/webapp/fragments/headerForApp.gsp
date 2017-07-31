@@ -7,6 +7,7 @@
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="${ ui.resourceLink("healthybehaviors", "styles/bootstrap.min.css") }" type="text/css">
+    <link rel="stylesheet" href="${ ui.resourceLink("healthybehaviors", "fonts/icomoon/style.css") }" type="text/css">
     <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/jquery-1.11.1.min.js") }"></script>
     <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/bootstrap.min.js") }"></script>
     <script type="text/javascript" src="${ ui.resourceLink("uicommons", "/scripts/jquery-ui-1.9.2.custom.min.js")}"></script>

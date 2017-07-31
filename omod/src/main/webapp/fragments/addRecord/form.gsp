@@ -5,16 +5,10 @@
     });
     
     function instantiate_form(behavior_object){
-        if(behavior_object.data.uptodate === false){
-            var DOM = {
-                holder :  document.getElementById("form_holder"),
-            }
-            DOM.holder.appendChild(behavior_object.display.form.dom);
-        } else {
-            document.getElementById("uptodate_notification_time_interval").innerHTML = behavior_object.data.time_interval;
-            document.getElementById("uptodate_notification_follow_link").href = "adviceAndHistory.page?behavior=" + behavior_object.data.unique_behavior_id;
-            document.getElementById("uptodate_notification").style.display = "block";
+        var DOM = {
+            holder :  document.getElementById("form_holder"),
         }
+        DOM.holder.appendChild(behavior_object.display.form.dom);
     };
 </script>
 <div id = 'form_holder' style = 'width:100%;'></div>

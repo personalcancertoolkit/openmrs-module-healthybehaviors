@@ -15,7 +15,7 @@
         "physical activity improves outcomes after a diagnosis of cancer"
     ],
     
-    "dev_mode_force_not_uptodate" : true,
+    "dev_mode_force_not_uptodate" : false,
     "time_interval_in_days" : 30,
     "time_interval" : "30 days", 
     
