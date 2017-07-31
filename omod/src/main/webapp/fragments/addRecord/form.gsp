@@ -20,7 +20,6 @@
 <div id = 'form_holder' style = 'width:100%;'></div>
 
 <div id = 'uptodate_notification' style = 'width:100%; display:none; '>
-
     <div class = '' style = 'width:100%; display:flex; padding:20px 10px; '>
         <div class = 'healthy_tile' style = 'min-height:50px; margin:auto; width:100%; max-width:800px; padding:10px; ' >
 
@@ -42,8 +41,8 @@
             <div style = 'height:20px;'></div>
 
         </div>
-
-
     </div>
-
 </div>
+
+<script>
+</script>

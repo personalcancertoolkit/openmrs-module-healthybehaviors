@@ -57,15 +57,15 @@ Nutrition_Encounter.prototype = {
             var value = this.map_observation_to_value(obs);
             meat_and_snacks_score += value;
         })
-        meat_and_snacks_score = meat_and_snacks_score * -1;
         // normalize score
         meat_and_snacks_score = meat_and_snacks_score / (meat_and_snacks.length * 5);
         // make max score out of 100
         meat_and_snacks_score = meat_and_snacks_score * 100;
         // round to one decimal
         meat_and_snacks_score = Math.round( meat_and_snacks_score * 10 ) / 10;
+        // negate score
+        meat_and_snacks_score = meat_and_snacks_score * -1;
         //console.log("Final score = " + meat_and_snacks_score);
-        
         
         
         // set data into data object

@@ -59,7 +59,8 @@ var nutrition_graph_display_builder = {
             green: 'rgb(75, 192, 192)',
             blue: 'rgb(54, 162, 235)',
             purple: 'rgb(153, 102, 255)',
-            grey: 'rgb(201, 203, 207)'
+            grey: 'rgb(201, 203, 207)',
+            black: 'rgb(0, 0, 0)'
         };
 		var color = Chart.helpers.color;
         
@@ -108,6 +109,16 @@ var nutrition_graph_display_builder = {
                 tooltips: {
                     mode: 'x',
                 },
+                horizontalLine: [
+                    {
+                      "y": (11/35*100), // 11 = threshold, 35 = max points, 100 = percentage that would be displayed on graph at that threshold
+                      "style": color(color_options.green).alpha(0.50).rgbString(),
+                    },
+                    {
+                      "y": (-1)*(22/75*100), // 22 = threshold, 75 = max points, 100 = percentage that would be displayed on graph at that threshold
+                      "style": color(color_options.yellow).alpha(0.50).rgbString(),
+                    },
+                ],
 				scales: {
 					xAxes: [{
 						type: "time",
@@ -130,7 +141,7 @@ var nutrition_graph_display_builder = {
                             "max":99,
                             "min":-99,
                             "userCallback" : function(t, i){
-                                var mapping_function =  [ "", "Critical", "Needs Work", "Good", "Needs Work", "Getting There", "Great Choices"];
+                                var mapping_function =  [ "", "Critical", "Needs Work", "Good", "Needs Work", "Good Choices", "Great Choices"];
                                 //return t;
                                 return mapping_function[mapping_function.length - (i + 1)];
                            },
@@ -139,7 +150,7 @@ var nutrition_graph_display_builder = {
 				},
 			},
            plugins: [{
-              beforeDraw: function(chart) {
+              afterDraw: function(chart) {
                  var ctx = chart.ctx;
                  var yAxis = chart.scales['y-axis-0'];
                  var tickGap = yAxis.getPixelForTick(1) - yAxis.getPixelForTick(0);

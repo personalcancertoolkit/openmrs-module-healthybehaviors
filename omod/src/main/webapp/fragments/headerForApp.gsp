@@ -23,9 +23,7 @@
     <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/_global/promise_helpers.js") }"></script>
     
     <!-- chart js settings -->
-    <script>
-        Chart.defaults.global.defaultFontColor = '#3e3e3e';
-    </script>
+    <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/global_chart_js_options.js") }"></script>
     
     
     <!-- initialize iframe provisioner -->

@@ -16,7 +16,7 @@
         "a healthy diet reduces the risk of cancer recurrence"
     ],
     
-    "dev_mode_force_not_uptodate" : false,
+    "dev_mode_force_not_uptodate" : true,
     "time_interval_in_days" : 7,
     "time_interval" : "7 days", 
    
