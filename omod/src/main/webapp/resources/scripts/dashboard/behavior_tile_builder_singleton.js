@@ -35,9 +35,6 @@ var behavior_tile_builder_singleton = {
             jq(a_tile).find(".behavior_tile_response_outofdate").css('display', 'block');
         }
         
-        // update tile action buttons to uptodate status
-        if(behavior_object.data.uptodate !== true) jq(a_tile).find(".behavior_tile_call_to_action_button")[0].className += " behavior_tile_button_call_to_action_modifier";
-        
         // insert links to respective advice/history and form views
         jq(a_tile).find(".behavior_tile_form_anchor").attr('href','/openmrs/healthybehaviors/addRecord.page?behavior='+behavior_object.data.unique_behavior_id);
         jq(a_tile).find(".behavior_tile_advice_history_anchor").attr('href','/openmrs/healthybehaviors/adviceAndHistory.page?behavior='+behavior_object.data.unique_behavior_id);

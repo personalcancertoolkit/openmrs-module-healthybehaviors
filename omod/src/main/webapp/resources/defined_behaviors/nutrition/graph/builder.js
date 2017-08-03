@@ -16,23 +16,47 @@ var nutrition_graph_display_builder = {
         var encounters = additional_data.encounters;
         this.time_interval = additional_data.time_interval;
         
+        
+        
         // transform history into chart data for this chart type
-        var relevant_encounters = this.remove_duplicate_date_encounters(encounters);
+        var relevant_encounters = encounters;
         var relevant_encounters_for_preview = relevant_encounters.slice(0, preview_length);
         //console.log(relevant_encounters);
         
         // chart config
         var chart_config = this.build_chart_config_with_encounters(relevant_encounters);
-        var preview_chart_config = this.build_chart_preview_config_with_encounters(relevant_encounters_for_preview);
+        var preview_chart_config = this.build_chart_config_with_encounters(relevant_encounters_for_preview);
+                              
+        // peer_data config
+        var peer_data = [
+            {
+                "metric_title" : "Fruits and Veggies",
+                "graph_data" : this.build_dataset_from_encounters(relevant_encounters, "fruits_and_veges", "Fruits and Veggies", "green", false),
+                "performance_key" : "fruits_and_veges",
+            },
+            {
+                "metric_title" : "Meats and Snacks",
+                "graph_data" : this.build_dataset_from_encounters(relevant_encounters, "meat_and_snacks", "Meats and Snacks", "yellow", false),
+                "performance_key" : "meat_and_snacks",
+            },
+        ]
         
         // return built data
-        return {data : chart_config, preview_data : preview_chart_config};
+        return {
+            data : chart_config,
+            preview_data : preview_chart_config, 
+            peer_data : peer_data, 
+            peer_dataset_builder : this.build_dataset_from_encounters.bind(this)
+        };
     },
     
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // build chart with encounters
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    build_chart_peer_config_for : function(type, encounters){
+       return "placeholder"; 
+    }, 
     build_chart_preview_config_with_encounters : function(encounters){
         var config = this.build_chart_config_with_encounters(encounters);
         // modify config to make y axis less dense
@@ -65,41 +89,14 @@ var nutrition_graph_display_builder = {
 		var color = Chart.helpers.color;
         
         // turning encounters into format chart expects 
-        /*
-        [{
-            x: newDateString(0),
-            y: randomScalingFactor()
-        }, {
-            x: newDateString(30),
-            y: randomScalingFactor()
-        }, {
-            x: newDateString(62),
-            y: randomScalingFactor()
-        }, {
-            x: newDateString(70),
-            y: randomScalingFactor()
-        }]
-        */
-        var fruits_and_veges_data = this.convert_encounters_to_data_for_performance_type(encounters, "fruits_and_veges");
-        var meat_and_snacks_data = this.convert_encounters_to_data_for_performance_type(encounters, "meat_and_snacks");
         
 		var config = {
 			type: 'line',
 			data: {
-				datasets: [{
-					label: "Fruits and Vegetables",
-					backgroundColor: color(color_options.green).alpha(0.25).rgbString(),
-					borderColor: color_options.green,
-					data: fruits_and_veges_data,
-                    fill : "origin",
-				},
-                {
-					label: "Meats and Snacks",
-					backgroundColor: color(color_options.yellow).alpha(0.25).rgbString(),
-					borderColor: color_options.yellow,
-					data: meat_and_snacks_data,
-                    fill : "origin",
-				}]
+				datasets: [
+                    this.build_dataset_from_encounters(encounters, "fruits_and_veges", "Fruits and Veggies", "green"),
+                    this.build_dataset_from_encounters(encounters, "meat_and_snacks", "Meats and Snacks", "yellow"),
+                ]
 			},
 			options: {
                 title:{
@@ -176,6 +173,7 @@ var nutrition_graph_display_builder = {
     },
     
     convert_encounters_to_data_for_performance_type : function(encounters, performance_type){
+        encounters = this.remove_duplicate_date_encounters(encounters);
         var data = [];
         encounters.forEach((encounter)=>{
             if(encounter.time == null) return; // skip invalid encounters
@@ -186,6 +184,37 @@ var nutrition_graph_display_builder = {
         })
         return data;
     },
+    build_dataset_from_encounters : function(encounters, performance_key, display_title, color_choice, fill){
+        if(typeof fill === "undefined") fill = true;
+        // pick color which has not been used
+        // helper data
+        var color_options = {
+            red: 'rgb(255, 99, 132)',
+            orange: 'rgb(255, 159, 64)',
+            yellow: 'rgb(255, 205, 86)',
+            green: 'rgb(75, 192, 192)',
+            blue: 'rgb(54, 162, 235)',
+            purple: 'rgb(153, 102, 255)',
+            grey: 'rgb(201, 203, 207)'
+        };
+		var color = Chart.helpers.color;
+        
+        // get data
+        var data = this.convert_encounters_to_data_for_performance_type(encounters, performance_key);
+        
+        // build dataset object
+        var dataset = {
+            label: display_title,
+            backgroundColor: color(color_options[color_choice]).alpha(0.25).rgbString(),
+            borderColor: color_options[color_choice],
+            fill: fill,
+            data: data,
+        }
+        
+        return dataset;
+    },
+    
+    
     
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////

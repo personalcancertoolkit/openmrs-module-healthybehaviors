@@ -30,6 +30,10 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
             <div style = 'margin-top:-10px;'></div>
             ${ui.includeFragment("healthybehaviors","adviceAndHistory/history")}
             
+            <!-- history tile -->
+            <div style = 'margin-top:-10px;'></div>
+            ${ui.includeFragment("healthybehaviors","adviceAndHistory/peer_comps")}
+            
         <% } %>
     </div>
 <div class = 'margintop_buffers_hidden_in_iframe'></div>

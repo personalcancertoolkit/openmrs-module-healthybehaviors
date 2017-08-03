@@ -10,7 +10,7 @@
             template : document.getElementById("advice_element_template"),
         }
         var personalized_advice = behavior_object.display.advice.data;
-        if(typeof personalized_advice == 'undefined') return;
+        if(typeof personalized_advice == 'undefined' || personalized_advice == null) return;
         for(var i = 0; i < personalized_advice.length; i++){
             var this_advice = personalized_advice[i];
             var advice_element = DOM.template.cloneNode(true);

@@ -42,6 +42,8 @@ Nutrition_Encounter.prototype = {
             var value = this.map_observation_to_value(obs);
             fruits_and_veges_score += value;
         })
+        // store raw score, before data normalization and cleanup
+        fruits_and_veges_score_raw = fruits_and_veges_score;
         // normalize score
         fruits_and_veges_score = fruits_and_veges_score / (fruits_and_veges.length * 5);
         // make max score out of 100
@@ -57,6 +59,8 @@ Nutrition_Encounter.prototype = {
             var value = this.map_observation_to_value(obs);
             meat_and_snacks_score += value;
         })
+        // store raw score, before data normalization and cleanup
+        meat_and_snacks_score_raw = meat_and_snacks_score;
         // normalize score
         meat_and_snacks_score = meat_and_snacks_score / (meat_and_snacks.length * 5);
         // make max score out of 100
@@ -74,6 +78,10 @@ Nutrition_Encounter.prototype = {
         this.formatted_time = encounter.datetime_formatted;
         this.performance.fruits_and_veges = fruits_and_veges_score;
         this.performance.meat_and_snacks = meat_and_snacks_score;
+        
+        // append additional stats
+        this.performance.fruits_and_veges_raw = fruits_and_veges_score_raw;
+        this.performance.meat_and_snacks_raw = meat_and_snacks_score_raw;
         //console.log(this_data);
         //return this_data;
     },

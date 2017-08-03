@@ -111,6 +111,7 @@ Behavior_Data_Manager.prototype = {
        var retreive_data = new Promise((resolve, reject)=>{
             //Load all possible guidelines that user can choose to create a new reminder from
             jq.get('/openmrs/ws/simpleformservice/api/get_encounters/'+ encounter_type, function (response) {
+                //console.log("encounters returned: ");
                 //console.log(response);
                 resolve(response);
             });
@@ -119,7 +120,9 @@ Behavior_Data_Manager.prototype = {
        var retreive_encounter_class = global.promise_helpers.promise_to_load_javascript(this.resource_root + "encounter/class.js")
             .then(()=>{
                 var identifier = this.unique_behavior_id.capitalize() + "_Encounter";
-                return window[identifier]; 
+                var this_encounter_class = window[identifier];
+                this.parent.Encounter_Class = this_encounter_class; // this enables the encounter class to be accessed outside of loading scripts, for example when peer data needs to be processed 
+                return this_encounter_class; 
             })
        
         var load_data = Promise.all([retreive_data, retreive_encounter_class])

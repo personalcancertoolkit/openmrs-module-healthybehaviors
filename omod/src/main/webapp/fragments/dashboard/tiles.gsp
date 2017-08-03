@@ -107,7 +107,7 @@ promise_requested_behavior.then((behaviors)=>{
                 </a>
 
                 <div class = 'behavior_tile_response_outofdate' style = 'display:none;'>
-                    <a style = 'padding:10px; display:flex; ' class = 'behavior_tile_button behavior_tile_call_to_action_button behavior_tile_form_anchor '>
+                    <a style = 'padding:10px; display:flex; ' class = 'behavior_tile_button behavior_tile_button_call_to_action_modifier  behavior_tile_form_anchor '>
                         <div style = 'display:flex; min-width:35px;'>
                             <div style = 'margin:auto; '>
                                 <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->

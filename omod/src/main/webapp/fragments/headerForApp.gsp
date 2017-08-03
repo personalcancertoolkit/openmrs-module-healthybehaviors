@@ -25,8 +25,13 @@
     
     <!-- chart js settings -->
     <script type="text/javascript" src="${ ui.resourceLink("healthybehaviors", "/scripts/global_chart_js_options.js") }"></script>
-    
-    
+
+    <!-- define window loaded promise -->
+    <script>
+        window["promise"] = {
+            loaded : new Promise((resolve, reject)=>{window.addEventListener("load", function(){resolve(true)})}),
+        } 
+    </script>
     <!-- initialize iframe provisioner -->
     <script>
         iframe_loading_provisioner_singleton.initialize();
