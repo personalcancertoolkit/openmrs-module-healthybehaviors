@@ -19,11 +19,102 @@
     </div>
     
     <div class = 'GUIDELINES'>
-        <div onclick = '(function(){ // close others, open this )})'>
-            <div class = 'male age20-30'>
-            6 cups 
+        <div>
+            <div>
+                According to the <a href = 'https://www.choosemyplate.gov/' class = 'behavior_highlighed_interest'>USDA</a>, a <span class = 'age'>AGE</span> year old <span class = 'gender'>GENDER</span> should be getting 
             </div>
-            under construction....
+            <div style = 'display:flex'>
+                <div style = 'display:flex; width:30px;'>
+                    <div style = 'margin:auto; font-size:14px;'>
+                        &bull;
+                    </div>
+                </div>
+                <div style = 'display:flex; flex:1;'>
+                    <div style = 'margin:auto; margin-left:5px; display:flex; width:100%;'>
+                        <div >
+                            <span class = 'daily_value_fruits'>VALUE</span> of fruits daily.
+                        </div>
+                        <div style = 'flex:1'></div>
+                        <div>
+                            <a href = 'javascript:nutrition_advice_daily_value_source_handler.display("fruits")' class = 'behavior_highlighed_interest_subtler'>What counts as a cup of fruit?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style = 'display:flex'>
+                <div style = 'display:flex; width:30px;'>
+                    <div style = 'margin:auto; font-size:14px;'>
+                        &bull;
+                    </div>
+                </div>
+                <div style = 'display:flex; flex:1;'>
+                    <div style = 'margin:auto; margin-left:5px; display:flex; width:100%;'>
+                        <div >
+                            <span class = 'daily_value_veges'>VALUE</span> of veggies daily
+                        </div>
+                        <div style = 'flex:1'></div>
+                        <div>
+                            <a href = 'javascript:nutrition_advice_daily_value_source_handler.display("veges")' class = 'behavior_highlighed_interest_subtler'>What counts as a cup of vegetables?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style = 'display:flex'>
+                <div style = 'display:flex; width:30px;'>
+                    <div style = 'margin:auto; font-size:14px;'>
+                        &bull;
+                    </div>
+                </div>
+                <div style = 'display:flex; flex:1;'>
+                    <div style = 'margin:auto; margin-left:5px; display:flex; width:100%;'>
+                        <div >
+                            <span class = 'daily_value_protein'>VALUE</span> of protein daily
+                        </div>
+                        <div style = 'flex:1'></div>
+                        <div>
+                            <a href = 'javascript:nutrition_advice_daily_value_source_handler.display("protein")' class = 'behavior_highlighed_interest_subtler'>What counts as an ounce of protein?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
+        <div style = 'position:fixed; top:0; left:0; right:0; bottom:0; background-color:rgba(0, 0, 0, 0.2); display:none; z-index:9999999;' 
+             id = 'nutrition_behavior_guideline_measurement_table' onclick = '(()=>{this.style.display="none"})()'>
+            <div style = 'margin:auto;'>
+                <div style = 'max-width:500px; min-width:300px; width:100%; min-height:100px; background-color:white; padding:15px; border-radius:1px;' class = 'healthy_tile' onclick = "event.stopPropagation()">
+                    <div style='font-size:18px;'>
+                        <span class = 'fruits nutrient'> A Cup of Fruit </span> 
+                        <span class = 'veges nutrient'> A Cup of Veggies </span> 
+                        <span class = 'protein nutrient'>An Ounce of Protein </span> 
+                    </div>
+                    <div style = 'height:15px;'></div>
+                    <div style = 'display:flex;'>
+                        <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
+                    </div>
+                    <div style = 'height:15px;'></div>
+                    <div class = 'fruits nutrient'>
+                        Knowledge 
+                    </div>
+                    <div class = 'veges nutrient'>
+                        is
+                    </div>
+                    <div class = 'protein nutrient'>
+                        power
+                    </div>
+                    <div style = 'height:15px;'></div>
+                    <div style = 'display:flex;'>
+                        <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
+                    </div>
+                    <div style = 'height:15px;'></div>
+                    <div style='font-size:12px;'>
+                        Note: These amounts are appropriate for individuals who get less than 30 minutes per day of moderate physical activity, beyond normal daily activities. Those who are more physically active may be able to consume more while staying within calorie needs.
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        
     </div>
 </div>

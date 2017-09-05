@@ -32,6 +32,13 @@ a, a:hover, a:focus {
 }
 
 
+.behavior_highlighed_interest_subtler{
+    color:rgb(8, 160, 255);
+}
+.behavior_highlighed_interest_subtler:hover{
+    color:rgb(8, 160, 255);
+}
+
 .behavior_highlighed_interest{
     font-weight:bold;
     color:rgb(8, 160, 255);
