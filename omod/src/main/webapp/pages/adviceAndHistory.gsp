@@ -5,6 +5,11 @@ ${ ui.includeFragment("healthybehaviors", "headerForApp") }
     window["healthybehaviors"] = {};
     window.healthybehaviors["page_title"] = "Advice and History";
     var behavior_requested = "${behavior}";
+    window.person = {
+        gender : "${personGender}",
+        age : "${personAge}",
+    };
+    console.log(window.person);
     var promise_requested_behavior = behavior_manager.promise_to_retreive(behavior_requested);
 </script>
 

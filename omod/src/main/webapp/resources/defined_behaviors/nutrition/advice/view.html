@@ -21,7 +21,7 @@
     <div class = 'GUIDELINES'>
         <div>
             <div>
-                According to the <a href = 'https://www.choosemyplate.gov/' class = 'behavior_highlighed_interest'>USDA</a>, a <span class = 'age'>AGE</span> year old <span class = 'gender'>GENDER</span> should be getting 
+                According to the <a href = 'https://www.choosemyplate.gov/' target='_blank' class = 'behavior_highlighed_interest'>USDA</a>, a <span class = 'age'>AGE</span> year old <span class = 'gender'>GENDER</span> should be getting 
             </div>
             <div style = 'display:flex'>
                 <div style = 'display:flex; width:30px;'>
@@ -81,8 +81,9 @@
         </div>
         <div style = 'position:fixed; top:0; left:0; right:0; bottom:0; background-color:rgba(0, 0, 0, 0.2); display:none; z-index:9999999;' 
              id = 'nutrition_behavior_guideline_measurement_table' onclick = '(()=>{this.style.display="none"})()'>
-            <div style = 'margin:auto;'>
-                <div style = 'max-width:500px; min-width:300px; width:100%; min-height:100px; background-color:white; padding:15px; border-radius:1px;' class = 'healthy_tile' onclick = "event.stopPropagation()">
+            <div style = 'margin:auto; position:relative;'>
+                <div style = 'position:absolute; top:-30px; right:15px; color:#ffffff; cursor:pointer;'> close </div>
+                <div style = 'max-width:700px; min-width:300px; width:100%; min-height:100px; background-color:white; padding:15px; border-radius:1px;' class = 'healthy_tile' onclick = "event.stopPropagation()">
                     <div style='font-size:18px;'>
                         <span class = 'fruits nutrient'> A Cup of Fruit </span> 
                         <span class = 'veges nutrient'> A Cup of Veggies </span> 
@@ -93,15 +94,17 @@
                         <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
                     </div>
                     <div style = 'height:15px;'></div>
-                    <div class = 'fruits nutrient'>
-                        Knowledge 
+                    <div class = 'nutrition_guideline_template' style = 'display:none;'>
+                        <div class = 'header' style = 'font-size:16px; font-weight:bold;'>
+                            Meats
+                        </div>
+                        <div class = 'info' style = 'margin-left:15px;'>
+                            1 ounce cooked chicken or turkey, without skin
+                        </div>
                     </div>
-                    <div class = 'veges nutrient'>
-                        is
-                    </div>
-                    <div class = 'protein nutrient'>
-                        power
-                    </div>
+                    <div class = 'fruits nutrient data' style = 'max-height:500px; overflow-y:auto;  '>  </div>
+                    <div class = 'veges nutrient data' style = 'max-height:500px; overflow-y:auto;  '>  </div>
+                    <div class = 'protein nutrient data' style = 'max-height:500px; overflow-y:auto;  '>  </div>
                     <div style = 'height:15px;'></div>
                     <div style = 'display:flex;'>
                         <div style = 'margin:auto; width:90%; border-bottom:1px solid rgba(128, 128, 128, 0.17);'></div>
