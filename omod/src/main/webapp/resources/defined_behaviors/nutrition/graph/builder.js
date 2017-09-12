@@ -106,6 +106,7 @@ var nutrition_graph_display_builder = {
                 tooltips: {
                     mode: 'x',
                 },
+                /*
                 horizontalLine: [
                     {
                       "y": (11/35*100), // 11 = threshold, 35 = max points, 100 = percentage that would be displayed on graph at that threshold
@@ -116,6 +117,7 @@ var nutrition_graph_display_builder = {
                       "style": color(color_options.yellow).alpha(0.50).rgbString(),
                     },
                 ],
+                */
 				scales: {
 					xAxes: [{
 						type: "time",
