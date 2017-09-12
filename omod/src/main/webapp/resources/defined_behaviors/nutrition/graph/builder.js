@@ -135,11 +135,11 @@ var nutrition_graph_display_builder = {
 						},
                         ticks : {
                             "beginAtZero": true,
-                            "stepSize":33,
-                            "max":99,
-                            "min":-99,
+                            "stepSize":50,
+                            "max":100,
+                            "min":-100,
                             "userCallback" : function(t, i){
-                                var mapping_function =  [ "", "Critical", "Needs Work", "Good", "Needs Work", "Good Choices", "Great Choices"];
+                                var mapping_function =  [ "", "Critical", "Needs Work",  "Good Choices", "Great Choices"];
                                 //return t;
                                 return mapping_function[mapping_function.length - (i + 1)];
                            },
@@ -185,7 +185,7 @@ var nutrition_graph_display_builder = {
         return data;
     },
     build_dataset_from_encounters : function(encounters, performance_key, display_title, color_choice, fill){
-        if(typeof fill === "undefined") fill = true;
+        if(typeof fill === "undefined") fill = false;
         // pick color which has not been used
         // helper data
         var color_options = {

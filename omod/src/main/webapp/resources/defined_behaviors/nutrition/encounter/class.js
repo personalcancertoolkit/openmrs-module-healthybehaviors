@@ -37,6 +37,9 @@ Nutrition_Encounter.prototype = {
         
         // fruits and veges, add up the values
         //      note, simpleformservice returns "0" as false and "1" as true
+        var fruits_and_veges_threshold = 11;
+        var fruits_and_veges_max_score = 5*7 - fruits_and_veges_threshold; // 5 points / question * 7 questions - threshold
+        var fruits_and_veges_min_score = fruits_and_veges_threshold - 0; // 
         var fruits_and_veges_score = 0;
         fruits_and_veges.forEach((obs)=>{
             var value = this.map_observation_to_value(obs);
@@ -44,16 +47,31 @@ Nutrition_Encounter.prototype = {
         })
         // store raw score, before data normalization and cleanup
         fruits_and_veges_score_raw = fruits_and_veges_score;
-        // normalize score
-        fruits_and_veges_score = fruits_and_veges_score / (fruits_and_veges.length * 5);
+        
+        // center the score around threshold, s.t. when score below threshold its negative and above its positive
+        fruits_and_veges_score = fruits_and_veges_score - fruits_and_veges_threshold;
+        
+        // normalize the score relative to max score, s.t. max_score = 1 and min_score = -1
+        if(fruits_and_veges_score > 0){
+            fruits_and_veges_score = fruits_and_veges_score / fruits_and_veges_max_score;
+        } else {
+            fruits_and_veges_score = fruits_and_veges_score / fruits_and_veges_min_score;
+        }
+        
         // make max score out of 100
         fruits_and_veges_score = fruits_and_veges_score * 100;
+        
         // round to one decimal
         fruits_and_veges_score = Math.round( fruits_and_veges_score * 10 ) / 10;
+        
         //console.log("Final score = " + fruits_and_veges_score);
+        
         
         // meats and snacks, add up the values and then negate
         //      note, simpleformservice returns "0" as false and "1" as true
+        var meat_and_snacks_threshold = 22;
+        var meat_and_snacks_max_score = meat_and_snacks_threshold - 0; // max score = threshold - 0, since points decrease performance
+        var meat_and_snacks_min_score = 15*5 - meat_and_snacks_threshold; // since negative score is greater than max positive score, scale the negative score to be from 0 to -1
         var meat_and_snacks_score = 0;
         meat_and_snacks.forEach((obs)=>{
             var value = this.map_observation_to_value(obs);
@@ -61,14 +79,28 @@ Nutrition_Encounter.prototype = {
         })
         // store raw score, before data normalization and cleanup
         meat_and_snacks_score_raw = meat_and_snacks_score;
-        // normalize score
-        meat_and_snacks_score = meat_and_snacks_score / (meat_and_snacks.length * 5);
+        console.log("raw : " + meat_and_snacks_score_raw);
+        
+        // center the score around threshold, s.t. when score below threshold its positive and above its negative (threshold is a max limit in this case)
+        meat_and_snacks_score = meat_and_snacks_threshold - meat_and_snacks_score;
+        console.log("centered : " + meat_and_snacks_score);
+        
+        // normalize the score relative to max score, s.t. max_score = 1 and min_score = -1
+        if(meat_and_snacks_score > 0){
+            meat_and_snacks_score = meat_and_snacks_score / meat_and_snacks_max_score;
+        } else {
+            meat_and_snacks_score = meat_and_snacks_score / meat_and_snacks_min_score;
+        }
+        
+        // if score is less than -1, cut it off at -1
+        meat_and_snacks_score = (meat_and_snacks_score < -1)? -1 : meat_and_snacks_score;
+        
         // make max score out of 100
         meat_and_snacks_score = meat_and_snacks_score * 100;
+        
         // round to one decimal
         meat_and_snacks_score = Math.round( meat_and_snacks_score * 10 ) / 10;
-        // negate score
-        meat_and_snacks_score = meat_and_snacks_score * -1;
+        
         //console.log("Final score = " + meat_and_snacks_score);
         
         
