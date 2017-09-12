@@ -17,9 +17,12 @@ var exercise_graph_display_builder = {
         this.time_interval = additional_data.time_interval;
         
         // transform history into chart data for this chart type
-        var relevant_encounters = encounters;
+        var relevant_encounters = this.remove_duplicate_date_encounters(encounters);
         var relevant_encounters_for_preview = relevant_encounters.slice(0, preview_length);
         //console.log(relevant_encounters);
+        console.log(relevant_encounters);
+        console.log(relevant_encounters_for_preview);
+        console.log("--^^--");
         
         // chart config
         var chart_config = this.build_chart_config_with_encounters(relevant_encounters);
@@ -120,7 +123,6 @@ var exercise_graph_display_builder = {
     },
     
     convert_encounters_to_data_for_performance_type : function(encounters, rapa_type){
-        encounters = this.remove_duplicate_date_encounters(encounters);
         var data = [];
         encounters.forEach((encounter)=>{
             if(encounter.time == null) return; // skip invalid encounters
