@@ -52,6 +52,14 @@
     <script type="text/javascript">
         jq = jQuery;
     </script>
+    
+    <!-- get basic user data -->
+    <script>
+        window.person = {
+            gender : "${personGender}",
+            age : "${personAge}",
+        };
+    </script>
 </head>
 
 

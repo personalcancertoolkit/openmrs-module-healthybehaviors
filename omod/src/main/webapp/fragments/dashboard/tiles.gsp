@@ -72,19 +72,8 @@ promise_requested_behavior.then((behaviors)=>{
 
             <!-- tile draw-in -->
             <div style = 'width:100%; min-height:100px; display:flex; padding:5px;'>
-                <div style = 'display:flex;'>
-                    <div style = 'margin:auto; text-align:center;'>
-                        <canvas class="behavior_tile_mini_chart" width="300" height="200"></canvas>
-                    </div>
-                </div>
-                <div style = 'width:15px;'></div>
-                <div style = 'flex:1; display:flex;'>
-                    <div class = 'behavior_tile_response_uptodate' style = 'margin:auto; display:none; text-align:center; '>
-                        Mini advice goes here.
-                    </div>
-                    <div class = 'behavior_tile_response_outofdate' style = 'margin:auto; display:none; text-align:center; font-size:14px;'>
-                        <a class = 'behavior_highlighed_interest behavior_tile_form_anchor' style = 'display:inline-block;'>Record your <span class = 'behavior_tile_advice_type_text' style = 'text-transform: lowercase;'></span> data for the previous <span class = 'behavior_tile_time_interval'></span></a>
-                    </div>
+                <div style = 'margin:auto; text-align:center; flex:1;'>
+                    <canvas class="behavior_tile_mini_chart" ></canvas>
                 </div>
             </div>
 

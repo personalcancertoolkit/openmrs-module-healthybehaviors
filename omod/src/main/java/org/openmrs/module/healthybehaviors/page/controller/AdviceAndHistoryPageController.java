@@ -29,8 +29,6 @@ public class AdviceAndHistoryPageController {
     public void controller(PageModel model, @RequestParam(value = "behavior", required = false) String behavior, PageRequest pageRequest) {
 
         model.addAttribute("contextUser", Context.getAuthenticatedUser());  
-        model.addAttribute("personAge", Context.getAuthenticatedUser().getPerson().getAge());
-        model.addAttribute("personGender", Context.getAuthenticatedUser().getPerson().getGender());  
         model.addAttribute("behavior", behavior); 
 
         model.addAttribute("securitylevel", 0);

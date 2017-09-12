@@ -35,7 +35,7 @@
         
         <!-- content -->
         <div style = 'display:flex; width:100%; '>
-            <div id = '' class = '' style = 'width:100%; max-width:700px; margin:auto; padding:5px;  '>
+            <div id = '' class = '' style = 'width:100%; max-width:750px; margin:auto; padding:5px;  '>
                 <div style = 'display:flex;'>
                     <div style = 'display:flex; width:30px;'>
                         <div style = 'margin:auto;'>

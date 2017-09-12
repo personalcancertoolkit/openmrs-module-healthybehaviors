@@ -21,6 +21,8 @@ public class HeaderForAppFragmentController {
 
     public void controller(FragmentModel model, PageRequest pageRequest) {
         model.addAttribute("username", Context.getAuthenticatedUser().getUsername());
+        model.addAttribute("personAge", Context.getAuthenticatedUser().getPerson().getAge());
+        model.addAttribute("personGender", Context.getAuthenticatedUser().getPerson().getGender());  
     }
 
 }
