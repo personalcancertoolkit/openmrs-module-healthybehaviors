@@ -136,6 +136,18 @@ var exercise_graph_display_builder = {
         return data;
     },
     
+    return_not_used_color : function(){
+        var options = Object.keys(this.color_options);
+        for(var i = 0; i < options.length; i++){
+            var this_color = options[i];
+            if(this.used_color_choices.indexOf(this_color) == -1) return this_color;
+        }
+    },
+    find_color_based_on_display_title : function(display_title){
+        var cached = this.colors_cached_by_display_title[display_title];
+        if(typeof cached == "undefined") return false;
+        return cached;
+    },
     build_dataset_from_encounters : function(encounters, performance_key, display_title, color_choice, fill){
         if(typeof fill === "undefined") fill = false;
         
@@ -144,7 +156,7 @@ var exercise_graph_display_builder = {
 		var color = Chart.helpers.color;
         if(typeof color_choice == "undefined"){
             color_choice = this.find_color_based_on_display_title(display_title);
-            if(color_choice == False) color_choice = this.return_not_used_color(); // pick a non used color choice
+            if(color_choice == false) color_choice = this.return_not_used_color(); // pick a non used color choice
         }
         if(this.used_color_choices.indexOf(color_choice) == -1)this.used_color_choices.push(color_choice);
         this.colors_cached_by_display_title[display_title] = color_choice;

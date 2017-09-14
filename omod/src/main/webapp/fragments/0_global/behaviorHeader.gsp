@@ -23,7 +23,7 @@
 <div class = '' style = 'width:100%; display:flex; padding:20px 10px; '>
     <div class = 'healthy_tile ' style = 'min-height:50px; margin:auto; width:100%; max-width:800px; text-align:center; position:relative; ' >
         <a class = 'header_back_button' style = 'position:absolute;  top:-40; left:-15; z-index:5;  ' href = 'dashboard.page'>
-             go to dashboard
+             go back
         </a>
         
         

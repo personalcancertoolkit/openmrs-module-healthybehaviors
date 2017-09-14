@@ -95,8 +95,8 @@
 </style>
 
 
-<div id = 'peer_review_holder' style = 'width:100%; display:flex; padding:20px 10px; '>
-    <div class = 'healthy_tile' style = 'min-height:50px; margin:auto; width:100%; max-width:800px; ' > 
+<div id = 'peer_review_holder' style = 'width:100%; display:flex; padding:20px 10px; min-height:400px;'>
+    <div class = 'healthy_tile' style = 'min-height:50px; margin:auto; width:100%; max-width:800px; margin-top:0px;' > 
         <div style = 'height:15px;'></div>       
         <!-- intro -->
         <div style = 'display:flex; width:100%; padding:0px 10px; '>
