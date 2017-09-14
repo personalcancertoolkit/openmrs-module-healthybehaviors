@@ -139,7 +139,8 @@ var nutrition_graph_display_builder = {
                             "max":100,
                             "min":-100,
                             "userCallback" : function(t, i){
-                                var mapping_function =  [ "", "Critical", "Needs Work",  "Good Choices", "Great Choices"];
+                                var mapping_function =  [ "", "critical", "needs work",  "good choices", "great choices"];
+                                //var mapping_function =  [ "", "😞", "",  "", "😃"];
                                 //return t;
                                 return mapping_function[mapping_function.length - (i + 1)];
                            },
@@ -152,6 +153,8 @@ var nutrition_graph_display_builder = {
                  var ctx = chart.ctx;
                  var yAxis = chart.scales['y-axis-0'];
                  var tickGap = yAxis.getPixelForTick(1) - yAxis.getPixelForTick(0);
+                 //var fontArgs = ctx.font.split(' ');
+                 //ctx.font = '21px' + ' ' + fontArgs[fontArgs.length - 1]; /// using the last part
                  // loop through ticks array
                  Chart.helpers.each(yAxis.ticks, function(tick, index) {
                     if (index === yAxis.ticks.length - 1) return;
