@@ -6,6 +6,17 @@ var exercise_graph_display_builder = {
         bull : null,
     },
     data : null, // defined in this file further below
+    used_color_choices : [],
+    colors_cached_by_display_title : {},
+    color_options : {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    },
    
 
     build_from : function(dom, additional_data){
@@ -61,15 +72,6 @@ var exercise_graph_display_builder = {
     }, 
     build_chart_config_with_encounters : function(encounters){
         // helper data
-        var color_options = {
-            red: 'rgb(255, 99, 132)',
-            orange: 'rgb(255, 159, 64)',
-            yellow: 'rgb(255, 205, 86)',
-            green: 'rgb(75, 192, 192)',
-            blue: 'rgb(54, 162, 235)',
-            purple: 'rgb(153, 102, 255)',
-            grey: 'rgb(201, 203, 207)'
-        };
 		var color = Chart.helpers.color;
         
        
@@ -137,18 +139,15 @@ var exercise_graph_display_builder = {
     build_dataset_from_encounters : function(encounters, performance_key, display_title, color_choice, fill){
         if(typeof fill === "undefined") fill = false;
         
-        // pick color which has not been used
+        // pick color which has not been used / or the color reserved for the display title
         // helper data
-        var color_options = {
-            red: 'rgb(255, 99, 132)',
-            orange: 'rgb(255, 159, 64)',
-            yellow: 'rgb(255, 205, 86)',
-            green: 'rgb(75, 192, 192)',
-            blue: 'rgb(54, 162, 235)',
-            purple: 'rgb(153, 102, 255)',
-            grey: 'rgb(201, 203, 207)'
-        };
 		var color = Chart.helpers.color;
+        if(typeof color_choice == "undefined"){
+            color_choice = this.find_color_based_on_display_title(display_title);
+            if(color_choice == False) color_choice = this.return_not_used_color(); // pick a non used color choice
+        }
+        if(this.used_color_choices.indexOf(color_choice) == -1)this.used_color_choices.push(color_choice);
+        this.colors_cached_by_display_title[display_title] = color_choice;
         
         // get data
         var data = this.convert_encounters_to_data_for_performance_type(encounters, performance_key);
@@ -156,8 +155,8 @@ var exercise_graph_display_builder = {
         // build dataset object
         var dataset = {
             label: display_title,
-            backgroundColor: color(color_options[color_choice]).alpha(0.5).rgbString(),
-            borderColor: color_options[color_choice],
+            backgroundColor: color(this.color_options[color_choice]).alpha(0.5).rgbString(),
+            borderColor: this.color_options[color_choice],
             fill: fill,
             data: data,
         }

@@ -120,7 +120,7 @@
                 </div>
                 <div style = 'display:none' id = ''>
                     <div id = 'metric_template' class="healthy_radio" title = "" style = 'margin:5px 10px; display:flex;'>
-                        <input onchange = 'peer_functionality.check_validity("metrics")' type="radio" id = 'peer_metric-' name="peer_metric_option" value="0"  />
+                        <input onchange = 'peer_functionality.attempt_comparison("metric")' type="radio" id = 'peer_metric-' name="peer_metric_option" value="0"  />
                         <label for ='peer_metric-' style = 'font-size:15px; margin:auto;'>   </label>
                     </div>
                 </div>
@@ -140,13 +140,13 @@
                 </div>
                 <div style = 'display:none' id = ''>
                     <div id = 'peer_template' class="healthy_radio" title = "" style = 'margin:5px 10px; display:flex;'>
-                        <input onchange = 'peer_functionality.check_validity("peers")' type = 'checkbox' id = 'peer_peer-' name="peer_peers_option" value="0"  />
+                        <input onchange = 'peer_functionality.attempt_comparison("peer")' type = 'checkbox' id = 'peer_peer-' name="peer_peers_option" value="0"  />
                         <label for ='peer_peer-' style = 'font-size:15px; margin:auto;'>   </label>
                     </div>
                 </div>
             </div>
             
-            <div style = 'height:5px;'></div>
+            <div style = 'height:15px;'></div>
             <!-- action button -->
         </div>
         
@@ -191,11 +191,11 @@
             </div>
         </div>
         
+        <!-- 
         <a id = 'peer_submission_button' onclick = 'peer_functionality.attempt_comparison()' style = 'padding:10px; display:flex; min-height:60px; ' class = 'behavior_tile_button  behavior_tile_button_disabled_modifier '>
             <div style = 'width:45px'></div>
             <div style = 'display:flex; min-width:35px; '>
                 <div style = 'margin:auto; '>
-                    <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
                     <span class = 'glyphicon glyphicon-stats' style = 'font-size:18px;'></span>
                 </div>
             </div> 
@@ -210,7 +210,6 @@
             <div style = 'width:45px'></div>
             <div style = 'display:flex; min-width:35px; '>
                 <div style = 'margin:auto; '>
-                    <!-- <img src = '${ ui.resourceLink("healthybehaviors", "/images/record_icon.png") }' style = 'width:35px;'> -->
                     <span class = 'glyphicon glyphicon-triangle-left' style = 'font-size:18px;'></span>
                 </div>
             </div> 
@@ -221,6 +220,7 @@
                 </div>
             </div> 
         </a>
+        -->
         
         
         

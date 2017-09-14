@@ -10,18 +10,12 @@ var peer_functionality = {
         this.DOM.holder = document.getElementById("peer_graph_holder");
     },
     
-    display_options : function(){
-        document.getElementById("peer_options").style.display = "block";
+    hide_chart : function(){
         document.getElementById("peer_display").style.display = "none";
-        document.getElementById("peer_submission_button").style.display = "flex";
-        document.getElementById("peer_back_button").style.display = "none";
     },
 
     display_chart : function(performance_key){
-        document.getElementById("peer_options").style.display = "none";
         document.getElementById("peer_display").style.display = "block";
-        document.getElementById("peer_submission_button").style.display = "none";
-        document.getElementById("peer_back_button").style.display = "flex";
         return promise_requested_behavior.then((behavior_object)=>{
             var chart_data = behavior_object.display.graph.data;
             var base_datasets =  behavior_object.display.graph.peer_data;
@@ -31,6 +25,9 @@ var peer_functionality = {
             for(var i = 0; i < base_datasets.length; i++){
                 if(base_datasets[i].performance_key == performance_key) this_base_dataset = [base_datasets[i].graph_data];
             }
+            
+            // update label of this base set
+            this_base_dataset[0].label = "You"
             
             // create the chart object if it has not been created already
             var chart_canvas = this.DOM.holder.querySelector("canvas");
@@ -65,7 +62,7 @@ var peer_functionality = {
         if(this.initialized !== true) this.initialize();
         
         // first check that it is valid, if not then the user will already be alerted and we can abort
-        if(this.check_validity() !== true) return;
+        if(this.check_validity() !== true) return this.hide_chart();
         
         // grab the user inputs
         var performance_key = this.get_performance_key();
@@ -77,6 +74,7 @@ var peer_functionality = {
         
         
         // set promises which will load the user data, add it to the graph, and update the graph display when finished
+        var colors = ["red", "orange", "yellow", "green", "blue", "purple", "grey"];
         var promises_for_peer_encounters = [];
         for(let i = 0; i < peers.length; i++){
             var this_promise_of_peer_data = promise_requested_behavior
@@ -105,7 +103,7 @@ var peer_functionality = {
                     })
                     
                     // genererate data to insert into graph from the encounter objects
-                    var this_dataset = dataset_builder(encounter_objects, performance_key, person_name, "grey");
+                    var this_dataset = dataset_builder(encounter_objects, performance_key, person_name);
                     
                     // add dataset to the chart
                     the_chart.data.datasets.push(this_dataset);
@@ -130,6 +128,7 @@ var peer_functionality = {
         return [...document.querySelectorAll("input[name='peer_peers_option']:checked")].map(function(element){ return element.value });
     },
     
+    
     ///////////////////////////////////////////////
     // input validation
     ///////////////////////////////////////////////
@@ -139,16 +138,9 @@ var peer_functionality = {
         var metrics_valid = this.check_metrics();
         var peers_valid = this.check_peers();
         
-        if(metrics_valid !== true && (from_who == "metrics" || typeof from_who === "undefined")) alert(metrics_valid);
-        if(peers_valid !== true && (from_who == "peers" || typeof from_who === "undefined")) alert(peers_valid);
-        
-        if(metrics_valid === true && peers_valid === true){
-            document.getElementById("peer_submission_button").classList.remove("behavior_tile_button_disabled_modifier");
-            return true;
-        } else {
-            document.getElementById("peer_submission_button").classList.add("behavior_tile_button_disabled_modifier");
-            return false;
-        }
+        if(metrics_valid !== true && (from_who == "metrics" || typeof from_who === "undefined")) return false; 
+        if(peers_valid !== true && (from_who == "peers" || typeof from_who === "undefined")) return false; 
+        return true;
         
     },
     check_metrics : function(){
