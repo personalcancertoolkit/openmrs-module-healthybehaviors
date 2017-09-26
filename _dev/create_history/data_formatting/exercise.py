@@ -18,12 +18,13 @@ metric_domains = dict({
     "RAPA1" : (0, 1),
     "RAPA2" : (0, 4),
 })
+time_interval_in_days = 30;
     
 
 def map_concept_name_to_metric_group(concept_name):
     metric_group_parts = concept_name.split("_");
-    base_part = metric_group_parts[0];
-    if(base_part == "RAPA1" and (metric_group_parts[1]) in ["q2", "q4", "q6"]): return "RAPA0"; ## dont use these to calculate total value since they map to "q"+str(i+1)
+    base_part = metric_group_parts[0];                     # q1 = 0, q2=q3, q4=q5,  q6=q7
+    if(base_part == "RAPA1" and (metric_group_parts[1]) in ["q1","q2", "q4", "q6"]): return "RAPA0"; ## dont use these to calculate total value since they map to "q"+str(i+1)
                                                                                                           ## see exercise/encounter/class.js for more info
     return base_part;
 
@@ -32,7 +33,7 @@ def print_total_domains():
     for metric in sorted(total_domains.keys()):
         print(metric + " : " + str(total_domains[metric]));
 
-def return_encounter_with_metrics_for_user(RAPA1_value, RAPA2_value, user):
+def return_encounter_with_metrics_for_user(RAPA1_value, RAPA2_value, days_ago, patient = False, creator = False):
 
     ## build encounter_type
     encounter_type = openmrs_classes.Encounter_Type(name=encounter_type_identifier[0], db_id=encounter_type_identifier[1]);
@@ -42,13 +43,24 @@ def return_encounter_with_metrics_for_user(RAPA1_value, RAPA2_value, user):
     for i, concept in enumerate(concept_identifiers):
         metric = map_concept_name_to_metric_group(concept[0]);
         domain = metric_domains[metric];
-        concept = openmrs_classes.Concept(name=concept[0], hb_metric_group=metric, db_id=concept[1], data_type = int, domain=domain);
-        obs = openmrs_classes.Observation(concept, 1);
+        if(metric == "RAPA2"): 
+            data_type = int;
+        else:
+            data_type = bool;
+        concept = openmrs_classes.Concept(name=concept[0], hb_metric_group=metric, db_id=concept[1], data_type = data_type, domain=domain);
+        obs = openmrs_classes.Observation(concept, 0);
         observations.append(obs);
+        
+    ## retreive date
+    encounter_date = utilities.return_date_x_days_ago(days_ago);
 
+    ## scale values
+    if(RAPA2_value > 1): RAPA2_value = RAPA2_value + 1;  ## skips 2, since both 2 and one are mapped to underactive
+    ## note, rapa1 value is currently scaled using RAPA0 "hack". would be more legible if it were explicitly mapped here as well. TODO
+    
     ## build encounter 
-    encounter = openmrs_classes.Encounter(encounter_type, observations, user);
+    encounter = openmrs_classes.Encounter(encounter_type, observations, encounter_date, utilities.return_new_encounter_id(), patient = patient, creator = creator);
     encounter.set_total_value_of_metric_to("RAPA1", RAPA1_value);
-    encounter.set_total_value_of_metric_to("RAPA2", RAPA2_value);
+    encounter.set_total_value_of_metric_to("RAPA2", RAPA2_value); 
     return encounter;
 
