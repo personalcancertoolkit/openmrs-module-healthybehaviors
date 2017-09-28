@@ -82,12 +82,18 @@
         <div style = 'position:fixed; top:0; left:0; right:0; bottom:0; background-color:rgba(0, 0, 0, 0.2); display:none; z-index:9999999;' 
              id = 'nutrition_behavior_guideline_measurement_table' onclick = '(()=>{this.style.display="none"})()'>
             <div style = 'margin:auto; position:relative;'>
-                <div style = 'position:absolute; top:-30px; right:15px; color:#ffffff; cursor:pointer;'> close </div>
                 <div style = 'max-width:700px; min-width:300px; width:100%; min-height:100px; background-color:white; padding:15px; border-radius:1px;' class = 'healthy_tile' onclick = "event.stopPropagation()">
-                    <div style='font-size:18px;'>
-                        <span class = 'fruits nutrient'> A Cup of Fruit </span> 
-                        <span class = 'veges nutrient'> A Cup of Veggies </span> 
-                        <span class = 'protein nutrient'>An Ounce of Protein </span> 
+                    <div style='font-size:18px; display:flex;'>
+                        <div>
+                            <span class = 'fruits nutrient'> A Cup of Fruit </span> 
+                            <span class = 'veges nutrient'> A Cup of Veggies </span> 
+                            <span class = 'protein nutrient'>An Ounce of Protein </span> 
+                        </div>
+                        <div style = 'flex:1'>
+                        </div>
+                        <div style = 'cursor:pointer;' onclick = 'document.getElementById("nutrition_behavior_guideline_measurement_table").style.display="none"'>
+                            X
+                        </div>
                     </div>
                     <div style = 'height:15px;'></div>
                     <div style = 'display:flex;'>
