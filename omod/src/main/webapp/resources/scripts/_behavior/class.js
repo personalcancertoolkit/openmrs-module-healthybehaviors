@@ -99,6 +99,14 @@ Behavior_Data_Manager.prototype = {
 
             // define up to date, if it is passed from basic page (development tool)
             this.dev_mode_force_not_uptodate = behavior_data.dev_mode_force_not_uptodate;
+            
+            // also, define uptodate if it is defined in a cookie - used for dev purposes
+            var cookie_status = utils.cookies.read("force_"+this.unique_behavior_id);
+            console.log(cookie_status);
+            if(cookie_status === true) this.dev_mode_force_not_uptodate = true;
+            if(cookie_status === false) this.dev_mode_force_not_uptodate = false;
+            
+            
         });
         
         return load_data;
