@@ -122,7 +122,7 @@ var nutrition_graph_display_builder = {
 						type: "time",
 						time: {
 							format: "MM/DD/YYYY",
-							// round: 'day'
+							round: 'day',
 							tooltipFormat: 'll'
 						},
 						scaleLabel: {
