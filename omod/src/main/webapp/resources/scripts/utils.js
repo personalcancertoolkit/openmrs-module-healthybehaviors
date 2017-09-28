@@ -37,6 +37,7 @@ utils.cookies = {
 
 
 utils.dev = {
+    // this command will force a behavior to be not uptodate or remove the "forcing", such as can be done from the behavior.json file. Overwrites the setting i nthe behavior.json file.
     force_not_uptodate : function(behavior, uptodate_boolean){
         if(behavior == "e") behavior = "exercise";
         if(behavior == "n") behavior = "nutrition";
