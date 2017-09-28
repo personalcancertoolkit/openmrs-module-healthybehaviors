@@ -135,11 +135,11 @@ var nutrition_graph_display_builder = {
 						},
                         ticks : {
                             "beginAtZero": true,
-                            "stepSize":50,
-                            "max":100,
-                            "min":-100,
+                            "stepSize":34,
+                            "max":102,
+                            "min":0,
                             "userCallback" : function(t, i){
-                                var mapping_function =  [ "", "critical", "needs work",  "good choices", "great choices"];
+                                var mapping_function =  [ "critical", "needs work",  "good choices", "great choices"];
                                 //var mapping_function =  [ "", "😞", "",  "", "😃"];
                                 //return t;
                                 return mapping_function[mapping_function.length - (i + 1)];
@@ -148,6 +148,7 @@ var nutrition_graph_display_builder = {
 					}]
 				},
 			},
+            /*
            plugins: [{
               afterDraw: function(chart) {
                  var ctx = chart.ctx;
@@ -172,6 +173,7 @@ var nutrition_graph_display_builder = {
                  yAxis.options.ticks.fontColor = 'transparent'; // hide original tick
               }
            }]
+           */
 		};
         return config;
     },

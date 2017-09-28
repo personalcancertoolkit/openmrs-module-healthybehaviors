@@ -61,6 +61,9 @@ Nutrition_Encounter.prototype = {
         // make max score out of 100
         fruits_and_veges_score = fruits_and_veges_score * 100;
         
+        // move score into positive scale and rescale to from 0 to 100, to remove clear threshold from graph
+        fruits_and_veges_score = (fruits_and_veges_score + 100)/2;
+        
         // round to one decimal
         fruits_and_veges_score = Math.round( fruits_and_veges_score * 10 ) / 10;
         
@@ -92,14 +95,16 @@ Nutrition_Encounter.prototype = {
             meat_and_snacks_score = meat_and_snacks_score / meat_and_snacks_min_score;
         }
         
-        // if score is less than -1, cut it off at -1
-        meat_and_snacks_score = (meat_and_snacks_score < -1)? -1 : meat_and_snacks_score;
-        
-        // make max score out of 100
+        // make max score out of -100 to 100
         meat_and_snacks_score = meat_and_snacks_score * 100;
+        
+        // move score into positive scale and rescale to from 0 to 100, to remove clear threshold from graph
+        meat_and_snacks_score = (meat_and_snacks_score + 100)/2;
         
         // round to one decimal
         meat_and_snacks_score = Math.round( meat_and_snacks_score * 10 ) / 10;
+        
+        
         
         //console.log("Final score = " + meat_and_snacks_score);
         
